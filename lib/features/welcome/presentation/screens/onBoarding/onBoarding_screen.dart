@@ -7,10 +7,9 @@ import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
+import 'package:hack_talk/features/home/presentation/screen/home/home_screen.dart';
 import 'package:hack_talk/features/welcome/presentation/logic/onBoarding_cubit/on_boarding_cubit.dart';
 import 'package:hack_talk/injections.dart' as dep_inj;
-
-import '../splash/splash_screen.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -25,7 +24,7 @@ class OnBoardingScreen extends StatelessWidget {
           builder: (context, state) {
             if (state is GoToHomeState) {
               WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                AppRoutes.routeAndRemoveAllTo(context, const SplashScreen());
+                AppRoutes.routeAndRemoveAllTo(context, const HomeScreen());
               });
             }
             final onBoarding = context.watch<OnBoardingCubit>();
@@ -43,7 +42,7 @@ class OnBoardingScreen extends StatelessWidget {
                           WidgetsBinding.instance
                               .addPostFrameCallback((timeStamp) {
                             AppRoutes.routeAndRemoveAllTo(
-                                context, const SplashScreen());
+                                context, const HomeScreen());
                           });
                         },
                         child: const Row(
@@ -53,11 +52,11 @@ class OnBoardingScreen extends StatelessWidget {
                             TextWidget(
                               AppStrings.skip,
                               fontSize: 16,
-                              color: AppColors.textButtonColor,
+                              color: AppColors.textButtonBlueColor,
                               fontWeight: FontWeight.w500,
                             ),
                             Icon(Icons.arrow_forward,
-                                color: AppColors.textButtonColor),
+                                color: AppColors.textButtonBlueColor),
                           ],
                         ),
                       ),
@@ -75,25 +74,38 @@ class OnBoardingScreen extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Column(
                               children: [
-                                SvgPicture.asset(
-                                    onBoarding.onBoardingList[i].image),
-                                const Spacer(),
-                                TextWidget(
-                                  onBoarding.onBoardingList[i].title,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 20,
-                                  color: AppColors.textSecondColor,
+                                Expanded(
+                                  child: SvgPicture.asset(
+                                      onBoarding.onBoardingList[i].image),
                                 ),
-                                const SizedBox(height: 12),
-                                TextWidget(
-                                  onBoarding.onBoardingList[i].body,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16,
-                                  color: AppColors.textBodyColor,
-                                  textAlign: TextAlign.center,
-                                  maxLines: 5,
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.2,
+                                  child: Column(
+                                    children: [
+                                      TextWidget(
+                                        onBoarding.onBoardingList[i].title,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 20,
+                                        color: AppColors.bigTitleColor,
+                                      ),
+                                      const SizedBox(height: 12),
+                                      TextWidget(
+                                        onBoarding.onBoardingList[i].body,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16,
+                                        color: AppColors.textBodyColor,
+                                        textAlign: TextAlign.center,
+                                        maxLines: 5,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                const Spacer(),
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.01),
                               ],
                             ),
                           )),
@@ -110,19 +122,23 @@ class OnBoardingScreen extends StatelessWidget {
                             margin: const EdgeInsets.all(2),
                             decoration: BoxDecoration(
                               color: index == onBoarding.currentPage
-                                  ? AppColors.textButtonColor
+                                  ? AppColors.textButtonBlueColor
                                   : AppColors.greyColor,
                               borderRadius: BorderRadius.circular(4),
                             ),
                           )),
                 ),
-                ButtonWidget(
-                  onBoarding.currentPage == onBoarding.onBoardingList.length - 1
-                      ? 'Get Start'
-                      : 'Next',
-                  onPressed: () {
-                    context.read<OnBoardingCubit>().next();
-                  },
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: ButtonWidget(
+                    onBoarding.currentPage ==
+                            onBoarding.onBoardingList.length - 1
+                        ? 'Get Start'
+                        : 'Next',
+                    onPressed: () {
+                      context.read<OnBoardingCubit>().next();
+                    },
+                  ),
                 ),
                 SvgPicture.asset('down_image'.getSvgAsset),
               ],

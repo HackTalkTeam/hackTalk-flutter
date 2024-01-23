@@ -11,10 +11,28 @@ import 'package:hack_talk/features/welcome/presentation/logic/onBoarding_cubit/o
 import 'package:hack_talk/features/welcome/presentation/logic/splash_cubit/splash_cubit.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'features/home/presentation/logic/audio_cubit/audio_cubit.dart';
+import 'features/home/presentation/logic/computer_vision_cubit/computer_vision_cubit.dart';
+import 'features/rating/presentation/logic/rating_cubit/rating_cubit.dart';
 
 final inj = GetIt.instance;
 
 Future<void> init() async {
+  ///
+  /// RatingScreen
+  ///
+  inj.registerFactory(() => RatingCubit());
+
+  ///
+  /// AudioCubit
+  ///
+  inj.registerFactory(() => AudioCubit());
+
+  ///
+  /// ComputerVisionCubit
+  ///
+  inj.registerFactory(() => ComputerVisionCubit());
+
   ///
   /// On boarding
   ///

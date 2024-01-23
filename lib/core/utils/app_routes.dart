@@ -24,4 +24,8 @@ class AppRoutes {
       (route) => false,
     );
   }
+
+  static pop(BuildContext context) {
+    return Navigator.pop(context);
+  }
 }

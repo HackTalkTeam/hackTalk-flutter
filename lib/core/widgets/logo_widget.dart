@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class LogoWidget extends StatelessWidget {
-  const LogoWidget({Key? key}) : super(key: key);
+  const LogoWidget({Key? key, required this.isBigger}) : super(key: key);
+  final bool isBigger;
 
   @override
   Widget build(BuildContext context) {
-    return const Icon(
+    return Icon(
       Icons.image_outlined,
-      size: 80,
+      color: Colors.black,
+      size: isBigger ? 80 : 35,
     );
   }
 }

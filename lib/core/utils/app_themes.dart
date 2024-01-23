@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-class AppThemes{
+class AppThemes {
   AppThemes._();
 
-  static ThemeData theme = ThemeData(
-    fontFamily: 'Roboto',
-  );
+  static ThemeData theme =
+      ThemeData(fontFamily: 'Roboto', scaffoldBackgroundColor: Colors.white);
 }

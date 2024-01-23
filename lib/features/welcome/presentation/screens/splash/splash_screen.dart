@@ -5,7 +5,7 @@ import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
 import 'package:hack_talk/features/welcome/presentation/logic/splash_cubit/splash_cubit.dart';
 import 'package:hack_talk/features/welcome/presentation/screens/onBoarding/onBoarding_screen.dart';
-import 'package:hack_talk/features/welcome/presentation/widgets/logo_widget.dart';
+import 'package:hack_talk/core/widgets/logo_widget.dart';
 import 'package:hack_talk/injections.dart' as dep_inj;
 
 class SplashScreen extends StatelessWidget {
@@ -30,7 +30,9 @@ class SplashScreen extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  LogoWidget(),
+                  LogoWidget(
+                    isBigger: true,
+                  ),
                   SizedBox(height: 16),
                   TextWidget.bigTitle(AppStrings.appName),
                 ],

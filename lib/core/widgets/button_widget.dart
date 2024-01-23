@@ -3,23 +3,22 @@ import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
 
 class ButtonWidget extends StatelessWidget {
-  const ButtonWidget(this.text,{Key? key, this.onPressed }) : super(key: key);
+  const ButtonWidget(this.text, {Key? key, this.onPressed}) : super(key: key);
   final String text;
   final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      height: 50,
-      margin: const EdgeInsets.all(16),
+      height: 40,
       child: ElevatedButton(
-          onPressed: onPressed??(){},
+        onPressed: onPressed ?? () {},
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.textButtonColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))
-        ),
-          child: TextWidget(text),
+            backgroundColor: AppColors.textButtonBlueColor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18))),
+        child: TextWidget(text),
       ),
     );
   }

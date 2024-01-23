@@ -27,7 +27,7 @@ class TextWidget extends StatelessWidget {
   const TextWidget.bigTitle(
     this.text, {
     Key? key,
-    this.color = AppColors.textMainColor,
+    this.color = AppColors.bigTitleColor,
     this.overflow,
     this.textDirection,
     this.textAlign,
