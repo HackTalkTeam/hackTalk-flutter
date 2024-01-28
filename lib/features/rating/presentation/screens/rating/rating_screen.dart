@@ -6,7 +6,6 @@ import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
-import 'package:hack_talk/features/home/presentation/screen/home/home_screen.dart';
 import 'package:hack_talk/features/rating/presentation/logic/rating_cubit/rating_cubit.dart';
 import 'package:hack_talk/injections.dart' as dep_inj;
 
@@ -151,26 +150,26 @@ class _RatingScreenState extends State<RatingScreen> {
                       maxLength: 500,
                       decoration: InputDecoration(
                         filled: true,
-                        counterStyle:
-                            const TextStyle(color: AppColors.textButtonBlueColor),
+                        counterStyle: const TextStyle(
+                            color: AppColors.textButtonBlueColor),
                         hintText: 'Write review (Optional)...',
                         hintStyle: const TextStyle(
                             color: AppColors.textFormGryButtonColor),
                         fillColor: AppColors.textFormRattingColor,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(22),
-                          borderSide:
-                              const BorderSide(color: AppColors.textFormRattingColor),
+                          borderSide: const BorderSide(
+                              color: AppColors.textFormRattingColor),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(22),
-                          borderSide:
-                              const BorderSide(color: AppColors.textFormRattingColor),
+                          borderSide: const BorderSide(
+                              color: AppColors.textFormRattingColor),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(22),
-                          borderSide:
-                              const BorderSide(color: AppColors.textFormRattingColor),
+                          borderSide: const BorderSide(
+                              color: AppColors.textFormRattingColor),
                         ),
                       ),
                     ),

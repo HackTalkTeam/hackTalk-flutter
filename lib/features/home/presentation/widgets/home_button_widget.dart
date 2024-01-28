@@ -5,9 +5,18 @@ import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
 
 class HomeButtonWidget extends StatelessWidget {
-  const HomeButtonWidget({Key? key, required this.text, this.onPressed})
+  const HomeButtonWidget(
+      {Key? key,
+      required this.text,
+      this.onPressed,
+      required this.color,
+      required this.textColor,
+      required this.image})
       : super(key: key);
   final String text;
+  final String image;
+  final Color color;
+  final Color textColor;
   final void Function()? onPressed;
 
   @override
@@ -18,10 +27,22 @@ class HomeButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed ?? () {},
         style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.homeButtonColor,
+            backgroundColor: color,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18))),
-        child: TextWidget(text, color: AppColors.textButtonBlueColor),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              image.getSvgAsset,
+              color: Colors.white,
+            ),
+            const SizedBox(
+              width: 12,
+            ),
+            TextWidget(text, color: textColor),
+          ],
+        ),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:file_picker/file_picker.dart';
@@ -38,6 +39,11 @@ class AudioCubit extends Cubit<AudioState> {
     return true;
   }
 
+  bool isRecording = false;
+  bool isPause = false;
+  Timer? timer;
+  int allSeconds = 0;
+
   void startRecord() async {
     bool hasPermission = await checkPermission();
     if (hasPermission) {
@@ -46,6 +52,17 @@ class AudioCubit extends Cubit<AudioState> {
       isComplete = false;
       RecordMp3.instance.start(recordFilePath!, (type) {
         statusText = "Record error--->$type";
+      });
+      isRecording = true;
+      isPause = false;
+      timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+        allSeconds++;
+        int hours = allSeconds ~/ 3600;
+        int minutes = (allSeconds - (hours * 3600)) ~/ 60;
+        int seconds = (allSeconds - (hours * 3600) - (minutes * 60));
+
+        emit(DurationRecordInitial(
+            second: seconds, minutes: minutes, hours: hours));
       });
     } else {
       statusText = "No microphone permission";
@@ -56,6 +73,8 @@ class AudioCubit extends Cubit<AudioState> {
   void pauseRecord() {
     if (RecordMp3.instance.status == RecordStatus.PAUSE) {
       bool s = RecordMp3.instance.resume();
+      // isRecording = true;
+      // isPause = true;
       if (s) {
         statusText = "Recording...";
       }
@@ -73,6 +92,10 @@ class AudioCubit extends Cubit<AudioState> {
     if (s) {
       statusText = "Record complete";
       isComplete = true;
+      isPause = true;
+      isRecording = false;
+      allSeconds = 0;
+      timer?.cancel();
       emit(StopRecordInitial());
     }
   }

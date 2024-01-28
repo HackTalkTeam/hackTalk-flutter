@@ -1,33 +1,32 @@
-import 'dart:math';
-
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hack_talk/core/utils/app_assets.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
-import 'package:hack_talk/features/home/presentation/logic/computer_vision_cubit/computer_vision_cubit.dart';
+import 'package:hack_talk/features/home/presentation/logic/audio_cubit/audio_cubit.dart';
+import 'package:hack_talk/features/home/presentation/screen/Audio/record_audio_screen.dart';
 import 'package:hack_talk/features/home/presentation/widgets/home_button_widget.dart';
 import 'package:hack_talk/injections.dart' as dep_inj;
 
-class ComputerVisionScreen extends StatefulWidget {
-  const ComputerVisionScreen({Key? key}) : super(key: key);
+class AudioScreen extends StatefulWidget {
+  const AudioScreen({Key? key}) : super(key: key);
 
   @override
-  State<ComputerVisionScreen> createState() => _ComputerVisionScreenState();
+  State<AudioScreen> createState() => _AudioScreenState();
 }
 
-class _ComputerVisionScreenState extends State<ComputerVisionScreen> {
+class _AudioScreenState extends State<AudioScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ComputerVisionCubit>(
+    return BlocProvider<AudioCubit>(
       create: (context) => dep_inj.inj(),
-      child: BlocConsumer<ComputerVisionCubit, ComputerVisionState>(
+      child: BlocConsumer<AudioCubit, AudioState>(
         listener: (context, state) {},
         builder: (context, state) {
-          final returnVideo = context.watch<ComputerVisionCubit>();
+          final returnAudio = context.watch<AudioCubit>();
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -41,8 +40,6 @@ class _ComputerVisionScreenState extends State<ComputerVisionScreen> {
                 },
                 icon: const Icon(Icons.arrow_back),
               ),
-              title: const TextWidget("Computer version",
-                  color: Colors.black, fontSize: 16),
             ),
             body: SafeArea(
               child: Center(
@@ -66,13 +63,18 @@ class _ComputerVisionScreenState extends State<ComputerVisionScreen> {
                           views: [
                             Column(
                               children: [
-                                SvgPicture.asset('record video'.getSvgAsset),
+                                SvgPicture.asset(
+                                    'start recording image audio'.getSvgAsset),
                                 const SizedBox(height: 27),
                                 HomeButtonWidget(
                                   color: AppColors.textButtonBlueColor,
                                   text: 'Start recording ',
-                                  onPressed: () async {
-                                    await returnVideo.selectVideoFromCamera();
+                                  onPressed: () {
+                                    WidgetsBinding.instance
+                                        .addPostFrameCallback((timeStamp) {
+                                      AppRoutes.routeTo(
+                                          context, const RecordAudioScreen());
+                                    });
                                   },
                                   textColor: AppColors.homeButtonColor,
                                   image: 'Start recording',
@@ -82,12 +84,12 @@ class _ComputerVisionScreenState extends State<ComputerVisionScreen> {
                             Column(
                               children: [
                                 SvgPicture.asset(
-                                    'upload video image'.getSvgAsset),
+                                    'start download image audio'.getSvgAsset),
                                 HomeButtonWidget(
                                   color: AppColors.textButtonBlueColor,
-                                  text: 'Upload video',
+                                  text: 'Upload voice',
                                   onPressed: () async {
-                                    await returnVideo.selectVideoPauseFrom();
+                                    await returnAudio.selectFiles();
                                   },
                                   textColor: AppColors.homeButtonColor,
                                   image: 'Upload video',
@@ -95,7 +97,7 @@ class _ComputerVisionScreenState extends State<ComputerVisionScreen> {
                               ],
                             ),
                           ],
-                          onChange: (index) => log(index),
+                          onChange: (index) => print(index),
                         ),
                       ),
                     ],

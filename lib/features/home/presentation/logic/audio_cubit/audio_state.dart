@@ -17,3 +17,11 @@ class PauseRecordInitial extends AudioState {}
 class StopRecordInitial extends AudioState {}
 
 class ResumeRecordInitial extends AudioState {}
+
+class DurationRecordInitial extends AudioState {
+  final int second;
+  final int minutes;
+  final int hours;
+  DurationRecordInitial
+      ({required this.second, required this.minutes, required this.hours});
+}
