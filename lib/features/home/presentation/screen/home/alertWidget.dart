@@ -27,11 +27,14 @@ class AlertDialogWidget extends StatelessWidget {
         text,
         maxLines: 9,
         textAlign: TextAlign.center,
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: AppColors.textBodyColor,
       ),
       contentPadding:
           const EdgeInsets.only(bottom: 88, left: 22, right: 22, top: 20),
-      backgroundColor: AppColors.homeButtonColor,
-      shadowColor: AppColors.textButtonBlueColor,
+      backgroundColor: AppColors.cvButtonColor,
+      shadowColor: AppColors.mainBlueColor,
       shape: OutlineInputBorder(borderRadius: BorderRadius.circular(18)),
     );
   }

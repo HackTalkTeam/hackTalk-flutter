@@ -78,9 +78,9 @@ class HomeScreen extends StatelessWidget {
                   IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.login,
-                          color: AppColors.textButtonBlueColor)),
+                          color: AppColors.mainBlueColor)),
                   const TextWidget('Logout',
-                      color: AppColors.textButtonBlueColor),
+                      color: AppColors.mainBlueColor),
                 ],
               )
             ],
@@ -115,7 +115,7 @@ class HomeScreen extends StatelessWidget {
                             context, const ComputerVisionScreen());
                       });
                     },
-                    textColor: AppColors.textButtonBlueColor,
+                    textColor: AppColors.mainBlueColor,
                     image: '',
                   ),
                 ),
@@ -147,7 +147,7 @@ class HomeScreen extends StatelessWidget {
                         AppRoutes.routeTo(context, const AudioScreen());
                       });
                     },
-                    textColor: AppColors.textButtonBlueColor,
+                    textColor: AppColors.mainBlueColor,
                     image: '',
                   ),
                 ),
@@ -178,7 +178,7 @@ class HomeScreen extends StatelessWidget {
                         AppRoutes.routeTo(context, const VrScreen());
                       });
                     },
-                    textColor: AppColors.textButtonBlueColor,
+                    textColor: AppColors.mainBlueColor,
                     image: '',
                   ),
                 ),

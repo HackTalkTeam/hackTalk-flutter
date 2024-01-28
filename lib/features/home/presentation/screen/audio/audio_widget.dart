@@ -65,7 +65,7 @@ class _SoundWaveformWidgetState extends State<SoundWaveformWidget>
                   : minHeight,
               width: 4,
               decoration: BoxDecoration(
-                color: AppColors.textButtonBlueColor,
+                color: AppColors.mainBlueColor,
                 borderRadius: BorderRadius.circular(9999),
               ),
             ),

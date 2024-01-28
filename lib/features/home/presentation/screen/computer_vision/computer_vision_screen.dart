@@ -72,7 +72,7 @@ class _ComputerVisionScreenState extends State<ComputerVisionScreen> {
                                 SvgPicture.asset('record video'.getSvgAsset),
                                 const SizedBox(height: 27),
                                 HomeButtonWidget(
-                                  color: AppColors.textButtonBlueColor,
+                                  color: AppColors.mainBlueColor,
                                   text: 'Start recording ',
                                   onPressed: () async {
                                     await returnVideo.selectVideoFromCamera();
@@ -87,7 +87,7 @@ class _ComputerVisionScreenState extends State<ComputerVisionScreen> {
                                 SvgPicture.asset(
                                     'upload video image'.getSvgAsset),
                                 HomeButtonWidget(
-                                  color: AppColors.textButtonBlueColor,
+                                  color: AppColors.mainBlueColor,
                                   text: 'Upload video',
                                   onPressed: () async {
                                     await returnVideo.selectVideoPauseFrom();

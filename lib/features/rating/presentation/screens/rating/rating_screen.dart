@@ -127,7 +127,7 @@ class _RatingScreenState extends State<RatingScreen> {
                                 CircleAvatar(
                                   radius: i == ratting.rate - 1 ? 10 : 8,
                                   backgroundColor: i < ratting.rate
-                                      ? AppColors.textButtonBlueColor
+                                      ? AppColors.mainBlueColor
                                       : AppColors.rateStarsGreyColor,
                                 ),
                                 if (i != 4) ...{
@@ -135,7 +135,7 @@ class _RatingScreenState extends State<RatingScreen> {
                                       width: 32,
                                       height: 2,
                                       color: i < ratting.rate - 1
-                                          ? AppColors.textButtonBlueColor
+                                          ? AppColors.mainBlueColor
                                           : AppColors.rateStarsGreyColor),
                                 }
                               ],
@@ -150,8 +150,8 @@ class _RatingScreenState extends State<RatingScreen> {
                       maxLength: 500,
                       decoration: InputDecoration(
                         filled: true,
-                        counterStyle: const TextStyle(
-                            color: AppColors.textButtonBlueColor),
+                        counterStyle:
+                            const TextStyle(color: AppColors.mainBlueColor),
                         hintText: 'Write review (Optional)...',
                         hintStyle: const TextStyle(
                             color: AppColors.textFormGryButtonColor),

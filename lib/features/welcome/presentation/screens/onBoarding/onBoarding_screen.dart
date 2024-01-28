@@ -52,11 +52,11 @@ class OnBoardingScreen extends StatelessWidget {
                             TextWidget(
                               AppStrings.skip,
                               fontSize: 16,
-                              color: AppColors.textButtonBlueColor,
+                              color: AppColors.mainBlueColor,
                               fontWeight: FontWeight.w500,
                             ),
                             Icon(Icons.arrow_forward,
-                                color: AppColors.textButtonBlueColor),
+                                color: AppColors.mainBlueColor),
                           ],
                         ),
                       ),
@@ -122,8 +122,8 @@ class OnBoardingScreen extends StatelessWidget {
                             margin: const EdgeInsets.all(2),
                             decoration: BoxDecoration(
                               color: index == onBoarding.currentPage
-                                  ? AppColors.textButtonBlueColor
-                                  : AppColors.greyColor,
+                                  ? AppColors.mainBlueColor
+                                  : AppColors.brownColor,
                               borderRadius: BorderRadius.circular(4),
                             ),
                           )),

@@ -70,7 +70,7 @@ class _AudioScreenState extends State<AudioScreen> {
                                     'start recording image audio'.getSvgAsset),
                                 const SizedBox(height: 27),
                                 HomeButtonWidget(
-                                  color: AppColors.textButtonBlueColor,
+                                  color: AppColors.mainBlueColor,
                                   text: 'Start recording ',
                                   onPressed: () {
                                     WidgetsBinding.instance
@@ -89,7 +89,7 @@ class _AudioScreenState extends State<AudioScreen> {
                                 SvgPicture.asset(
                                     'start download image audio'.getSvgAsset),
                                 HomeButtonWidget(
-                                  color: AppColors.textButtonBlueColor,
+                                  color: AppColors.mainBlueColor,
                                   text: 'Upload voice',
                                   onPressed: () async {
                                     await returnAudio.selectFiles();

@@ -41,7 +41,7 @@ class VrScreen extends StatelessWidget {
                   fontWeight: FontWeight.w500),
             ),
             HomeButtonWidget(
-              color: AppColors.textButtonBlueColor,
+              color: AppColors.mainBlueColor,
               text: 'Start downloading',
               onPressed: () {
                 // WidgetsBinding.instance
