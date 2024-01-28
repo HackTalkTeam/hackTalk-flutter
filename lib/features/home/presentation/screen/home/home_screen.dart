@@ -12,6 +12,8 @@ import 'package:hack_talk/features/home/presentation/widgets/app_bar_widget.dart
 import 'package:hack_talk/features/home/presentation/widgets/home_button_widget.dart';
 import 'package:hack_talk/features/rating/presentation/screens/rating/rating_screen.dart';
 
+import 'alertWidget.dart';
+
 final GlobalKey<ScaffoldState> globalKey = GlobalKey();
 
 class HomeScreen extends StatelessWidget {
@@ -123,29 +125,9 @@ class HomeScreen extends StatelessWidget {
                 SmallHomeButtonWidget('question', onPressed: () {
                   showDialog(
                     context: context,
-                    builder: (context) => AlertDialog(
-                      icon: Padding(
-                          padding: const EdgeInsets.only(left: 200.0),
-                          child: IconButton(
-                            icon: const Icon(Icons.close),
-                            onPressed: () {
-                              WidgetsBinding.instance
-                                  .addPostFrameCallback((timeStamp) {
-                                AppRoutes.pop(context);
-                              });
-                            },
-                          )),
-                      content: const TextWidget(
-                        'Computer version role is to take your movement while presenting, analyze it and return your movement mistakes so that you can work on them and improve your  performance skills ',
-                        maxLines: 9,
-                        textAlign: TextAlign.center,
-                      ),
-                      contentPadding: const EdgeInsets.only(
-                          bottom: 88, left: 22, right: 22, top: 20),
-                      backgroundColor: AppColors.homeButtonColor,
-                      shadowColor: AppColors.textButtonBlueColor,
-                      shape: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18)),
+                    builder: (context) => const AlertDialogWidget(
+                      text:
+                          'Computer version role is to take your movement while presenting, analyze it and return your movement mistakes so that you can work on them and improve your  performance skills ',
                     ),
                   );
                 }),
@@ -172,7 +154,14 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(
                   width: 12,
                 ),
-                SmallHomeButtonWidget('question', onPressed: () {}),
+                SmallHomeButtonWidget('question', onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => const AlertDialogWidget(
+                        text:
+                            'speech role is to take your voice ,analyse it and give you notice about your performance so you can work on your mistakes to get your perfect result '),
+                  );
+                }),
               ],
             ),
             const SizedBox(
@@ -196,7 +185,14 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(
                   width: 12,
                 ),
-                SmallHomeButtonWidget('question', onPressed: () {}),
+                SmallHomeButtonWidget('question', onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => const AlertDialogWidget(
+                        text:
+                            'virtual reality role is to overcome your fear of public speaking  by placing you in an almost real environment so you can practice and get notices about your performance so you can work to improve it  '),
+                  );
+                }),
               ],
             ),
 

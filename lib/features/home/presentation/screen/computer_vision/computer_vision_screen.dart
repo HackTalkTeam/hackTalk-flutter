@@ -54,6 +54,9 @@ class _ComputerVisionScreenState extends State<ComputerVisionScreen> {
                       const TextWidget(
                         "Welcome to the world of confident communication! Your journey starts now. Would you like to seize the moment and record your presentation live, or do you have a pre-recorded presentation ready to analyse",
                         maxLines: 4,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.textBodyColor,
                       ),
                       SizedBox(
                         width: double.infinity,
@@ -75,7 +78,7 @@ class _ComputerVisionScreenState extends State<ComputerVisionScreen> {
                                     await returnVideo.selectVideoFromCamera();
                                   },
                                   textColor: AppColors.homeButtonColor,
-                                  image: 'Start recording',
+                                  image: 'Upload video',
                                 ),
                               ],
                             ),

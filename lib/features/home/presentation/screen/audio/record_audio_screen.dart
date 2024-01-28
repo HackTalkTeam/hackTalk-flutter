@@ -6,7 +6,7 @@ import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
 import 'package:hack_talk/features/home/presentation/logic/audio_cubit/audio_cubit.dart';
 import 'package:hack_talk/injections.dart' as dep_inj;
-import 'package:record_mp3/record_mp3.dart';
+//import 'package:record_mp3/record_mp3.dart';
 
 import 'audio_widget.dart';
 
@@ -42,19 +42,27 @@ class _RecordAudioScreenState extends State<RecordAudioScreen> {
                 },
                 icon: const Icon(Icons.arrow_back),
               ),
+              title: const TextWidget(
+                'Record voice',
+                color: Colors.black,
+              ),
+              centerTitle: true,
             ),
             body: Center(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const TextWidget('speak fluently and confidently',
+                        fontSize: 16),
+                    const SizedBox(height: 12),
                     (state is DurationRecordInitial)
                         ? Text(
                             '${state.hours.toString().padLeft(2, '0')}:${state.minutes.toString().padLeft(2, '0')}:${state.second.toString().padLeft(2, '0')}',
-                            style: const TextStyle(fontSize: 44),
+                            style: const TextStyle(fontSize: 32),
                           )
                         : const TextWidget(
                             '00:00:00',
-                            fontSize: 44,
+                            fontSize: 32,
                           ),
                     SvgPicture.asset('record'.getSvgAsset),
                     const SizedBox(height: 20),
@@ -70,17 +78,17 @@ class _RecordAudioScreenState extends State<RecordAudioScreen> {
                             },
                             child: SvgPicture.asset(
                                 'start audio record'.getSvgAsset)),
-                        if (returnAudio.isRecording)
-                          InkWell(
-                              onTap: () {
-                                returnAudio.pauseRecord();
-                              },
-                              child: RecordMp3.instance.status ==
-                                      RecordStatus.PAUSE
-                                  ? SvgPicture.asset(
-                                      'start audio record'.getSvgAsset)
-                                  : SvgPicture.asset(
-                                      'record_pause'.getSvgAsset)),
+                        // if (returnAudio.isRecording)
+                        //   InkWell(
+                        //       onTap: () {
+                        //         returnAudio.pauseRecord();
+                        //       },
+                        //       child: RecordMp3.instance.status ==
+                        //               RecordStatus.PAUSE
+                        //           ? SvgPicture.asset(
+                        //               'start audio record'.getSvgAsset)
+                        //           : SvgPicture.asset(
+                        //               'record_pause'.getSvgAsset)),
                         if (returnAudio.isRecording)
                           InkWell(
                               onTap: () {

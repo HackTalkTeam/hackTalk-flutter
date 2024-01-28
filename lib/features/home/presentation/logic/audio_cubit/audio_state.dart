@@ -22,6 +22,5 @@ class DurationRecordInitial extends AudioState {
   final int second;
   final int minutes;
   final int hours;
-  DurationRecordInitial
-      ({required this.second, required this.minutes, required this.hours});
+  DurationRecordInitial({required this.second, required this.minutes, required this.hours});
 }
