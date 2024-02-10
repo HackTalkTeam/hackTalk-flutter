@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/app_themes.dart';
-import 'package:hack_talk/features/welcome/presentation/screens/splash/splash_screen.dart';
+import 'package:hack_talk/features/auth/sign_up/sign_up_screen.dart';
 import 'package:hack_talk/injections.dart' as dep_inj;
 
 Future<void> main() async {
@@ -15,11 +16,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: AppStrings.appName,
-      theme: AppThemes.theme,
-      debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+    return ScreenUtilInit(
+      designSize: const Size(390, 844),
+      minTextAdapt: true,
+      child: MaterialApp(
+        title: AppStrings.appName,
+        theme: AppThemes.theme,
+        debugShowCheckedModeBanner: false,
+        home:  const SignUpScreen(),
+      ),
     );
   }
 }
