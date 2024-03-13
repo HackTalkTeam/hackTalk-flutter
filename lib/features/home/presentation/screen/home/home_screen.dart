@@ -6,6 +6,7 @@ import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
 import 'package:hack_talk/features/home/presentation/screen/Audio/audio_screen.dart';
 import 'package:hack_talk/features/home/presentation/screen/computer_vision/computer_vision_screen.dart';
+import 'package:hack_talk/features/home/presentation/screen/drawer/features/features_screen.dart';
 import 'package:hack_talk/features/home/presentation/screen/vr/ve_screen.dart';
 import 'package:hack_talk/features/home/presentation/widgets/home_button_widget.dart';
 
@@ -46,7 +47,12 @@ class HomeScreen extends StatelessWidget {
               DrawerWidget(
                 text: 'Features',
                 icon: Icons.star_border,
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => const FeaturesScreen(),
+                  );
+                },
               ),
               DrawerWidget(
                 text: 'Setting',
