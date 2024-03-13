@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hack_talk/core/utils/app_assets.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
-import 'package:hack_talk/core/widgets/logo_widget.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
 import 'package:hack_talk/features/home/presentation/widgets/app_bar_widget.dart';
 import 'package:hack_talk/features/home/presentation/widgets/home_button_widget.dart';
@@ -20,11 +19,6 @@ class VrScreen extends StatelessWidget {
           });
         },
         icon: Icons.arrow_back,
-        actions: const [
-          LogoWidget(
-            isBigger: false,
-          )
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
@@ -40,18 +34,24 @@ class VrScreen extends StatelessWidget {
                   fontSize: 16,
                   fontWeight: FontWeight.w500),
             ),
-            HomeButtonWidget(
-              color: AppColors.mainBlueColor,
-              text: 'Start downloading',
-              onPressed: () {
-                // WidgetsBinding.instance
-                //     .addPostFrameCallback((timeStamp) {
-                //   AppRoutes.routeTo(
-                //       context, const ComputerVisionScreen());
-                // });
-              },
-              textColor: AppColors.homeButtonColor,
-              image: 'download',
+            Row(
+              children: [
+                Expanded(
+                  child: HomeButtonWidget(
+                    color: AppColors.mainBlueColor,
+                    text: 'Start downloading',
+                    onPressed: () {
+                      // WidgetsBinding.instance
+                      //     .addPostFrameCallback((timeStamp) {
+                      //   AppRoutes.routeTo(
+                      //       context, const ComputerVisionScreen());
+                      // });
+                    },
+                    textColor: AppColors.homeButtonColor,
+                    image: 'download',
+                  ),
+                ),
+              ],
             ),
           ],
         ),

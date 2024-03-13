@@ -18,7 +18,7 @@ class ButtonWidget extends StatelessWidget {
             backgroundColor: AppColors.mainBlueColor,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18))),
-        child: TextWidget(text),
+        child: TextWidget(text,color: AppColors.homeButtonColor),
       ),
     );
   }

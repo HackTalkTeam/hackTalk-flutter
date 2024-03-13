@@ -5,7 +5,7 @@ import 'package:hack_talk/core/utils/app_assets.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
 import 'package:hack_talk/features/home/presentation/logic/audio_cubit/audio_cubit.dart';
-import 'package:hack_talk/injections.dart' as dep_inj;
+
 //import 'package:record_mp3/record_mp3.dart';
 
 import 'audio_widget.dart';
@@ -23,7 +23,7 @@ class _RecordAudioScreenState extends State<RecordAudioScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AudioCubit>(
-      create: (context) => dep_inj.inj(),
+      create: (context) => AudioCubit(),
       child: BlocConsumer<AudioCubit, AudioState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -44,7 +44,8 @@ class _RecordAudioScreenState extends State<RecordAudioScreen> {
               ),
               title: const TextWidget(
                 'Record voice',
-                color: Colors.black,
+                color: Colors.black, fontSize: 16,
+                  fontWeight: FontWeight.w600
               ),
               centerTitle: true,
             ),

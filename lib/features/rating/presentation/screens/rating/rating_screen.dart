@@ -7,7 +7,6 @@ import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
 import 'package:hack_talk/features/rating/presentation/logic/rating_cubit/rating_cubit.dart';
-import 'package:hack_talk/injections.dart' as dep_inj;
 
 class RatingScreen extends StatefulWidget {
   const RatingScreen({Key? key}) : super(key: key);
@@ -20,7 +19,7 @@ class _RatingScreenState extends State<RatingScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<RatingCubit>(
-      create: (context) => dep_inj.inj(),
+      create: (context) => RatingCubit(),
       child: BlocConsumer<RatingCubit, RatingState>(
         listener: (context, state) {},
         builder: (context, state) {

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/app_themes.dart';
-import 'package:hack_talk/features/welcome/presentation/screens/splash/splash_screen.dart';
-import 'package:hack_talk/injections.dart' as dep_inj;
+import 'features/home/presentation/screen/home/home_screen.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await dep_inj.init();
+void main() {
   runApp(const MyApp());
 }
 
@@ -19,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: AppStrings.appName,
       theme: AppThemes.theme,
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: const HomeScreen(),
     );
   }
 }

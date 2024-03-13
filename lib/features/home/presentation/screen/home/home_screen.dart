@@ -3,16 +3,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hack_talk/core/utils/app_assets.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
-import 'package:hack_talk/core/widgets/logo_widget.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
 import 'package:hack_talk/features/home/presentation/screen/Audio/audio_screen.dart';
 import 'package:hack_talk/features/home/presentation/screen/computer_vision/computer_vision_screen.dart';
 import 'package:hack_talk/features/home/presentation/screen/vr/ve_screen.dart';
-import 'package:hack_talk/features/home/presentation/widgets/app_bar_widget.dart';
 import 'package:hack_talk/features/home/presentation/widgets/home_button_widget.dart';
-import 'package:hack_talk/features/rating/presentation/screens/rating/rating_screen.dart';
 
 import 'alertWidget.dart';
+import 'drawer_widget.dart';
 
 final GlobalKey<ScaffoldState> globalKey = GlobalKey();
 
@@ -23,66 +21,48 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: globalKey,
-      appBar: AppBarWidget(
-        onPressed: () {
-          globalKey.currentState?.openDrawer();
-        },
-        icon: Icons.menu,
-        actions: const [
-          LogoWidget(
-            isBigger: false,
-          )
-        ],
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              globalKey.currentState?.openDrawer();
+            },
+            icon: const Icon(Icons.menu)),
+        title: SvgPicture.asset('hacktalk'.getSvgAsset),
       ),
       drawer: Drawer(
         backgroundColor: AppColors.drawerColor,
         width: MediaQuery.of(context).size.width * 0.6,
         child: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(
+                height: 55,
+              ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 22, vertical: 44),
-                child: Row(
-                  children: [
-                    SvgPicture.asset('profile'.getSvgAsset),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    const Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextWidget('Rana Hamdy'),
-                        TextWidget('ranahamdy269@gmail.com', fontSize: 7),
-                      ],
-                    )
-                  ],
-                ),
+                padding: const EdgeInsets.all(13.0),
+                child: SvgPicture.asset('hacktalk'.getSvgAsset),
               ),
-              Row(
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        WidgetsBinding.instance
-                            .addPostFrameCallback((timeStamp) {
-                          AppRoutes.routeTo(context, const RatingScreen());
-                        });
-                      },
-                      icon: const Icon(Icons.settings)),
-                  const TextWidget('Setting'),
-                ],
+              DrawerWidget(
+                text: 'Features',
+                icon: Icons.star_border,
+                onPressed: () {},
               ),
-              Row(
-                children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.login,
-                          color: AppColors.mainBlueColor)),
-                  const TextWidget('Logout',
-                      color: AppColors.mainBlueColor),
-                ],
-              )
+              DrawerWidget(
+                text: 'Setting',
+                icon: Icons.settings,
+                onPressed: () {},
+              ),
+              DrawerWidget(
+                text: 'Logout ',
+                icon: Icons.logout,
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => const AlertDialogWidget(),
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -119,18 +99,18 @@ class HomeScreen extends StatelessWidget {
                     image: '',
                   ),
                 ),
-                const SizedBox(
-                  width: 12,
-                ),
-                SmallHomeButtonWidget('question', onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => const AlertDialogWidget(
-                      text:
-                          'Computer version role is to take your movement while presenting, analyze it and return your movement mistakes so that you can work on them and improve your  performance skills ',
-                    ),
-                  );
-                }),
+                // const SizedBox(
+                //   width: 12,
+                // ),
+                // SmallHomeButtonWidget('question', onPressed: () {
+                //   showDialog(
+                //     context: context,
+                //     builder: (context) => const AlertDialogWidget(
+                //       text:
+                //           'Computer version role is to take your movement while presenting, analyze it and return your movement mistakes so that you can work on them and improve your  performance skills ',
+                //     ),
+                //   );
+                // }),
               ],
             ),
             const SizedBox(
@@ -151,17 +131,17 @@ class HomeScreen extends StatelessWidget {
                     image: '',
                   ),
                 ),
-                const SizedBox(
-                  width: 12,
-                ),
-                SmallHomeButtonWidget('question', onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => const AlertDialogWidget(
-                        text:
-                            'speech role is to take your voice ,analyse it and give you notice about your performance so you can work on your mistakes to get your perfect result '),
-                  );
-                }),
+                // const SizedBox(
+                //   width: 12,
+                // ),
+                // SmallHomeButtonWidget('question', onPressed: () {
+                //   showDialog(
+                //     context: context,
+                //     builder: (context) => const AlertDialogWidget(
+                //         text:
+                //             'speech role is to take your voice ,analyse it and give you notice about your performance so you can work on your mistakes to get your perfect result '),
+                //   );
+                // }),
               ],
             ),
             const SizedBox(
@@ -182,17 +162,17 @@ class HomeScreen extends StatelessWidget {
                     image: '',
                   ),
                 ),
-                const SizedBox(
-                  width: 12,
-                ),
-                SmallHomeButtonWidget('question', onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => const AlertDialogWidget(
-                        text:
-                            'virtual reality role is to overcome your fear of public speaking  by placing you in an almost real environment so you can practice and get notices about your performance so you can work to improve it  '),
-                  );
-                }),
+                // const SizedBox(
+                //   width: 12,
+                // ),
+                // SmallHomeButtonWidget('question', onPressed: () {
+                //   showDialog(
+                //     context: context,
+                //     builder: (context) => const AlertDialogWidget(
+                //         text:
+                //             'virtual reality role is to overcome your fear of public speaking  by placing you in an almost real environment so you can practice and get notices about your performance so you can work to improve it  '),
+                //   );
+                // }),
               ],
             ),
 
