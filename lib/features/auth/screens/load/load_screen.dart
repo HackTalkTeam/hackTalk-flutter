@@ -6,7 +6,7 @@ import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/textstyle.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
-import 'package:hack_talk/features/auth/login/login_screen.dart';
+import 'package:hack_talk/features/auth/screens/login/login_screen.dart';
 
 class LoadScreen extends StatelessWidget {
   const LoadScreen({super.key});

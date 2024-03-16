@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hack_talk/core/helpers/spacing.dart';
+import 'package:hack_talk/core/utils/app_colors.dart';
+import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/textstyle.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/custom_text_form_feild.dart';
-import 'package:hack_talk/features/auth/login/login_screen.dart';
+import 'package:hack_talk/features/auth/screens/login/login_screen.dart';
 import 'package:hack_talk/features/auth/widgets/divider.dart';
 import 'package:hack_talk/features/auth/widgets/rich_text.dart';
 import 'package:hack_talk/features/auth/widgets/social_icon.dart';
 
-import '../../../core/utils/app_routes.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -100,7 +101,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     verticalSpace(10.h),
                     ButtonWidget(AppStrings.signUp,
-                        color: Colors.white, onPressed: () {}),
+                        color: Colors.white,
+                        onPressed: () {}),
                     verticalSpace(10.h),
                      Center(child: NewToHachTalk(textOne: AppStrings.donothaveanAccount,onTap: (){
                       AppRoutes.routeTo(context, const LoginScreen());

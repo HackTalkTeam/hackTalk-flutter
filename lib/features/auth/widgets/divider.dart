@@ -13,21 +13,24 @@ class Div extends StatelessWidget {
       children: [
         verticalSpace(5.h),
         SizedBox(
-          width: 120.w,
+          width: 100.w,
           child: const Divider(
             color: Colors.grey,
             thickness: 1,
           ),
         ),
         horizontalSpace(3.w),
-         Text(AppStrings.or,style: TextStyle(
-          color: Colors.black,
-          fontFamily: 'Roboto',
-          fontSize: 14.sp,
-        ),),
+        Text(
+          AppStrings.or,
+          style: TextStyle(
+            color: Colors.black,
+            fontFamily: 'Roboto',
+            fontSize: 14.sp,
+          ),
+        ),
         horizontalSpace(3.w),
         SizedBox(
-          width: 120.w,
+          width: 100.w,
           child: const Divider(
             color: Colors.grey,
             thickness: 1,

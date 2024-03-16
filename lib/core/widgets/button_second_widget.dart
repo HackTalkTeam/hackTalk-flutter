@@ -16,7 +16,7 @@ class ButtonSec extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 40.h,
+      height: 35.h,
       child: ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(

@@ -9,16 +9,16 @@ import 'package:hack_talk/core/utils/textstyle.dart';
 import 'package:hack_talk/core/widgets/button_second_widget.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/custom_text_form_feild.dart';
-import 'package:hack_talk/features/auth/verfication/verfication.dart';
+import 'package:hack_talk/features/auth/screens/load/load_screen.dart';
+import 'package:hack_talk/features/auth/screens/verfication/verfication.dart';
 
-class ForgotPassword extends StatelessWidget {
-  const ForgotPassword({super.key});
+class ResetScreen extends StatelessWidget {
+  const ResetScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         leading: const BackButton(),
         title: const Text('logo'),
       ),
@@ -28,30 +28,38 @@ class ForgotPassword extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SvgPicture.asset('assets/svgs/forgot.svg'),
+              SvgPicture.asset('assets/svgs/reset.svg'),
               Text(
-                AppStrings.forgotPassword,
+                AppStrings.resetPassword,
                 style: TextStyles.font20mainBllueColor,
               ),
               Text(
-                AppStrings.doNotWorry,
+                AppStrings.resetPasswordText,
                 textAlign: TextAlign.center,
                 style: TextStyles.font12black,
               ),
               verticalSpace(20.h),
               CustomTextFormFeild(
                 controller: TextEditingController(),
-                hintText: 'Email',
-                kbType: TextInputType.emailAddress,
-                lableText: 'Enter Your Email',
+                hintText: 'New Password',
+                kbType: TextInputType.visiblePassword,
+                lableText: 'Enter Your New Password',
+                onChanged: (value) {},
+              ),
+              verticalSpace(10.h),
+              CustomTextFormFeild(
+                controller: TextEditingController(),
+                hintText: 'Confirm Password',
+                kbType: TextInputType.visiblePassword,
+                lableText: 'Confirm Your Password',
                 onChanged: (value) {},
               ),
               verticalSpace(10.h),
               ButtonWidget(
-                AppStrings.send,
+                AppStrings.reset,
                 color: Colors.white,
                 onPressed: () {
-                  AppRoutes.routeTo(context, const VerficationScreen());
+                  AppRoutes.routeTo(context, const LoadScreen());
                 },
               ),
               verticalSpace(10.h),
@@ -65,7 +73,7 @@ class ForgotPassword extends StatelessWidget {
             ],
           ),
         ),
-      )),
+      ))
     );
   }
 }

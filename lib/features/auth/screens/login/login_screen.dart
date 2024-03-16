@@ -8,11 +8,12 @@ import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/textstyle.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/custom_text_form_feild.dart';
-import 'package:hack_talk/features/auth/forgot/forgot_password.dart';
-import 'package:hack_talk/features/auth/sign_up/sign_up_screen.dart';
+import 'package:hack_talk/features/auth/screens/forgot/forgot_password.dart';
+import 'package:hack_talk/features/auth/screens/sign_up/sign_up_screen.dart';
 import 'package:hack_talk/features/auth/widgets/divider.dart';
 import 'package:hack_talk/features/auth/widgets/rich_text.dart';
 import 'package:hack_talk/features/auth/widgets/social_icon.dart';
+import 'package:hack_talk/features/home/presentation/screen/home/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -106,12 +107,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 ButtonWidget(
                   AppStrings.login,
                   color: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    AppRoutes.routeTo(context, const HomeScreen());
+                  },
                 ),
                 verticalSpace(10.h),
-                 Center(child: NewToHachTalk(textOne: AppStrings.donothaveanAccount,onTap: (){
-                   AppRoutes.routeTo(context, const SignUpScreen());
-                 },textTwo: AppStrings.signUp,)),
+                Center(
+                    child: NewToHachTalk(
+                  textOne: AppStrings.donothaveanAccount,
+                  onTap: () {
+                    AppRoutes.routeTo(context, const SignUpScreen());
+                  },
+                  textTwo: AppStrings.signUp,
+                )),
                 verticalSpace(10.h),
                 const Div(),
                 verticalSpace(10.h),

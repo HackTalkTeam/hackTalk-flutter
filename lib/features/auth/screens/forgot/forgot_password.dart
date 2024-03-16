@@ -9,16 +9,16 @@ import 'package:hack_talk/core/utils/textstyle.dart';
 import 'package:hack_talk/core/widgets/button_second_widget.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/custom_text_form_feild.dart';
-import 'package:hack_talk/features/auth/load/load_screen.dart';
-import 'package:hack_talk/features/auth/verfication/verfication.dart';
+import 'package:hack_talk/features/auth/screens/verfication/verfication.dart';
 
-class ResetScreen extends StatelessWidget {
-  const ResetScreen({super.key});
+class ForgotPassword extends StatelessWidget {
+  const ForgotPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: const BackButton(),
         title: const Text('logo'),
       ),
@@ -28,38 +28,30 @@ class ResetScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SvgPicture.asset('assets/svgs/reset.svg'),
+              SvgPicture.asset('assets/svgs/forgot.svg'),
               Text(
-                AppStrings.resetPassword,
+                AppStrings.forgotPassword,
                 style: TextStyles.font20mainBllueColor,
               ),
               Text(
-                AppStrings.resetPasswordText,
+                AppStrings.doNotWorry,
                 textAlign: TextAlign.center,
                 style: TextStyles.font12black,
               ),
               verticalSpace(20.h),
               CustomTextFormFeild(
                 controller: TextEditingController(),
-                hintText: 'New Password',
-                kbType: TextInputType.visiblePassword,
-                lableText: 'Enter Your New Password',
-                onChanged: (value) {},
-              ),
-              verticalSpace(10.h),
-              CustomTextFormFeild(
-                controller: TextEditingController(),
-                hintText: 'Confirm Password',
-                kbType: TextInputType.visiblePassword,
-                lableText: 'Confirm Your Password',
+                hintText: 'Email',
+                kbType: TextInputType.emailAddress,
+                lableText: 'Enter Your Email',
                 onChanged: (value) {},
               ),
               verticalSpace(10.h),
               ButtonWidget(
-                AppStrings.reset,
+                AppStrings.send,
                 color: Colors.white,
                 onPressed: () {
-                  AppRoutes.routeTo(context, const LoadScreen());
+                  AppRoutes.routeTo(context, const VerficationScreen());
                 },
               ),
               verticalSpace(10.h),
@@ -73,7 +65,7 @@ class ResetScreen extends StatelessWidget {
             ],
           ),
         ),
-      ))
+      )),
     );
   }
 }

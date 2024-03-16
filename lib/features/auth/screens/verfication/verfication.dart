@@ -8,7 +8,7 @@ import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/textstyle.dart';
 import 'package:hack_talk/core/widgets/button_second_widget.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
-import 'package:hack_talk/features/auth/reset/reset_screen.dart';
+import 'package:hack_talk/features/auth/screens/reset/reset_screen.dart';
 import 'package:hack_talk/features/auth/widgets/otp_screen.dart';
 
 class VerficationScreen extends StatelessWidget {
