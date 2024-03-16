@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/app_themes.dart';
+import 'package:hack_talk/features/auth/login/login_screen.dart';
 import 'features/home/presentation/screen/home/home_screen.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: AppStrings.appName,
       theme: AppThemes.theme,
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: const LoginScreen(),
     );
   }
 }
