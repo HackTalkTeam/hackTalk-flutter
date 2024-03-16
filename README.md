@@ -1,8 +1,6 @@
-# HackTalk
+# Flutter HackTalk - IN Progress
 
 ## Graduation Project
-
-Overcome your public speaking anxiety with HackTalk.
 
 ## OUR UI
 
