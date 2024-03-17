@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/app_themes.dart';
-import 'features/auth/screens/login/login_screen.dart';
 import 'features/welcome/screens/on_boarding/on_boarding_screen.dart';
 
 void main() {
