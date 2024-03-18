@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/app_themes.dart';
-import 'features/welcome/screens/on_boarding/on_boarding_screen.dart';
+import 'core/helpers/cache_helper.dart';
+import 'core/helpers/dio_helper.dart';
+import 'features/welcome/screens/splash/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DioHelper.init();
+  //await CacheHelper.init();
   runApp(const MyApp());
 }
 
@@ -22,7 +27,7 @@ class MyApp extends StatelessWidget {
           title: AppStrings.appName,
           theme: AppThemes.theme,
           debugShowCheckedModeBanner: false,
-          home: const OnBoardingScreen(),
+          home: const SplashScreen(),
         );
       },
     );

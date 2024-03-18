@@ -102,7 +102,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     verticalSpace(10.h),
                     ButtonWidget(AppStrings.signUp,
                         color: Colors.white,
-                        onPressed: () {}),
+                        onPressed: () {
+
+                        }),
                     verticalSpace(10.h),
                      Center(child: NewToHachTalk(textOne: AppStrings.donothaveanAccount,onTap: (){
                       AppRoutes.routeTo(context, const LoginScreen());
