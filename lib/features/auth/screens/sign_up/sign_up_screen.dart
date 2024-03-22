@@ -157,6 +157,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ButtonWidget(AppStrings.signUp, color: Colors.white,
                               onPressed: () {
                             if (formKey.currentState!.validate()) {
+                              print(nameController.text);
                               BlocProvider.of<RegisterCubit>(context).register(
                                   name: nameController.text,
                                   email: emailController.text,

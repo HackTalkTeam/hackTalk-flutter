@@ -6,6 +6,7 @@ import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
 import 'package:hack_talk/features/auth/logic/log_out/log_out_cubit.dart';
+import 'package:hack_talk/features/auth/screens/login/login_screen.dart';
 import 'package:hack_talk/features/drawer/features/features_screen.dart';
 import 'package:hack_talk/features/drawer/setting/setting/setting_screen.dart';
 import 'package:hack_talk/features/home/presentation/screen/Audio/audio_screen.dart';
@@ -66,18 +67,45 @@ class HomeScreen extends StatelessWidget {
               ),
               BlocProvider(
                 create: (context) => LogOutCubit(),
-                child: DrawerWidget(
-                  text: 'Logout ',
-                  icon: Icons.logout,
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => const AlertDialogWidget(),
-                    ).then((value) {
-                      if (value == true) {
-                        BlocProvider.of<LogOutCubit>(context).logOut();
-                      }
-                    });
+                child: BlocConsumer<LogOutCubit, LogOutState>(
+                  listener: (context, state) {
+                    if (state is LogOutSuccessState) {
+                      AppRoutes.routeAndRemoveAllTo(context, LoginScreen());
+                    } else if (state is LogOutFailedState) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          content: Text(state.msg,
+                              style: const TextStyle(
+                                color: Colors.white,
+                              )),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    } else {
+                      const CircularProgressIndicator();
+                    }
+                  },
+                  builder: (context, state) {
+                    return DrawerWidget(
+                      text: 'Logout ',
+                      icon: Icons.logout,
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => const AlertDialogWidget(),
+                        ).then((value) {
+                          if (value == true) {
+                            WidgetsBinding.instance
+                                .addPostFrameCallback((timeStamp) {
+                              BlocProvider.of<LogOutCubit>(context,
+                                      listen: false)
+                                  .logOut();
+                            });
+                          }
+                        });
+                      },
+                    );
                   },
                 ),
               ),

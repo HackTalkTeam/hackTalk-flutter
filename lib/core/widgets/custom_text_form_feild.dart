@@ -35,6 +35,7 @@ class CustomTextFormFeild extends StatelessWidget {
     return SizedBox(
       height: 60,
       child: TextFormField(
+        controller: controller,
         decoration: InputDecoration(
           label: Container(
             margin: const EdgeInsets.symmetric(horizontal: 9),

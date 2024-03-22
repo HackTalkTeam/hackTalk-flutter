@@ -37,7 +37,7 @@ class SplashScreen extends StatelessWidget {
             SvgPicture.asset("assets/svgs/text2_logo.svg"),
           ],
         ),
-        nextScreen: CacheHelper.getData(key: AppStrings.token)
+        nextScreen: CacheHelper.getData(key: AppStrings.token)!= null
             ? const HomeScreen()
             : const OnBoardingScreen(),
         backgroundColor: Colors.transparent,
