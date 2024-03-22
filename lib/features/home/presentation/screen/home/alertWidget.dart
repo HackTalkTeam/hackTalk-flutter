@@ -42,7 +42,7 @@ class AlertDialogWidget extends StatelessWidget {
           ),
           onPressed: () {
             WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-              AppRoutes.routeTo(context, const HomeScreen());
+              AppRoutes.pop(context, result: true);
             });
           },
           child: const Text(

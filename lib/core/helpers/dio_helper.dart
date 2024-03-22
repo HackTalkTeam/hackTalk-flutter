@@ -17,6 +17,7 @@ class DioHelper {
         String? token}) async {
     dio.options.headers = {
       'Content-Type': 'application/json',
+      'Accept': 'application/json',
       'lang': lang,
       'Authorization': token == null ? '' : token,
     };
@@ -33,6 +34,7 @@ class DioHelper {
         String? token}) async {
     dio.options.headers = {
       'Content-Type': 'application/json',
+      'Accept': 'application/json',
       'lang': lang,
       'Authorization': token == null ? '' : token,
     };
@@ -50,6 +52,7 @@ class DioHelper {
         String? token}) async {
     dio.options.headers = {
       'Content-Type': 'application/json',
+      'Accept': 'application/json',
       'lang': lang,
       'Authorization': token == null ? '' : token,
     };
@@ -64,6 +67,7 @@ class DioHelper {
         String? token}) async {
     dio.options.headers = {
       'Content-Type': 'application/json',
+      'Accept': 'application/json',
       'lang': lang,
       'Authorization': token == null ? '' : token,
     };

@@ -1,24 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hack_talk/core/helpers/spacing.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
-import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
-import 'package:hack_talk/core/utils/textstyle.dart';
 import 'package:hack_talk/core/widgets/button_second_widget.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/custom_text_form_feild.dart';
 import 'package:hack_talk/features/auth/logic/forget_password/forget_password_cubit/forget_password_cubit.dart';
-import 'package:hack_talk/features/auth/screens/load/load_screen.dart';
-import 'package:hack_talk/features/auth/screens/verfication/verfication.dart';
-import 'package:hack_talk/features/home/presentation/screen/home/home_screen.dart';
 
-class ResetScreen extends StatelessWidget {
-  ResetScreen({super.key, required this.email, required this.token});
-  final String email;
-  final String token;
+class ChangePasswordScreen extends StatelessWidget {
+  ChangePasswordScreen({Key? key}) : super(key: key);
+  final currentPasswordController = TextEditingController();
   final newPasswordController = TextEditingController();
   final confirmNewPasswordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -28,9 +22,10 @@ class ResetScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => ForgetPasswordCubit(),
       child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
-        listener: (context, state) {if (state is PasswordSuccessState) {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => LoadScreen()));
+        listener: (context, state) {
+          if (state is PasswordSuccessState) {
+            // Navigator.push(context,
+            //     MaterialPageRoute(builder: (context) => VerficationScreen()));
           } else if (state is PasswordFailedState) {
             showDialog(
               context: context,
@@ -57,20 +52,23 @@ class ResetScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
                 child: SingleChildScrollView(
                   child: Form(
+                    key: formKey,
                     child: Column(
-                      key: formKey,
                       children: [
-                        SvgPicture.asset('assets/svgs/reset.svg'),
-                        Text(
-                          AppStrings.resetPassword,
-                          style: TextStyles.font20mainBllueColor,
+                        CustomTextFormFeild(
+                          controller: currentPasswordController,
+                          hintText: 'Current Password',
+                          kbType: TextInputType.visiblePassword,
+                          lableText: 'Enter current Password',
+                          onChanged: (value) {},
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Current Password must not be empty";
+                            }
+                            return null;
+                          },
                         ),
-                        Text(
-                          AppStrings.resetPasswordText,
-                          textAlign: TextAlign.center,
-                          style: TextStyles.font12black,
-                        ),
-                        verticalSpace(20.h),
+                        verticalSpace(10.h),
                         CustomTextFormFeild(
                           controller: newPasswordController,
                           hintText: 'New Password',
@@ -100,10 +98,20 @@ class ResetScreen extends StatelessWidget {
                         ),
                         verticalSpace(10.h),
                         ButtonWidget(
-                          AppStrings.reset,
+                          'update password',
                           color: Colors.white,
                           onPressed: () {
-                            AppRoutes.routeTo(context, const LoadScreen());
+                            // AppRoutes.routeTo(context, const LoadScreen());
+                            if (formKey.currentState!.validate()) {
+                              BlocProvider.of<ForgetPasswordCubit>(context)
+                                  .changePassword(
+                                current_password:
+                                    currentPasswordController.text,
+                                new_password: newPasswordController.text,
+                                new_password_confirmation:
+                                    confirmNewPasswordController.text,
+                              );
+                            }
                           },
                         ),
                         verticalSpace(10.h),
@@ -111,15 +119,7 @@ class ResetScreen extends StatelessWidget {
                           text: AppStrings.cancel,
                           color: AppColors.mainBlueColor,
                           onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              BlocProvider.of<ForgetPasswordCubit>(context)
-                                  .newPassword(
-                                      token: token,
-                                      email: email,
-                                      new_password: newPasswordController.text,
-                                      new_password_confirmation:
-                                          confirmNewPasswordController.text);
-                            }
+                            //AppRoutes.routeTo(context, const VerficationScreen());
                           },
                         )
                       ],

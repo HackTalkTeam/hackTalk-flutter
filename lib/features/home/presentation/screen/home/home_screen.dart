@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hack_talk/core/utils/app_assets.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
+import 'package:hack_talk/features/auth/logic/log_out/log_out_cubit.dart';
+import 'package:hack_talk/features/drawer/features/features_screen.dart';
+import 'package:hack_talk/features/drawer/setting/setting/setting_screen.dart';
 import 'package:hack_talk/features/home/presentation/screen/Audio/audio_screen.dart';
 import 'package:hack_talk/features/home/presentation/screen/computer_vision/computer_vision_screen.dart';
-import 'package:hack_talk/features/home/presentation/screen/drawer/features/features_screen.dart';
 import 'package:hack_talk/features/home/presentation/screen/vr/ve_screen.dart';
 import 'package:hack_talk/features/home/presentation/widgets/home_button_widget.dart';
 
@@ -57,17 +60,26 @@ class HomeScreen extends StatelessWidget {
               DrawerWidget(
                 text: 'Setting',
                 icon: Icons.settings,
-                onPressed: () {},
-              ),
-              DrawerWidget(
-                text: 'Logout ',
-                icon: Icons.logout,
                 onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => const AlertDialogWidget(),
-                  );
+                  AppRoutes.routeTo(context, SettingScreen());
                 },
+              ),
+              BlocProvider(
+                create: (context) => LogOutCubit(),
+                child: DrawerWidget(
+                  text: 'Logout ',
+                  icon: Icons.logout,
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => const AlertDialogWidget(),
+                    ).then((value) {
+                      if (value == true) {
+                        BlocProvider.of<LogOutCubit>(context).logOut();
+                      }
+                    });
+                  },
+                ),
               ),
             ],
           ),

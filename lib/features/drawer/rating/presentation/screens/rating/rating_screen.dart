@@ -6,7 +6,7 @@ import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
-import 'package:hack_talk/features/rating/presentation/logic/rating_cubit/rating_cubit.dart';
+import 'package:hack_talk/features/drawer/rating/presentation/logic/rating_cubit/rating_cubit.dart';
 
 class RatingScreen extends StatefulWidget {
   const RatingScreen({Key? key}) : super(key: key);

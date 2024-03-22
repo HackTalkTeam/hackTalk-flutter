@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
 
 class Otp extends StatelessWidget {
-  const Otp({super.key});
+  const Otp({super.key, required this.controller, this.validator});
+  final TextEditingController controller;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,8 @@ class Otp extends StatelessWidget {
           SizedBox(
             height: 40,
             width: 40,
-            child: TextField(
+            child: TextFormField(
+              controller: controller,
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
               inputFormatters: [
@@ -25,18 +28,18 @@ class Otp extends StatelessWidget {
                 filled: true,
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide:
-                      const BorderSide(color: AppColors.mainBlueColor, width: 2),
+                  borderSide: const BorderSide(
+                      color: AppColors.mainBlueColor, width: 2),
                 ),
                 errorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide:
-                      const BorderSide(color: AppColors.mainBlueColor, width: 2),
+                  borderSide: const BorderSide(
+                      color: AppColors.mainBlueColor, width: 2),
                 ),
                 focusedErrorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide:
-                      const BorderSide(color: AppColors.mainBlueColor, width: 2),
+                  borderSide: const BorderSide(
+                      color: AppColors.mainBlueColor, width: 2),
                 ),
                 border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -45,6 +48,7 @@ class Otp extends StatelessWidget {
                 hintStyle:
                     const TextStyle(color: Colors.grey, fontFamily: "Roboto"),
               ),
+              validator: validator,
             ),
           )
         ],

@@ -1,37 +1,39 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hack_talk/core/helpers/spacing.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
-import 'package:hack_talk/core/utils/textstyle.dart';
 import 'package:hack_talk/core/widgets/button_second_widget.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/custom_text_form_feild.dart';
-import 'package:hack_talk/features/auth/logic/forget_password/forget_password_cubit/forget_password_cubit.dart';
-import 'package:hack_talk/features/auth/screens/load/load_screen.dart';
-import 'package:hack_talk/features/auth/screens/verfication/verfication.dart';
+import 'package:hack_talk/features/auth/logic/app_cubit/app_cubit.dart';
+import 'package:hack_talk/features/auth/logic/login/login_cubit/login_cubit.dart';
+import 'package:hack_talk/features/auth/logic/update_profile/update_profile_cubit.dart';
 import 'package:hack_talk/features/home/presentation/screen/home/home_screen.dart';
 
-class ResetScreen extends StatelessWidget {
-  ResetScreen({super.key, required this.email, required this.token});
-  final String email;
-  final String token;
-  final newPasswordController = TextEditingController();
-  final confirmNewPasswordController = TextEditingController();
+class PersonInformationScreen extends StatelessWidget {
+  PersonInformationScreen({Key? key}) : super(key: key);
+  final nameController = TextEditingController(
+      text:
+          AppCubit.get(AppNavigator.context).userModel?.data?.userDate?.name ??
+              '');
+  final emailController = TextEditingController(
+      text:
+          AppCubit.get(AppNavigator.context).userModel?.data?.userDate?.email ??
+              '');
   final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ForgetPasswordCubit(),
-      child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
-        listener: (context, state) {if (state is PasswordSuccessState) {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => LoadScreen()));
-          } else if (state is PasswordFailedState) {
+      create: (context) => LoginCubit(),
+      child: BlocConsumer<LoginCubit, LoginState>(
+        listener: (context, state) {
+          if (state is LoginSuccessState) {
+          } else if (state is LoginFailedState) {
             showDialog(
               context: context,
               builder: (context) => AlertDialog(
@@ -57,53 +59,64 @@ class ResetScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
                 child: SingleChildScrollView(
                   child: Form(
+                    key: formKey,
                     child: Column(
-                      key: formKey,
                       children: [
-                        SvgPicture.asset('assets/svgs/reset.svg'),
-                        Text(
-                          AppStrings.resetPassword,
-                          style: TextStyles.font20mainBllueColor,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("name"),
+                            IconButton(
+                                onPressed: () {}, icon: const Icon(Icons.edit))
+                          ],
                         ),
-                        Text(
-                          AppStrings.resetPasswordText,
-                          textAlign: TextAlign.center,
-                          style: TextStyles.font12black,
-                        ),
-                        verticalSpace(20.h),
                         CustomTextFormFeild(
-                          controller: newPasswordController,
-                          hintText: 'New Password',
+                          controller: nameController,
+                          hintText: 'name',
                           kbType: TextInputType.visiblePassword,
-                          lableText: 'Enter Your New Password',
+                          lableText: 'Enter name',
                           onChanged: (value) {},
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "New Password must not be empty";
+                              return "name must not be empty";
                             }
                             return null;
                           },
                         ),
-                        verticalSpace(10.h),
+                        //verticalSpace(10.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("email"),
+                            IconButton(onPressed: () {}, icon: Icon(Icons.edit))
+                          ],
+                        ),
                         CustomTextFormFeild(
-                          controller: confirmNewPasswordController,
-                          hintText: 'Confirm Password',
+                          controller: emailController,
+                          hintText: 'email',
                           kbType: TextInputType.visiblePassword,
-                          lableText: 'Confirm Your Password',
+                          lableText: 'enter email',
                           onChanged: (value) {},
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Confirm Password must not be empty";
+                              return "email must not be empty";
                             }
                             return null;
                           },
                         ),
                         verticalSpace(10.h),
                         ButtonWidget(
-                          AppStrings.reset,
+                          "update change",
                           color: Colors.white,
                           onPressed: () {
-                            AppRoutes.routeTo(context, const LoadScreen());
+                            if (formKey.currentState!.validate()) {
+                              BlocProvider.of<UpdateProfileCubit>(context)
+                                  .profile(
+                                name: nameController.text,
+                                email: emailController.text,
+                              );
+                            }
+                            //AppRoutes.routeTo(context, const LoadScreen());
                           },
                         ),
                         verticalSpace(10.h),
@@ -111,15 +124,7 @@ class ResetScreen extends StatelessWidget {
                           text: AppStrings.cancel,
                           color: AppColors.mainBlueColor,
                           onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              BlocProvider.of<ForgetPasswordCubit>(context)
-                                  .newPassword(
-                                      token: token,
-                                      email: email,
-                                      new_password: newPasswordController.text,
-                                      new_password_confirmation:
-                                          confirmNewPasswordController.text);
-                            }
+                            //AppRoutes.routeTo(context, const VerficationScreen());
                           },
                         )
                       ],

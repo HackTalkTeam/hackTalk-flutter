@@ -1,7 +1,10 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hack_talk/core/helpers/cache_helper.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
+import 'package:hack_talk/core/utils/app_strings.dart';
+import 'package:hack_talk/features/home/presentation/screen/home/home_screen.dart';
 import 'package:hack_talk/features/welcome/screens/on_boarding/on_boarding_screen.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -34,7 +37,9 @@ class SplashScreen extends StatelessWidget {
             SvgPicture.asset("assets/svgs/text2_logo.svg"),
           ],
         ),
-        nextScreen: const OnBoardingScreen(),
+        nextScreen: CacheHelper.getData(key: AppStrings.token)
+            ? const HomeScreen()
+            : const OnBoardingScreen(),
         backgroundColor: Colors.transparent,
       ),
     );

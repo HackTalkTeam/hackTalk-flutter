@@ -25,7 +25,14 @@ class AppRoutes {
     );
   }
 
-  static pop(BuildContext context) {
-    return Navigator.pop(context);
+  static pop(BuildContext context, {dynamic result}) {
+    return Navigator.pop(context, result);
   }
+
+}
+
+class AppNavigator{
+  AppNavigator._();
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static BuildContext get context => navigatorKey.currentContext!;
 }
