@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/features/drawer/setting/change_password/change_password_screen.dart';
+import 'package:hack_talk/features/drawer/setting/contact_us/contact_us_screen.dart';
 import 'package:hack_talk/features/drawer/setting/personal_information/personal_information_screen.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -26,7 +27,7 @@ class SettingScreen extends StatelessWidget {
                 child: Text('ChangePasswordScreen')),
             InkWell(
                 onTap: (){
-                  AppRoutes.routeTo(context, ChangePasswordScreen());
+                  AppRoutes.routeTo(context, ContactUsScreen());
                 },
                 child: Text('Contact Us')),
           ],

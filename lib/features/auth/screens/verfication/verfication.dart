@@ -12,21 +12,13 @@ import 'package:hack_talk/core/widgets/button_second_widget.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/features/auth/logic/forget_password/forget_password_cubit/forget_password_cubit.dart';
 import 'package:hack_talk/features/auth/screens/reset/reset_screen.dart';
-import 'package:hack_talk/features/auth/widgets/otp_screen.dart';
 import 'package:pinput/pinput.dart';
 
 class VerficationScreen extends StatelessWidget {
   VerficationScreen({super.key, required this.email});
-
-  /*final firstOtpController = TextEditingController();
-  final secondOtpController = TextEditingController();
-  final thirdOtpController = TextEditingController();
-  final fourthOtpController = TextEditingController();
-  final fifthOtpController = TextEditingController();*/
   final codeController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final String email;
-  //String? code;
 
   final defaultPinTheme = PinTheme(
     width: 56,
@@ -53,7 +45,6 @@ class VerficationScreen extends StatelessWidget {
                 MaterialPageRoute(
                     builder: (context) => ResetScreen(
                           email: email,
-                          //token: codeController.text,
                         )));
           } else if (state is PasswordFailedState) {
             showDialog(
@@ -96,97 +87,32 @@ class VerficationScreen extends StatelessWidget {
                       Form(
                         key: formKey,
                         child: Pinput(
-                          controller: codeController,
-                          // onChanged: (value){
-                          //    value = codeController.text;
-                          // },
-                          length: 5,
-                          obscuringCharacter: '•',
-                          defaultPinTheme: defaultPinTheme,
-                          autofocus: true,
-                          focusedPinTheme: defaultPinTheme.copyWith(
-                            decoration: defaultPinTheme.decoration?.copyWith(
-                              border: Border.all(
-                                color: AppColors.mainBlueColor,
-                                width: 3,
+                            controller: codeController,
+                            length: 5,
+                            obscuringCharacter: '•',
+                            defaultPinTheme: defaultPinTheme,
+                            autofocus: true,
+                            focusedPinTheme: defaultPinTheme.copyWith(
+                              decoration: defaultPinTheme.decoration?.copyWith(
+                                border: Border.all(
+                                  color: AppColors.mainBlueColor,
+                                  width: 3,
+                                ),
                               ),
                             ),
-                          ),
-                          submittedPinTheme: defaultPinTheme.copyWith(
-                            decoration: defaultPinTheme.decoration?.copyWith(
-                              color: Color.fromRGBO(234, 239, 243, 1),
+                            submittedPinTheme: defaultPinTheme.copyWith(
+                              decoration: defaultPinTheme.decoration?.copyWith(
+                                color: const Color.fromRGBO(234, 239, 243, 1),
+                              ),
                             ),
-                          ),
-                          // validator: (s) {
-                          //   return s == code ? null : 'Pin is incorrect';
-                          // },
-                          pinputAutovalidateMode:
-                              PinputAutovalidateMode.onSubmit,
-                          showCursor: true,
-                          onCompleted: (pin) {
-                            print(pin);
-                            // code = pin;
-                            ForgetPasswordCubit.get(context).verifyCode(
-                                email:  email,
-                                token: codeController.text
-                            );
-                          }
-                        ),
-                        /*Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Otp(
-                              controller: firstOtpController,
-                              validator: (value) {
-                                if (value!.length != 1) {
-                                  return '';
-                                } else {
-                                  return null;
-                                }
-                              },
-                            ),
-                            Otp(
-                              controller: secondOtpController,
-                              validator: (value) {
-                                if (value!.length != 1) {
-                                  return '';
-                                } else {
-                                  return null;
-                                }
-                              },
-                            ),
-                            Otp(
-                              controller: thirdOtpController,
-                              validator: (value) {
-                                if (value!.length != 1) {
-                                  return '';
-                                } else {
-                                  return null;
-                                }
-                              },
-                            ),
-                            Otp(
-                              controller: fourthOtpController,
-                              validator: (value) {
-                                if (value!.length != 1) {
-                                  return '';
-                                } else {
-                                  return null;
-                                }
-                              },
-                            ),
-                            Otp(
-                              controller: fifthOtpController,
-                              validator: (value) {
-                                if (value!.length != 1) {
-                                  return '';
-                                } else {
-                                  return null;
-                                }
-                              },
-                            ),
-                          ],
-                        ),*/
+                            pinputAutovalidateMode:
+                                PinputAutovalidateMode.onSubmit,
+                            showCursor: true,
+                            onCompleted: (pin) {
+                              print(pin);
+                              ForgetPasswordCubit.get(context).verifyCode(
+                                  email: email, token: codeController.text);
+                            }),
                       ),
                       verticalSpace(20.h),
                       InkWell(
@@ -195,7 +121,6 @@ class VerficationScreen extends StatelessWidget {
                               context,
                               ResetScreen(
                                 email: email,
-                                //token: codeController.text,
                               ));
                         },
                         child: Text.rich(TextSpan(
@@ -217,11 +142,9 @@ class VerficationScreen extends StatelessWidget {
                         color: Colors.white,
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            BlocProvider.of<ForgetPasswordCubit>(context).verifyCode(
-                                email:  email,
-                                token: codeController.text
-
-                            );
+                            BlocProvider.of<ForgetPasswordCubit>(context)
+                                .verifyCode(
+                                    email: email, token: codeController.text);
                           }
                         },
                       ),

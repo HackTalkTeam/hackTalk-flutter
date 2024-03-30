@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hack_talk/core/helpers/spacing.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
-import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/textstyle.dart';
 import 'package:hack_talk/core/widgets/button_second_widget.dart';
@@ -12,8 +11,6 @@ import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/custom_text_form_feild.dart';
 import 'package:hack_talk/features/auth/logic/forget_password/forget_password_cubit/forget_password_cubit.dart';
 import 'package:hack_talk/features/auth/screens/load/load_screen.dart';
-import 'package:hack_talk/features/auth/screens/verfication/verfication.dart';
-import 'package:hack_talk/features/home/presentation/screen/home/home_screen.dart';
 
 class ResetScreen extends StatelessWidget {
   ResetScreen({super.key, required this.email});
@@ -30,7 +27,7 @@ class ResetScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is PasswordSuccessState) {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => LoadScreen()));
+                context, MaterialPageRoute(builder: (context) => const LoadScreen()));
           } else if (state is PasswordFailedState) {
             showDialog(
               context: context,
@@ -71,19 +68,6 @@ class ResetScreen extends StatelessWidget {
                           style: TextStyles.font12black,
                         ),
                         verticalSpace(20.h),
-                        // CustomTextFormFeild(
-                        //   lableText: 'password',
-                        //   hintText: AppStrings.password,
-                        //   kbType: TextInputType.visiblePassword,
-                        //   onChanged: (value) {},
-                        //   controller: passwordController,
-                        //   validator: (value) {
-                        //     if (value!.isEmpty) {
-                        //       return "password must not be empty";
-                        //     }
-                        //     return null;
-                        //   },
-                        // ),
                         CustomTextFormFeild(
                           controller: newPasswordController,
                           hintText: 'New Password',

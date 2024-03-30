@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hack_talk/core/helpers/spacing.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
-import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/textstyle.dart';
 import 'package:hack_talk/core/widgets/button_second_widget.dart';
