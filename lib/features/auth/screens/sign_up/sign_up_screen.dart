@@ -12,6 +12,7 @@ import 'package:hack_talk/features/auth/screens/login/login_screen.dart';
 import 'package:hack_talk/features/auth/widgets/divider.dart';
 import 'package:hack_talk/features/auth/widgets/rich_text.dart';
 import 'package:hack_talk/features/auth/widgets/social_icon.dart';
+import 'package:hack_talk/features/home/presentation/screen/home/home_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -35,8 +36,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: BlocConsumer<RegisterCubit, RegisterState>(
         listener: (context, state) {
           if (state is RegisterSuccessState) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => LoginScreen()));
+            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+              AppRoutes.routeAndRemoveAllTo(context, const HomeScreen());
+            });
           } else if (state is RegisterFailedState) {
             showDialog(
               context: context,
@@ -162,8 +164,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   name: nameController.text,
                                   email: emailController.text,
                                   password: passwordController.text,
-                                  password_confirmation: confirmPasswordController.text
-                              );
+                                  password_confirmation:
+                                      confirmPasswordController.text);
                             }
                           }),
                           verticalSpace(10.h),
@@ -171,7 +173,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               child: NewToHachTalk(
                             textOne: AppStrings.donothaveanAccount,
                             onTap: () {
-                              AppRoutes.routeTo(context, const LoginScreen());
+                              AppRoutes.routeAndRemoveAllTo(context, const LoginScreen());
                             },
                             textTwo: AppStrings.login,
                           )),

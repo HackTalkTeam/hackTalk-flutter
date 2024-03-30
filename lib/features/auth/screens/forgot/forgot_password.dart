@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hack_talk/core/helpers/spacing.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
+import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/textstyle.dart';
 import 'package:hack_talk/core/widgets/button_second_widget.dart';
@@ -18,7 +19,6 @@ class ForgotPassword extends StatelessWidget {
   final emailController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -26,8 +26,10 @@ class ForgotPassword extends StatelessWidget {
       child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
         listener: (context, state) {
           if (state is PasswordSuccessState) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => VerficationScreen(email: emailController.text)));
+            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+              AppRoutes.routeAndRemoveAllTo(
+                  context, VerficationScreen(email: emailController.text));
+            });
           } else if (state is PasswordFailedState) {
             showDialog(
               context: context,

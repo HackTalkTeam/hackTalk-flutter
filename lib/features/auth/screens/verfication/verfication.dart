@@ -40,12 +40,13 @@ class VerficationScreen extends StatelessWidget {
       child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
         listener: (context, state) {
           if (state is PasswordSuccessState) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ResetScreen(
-                          email: email,
-                        )));
+            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+              AppRoutes.routeAndRemoveAllTo(
+                  context,
+                  ResetScreen(
+                    email: email,
+                  ));
+            });
           } else if (state is PasswordFailedState) {
             showDialog(
               context: context,

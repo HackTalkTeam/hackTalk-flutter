@@ -42,7 +42,10 @@ class LoadScreen extends StatelessWidget {
                   AppStrings.login,
                   color: Colors.white,
                   onPressed: () {
-                    AppRoutes.routeTo(context, const LoginScreen());
+                    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                      AppRoutes.routeAndRemoveAllTo(
+                          context, const LoginScreen());
+                    });
                   },
                 )
               ],

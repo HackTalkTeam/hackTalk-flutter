@@ -38,8 +38,9 @@ class _LoginScreenState extends State<LoginScreen> {
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccessState) {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+              AppRoutes.routeAndRemoveAllTo(context, const HomeScreen());
+            });
           } else if (state is LoginFailedState) {
             showDialog(
               context: context,
@@ -137,8 +138,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           const Spacer(),
                           GestureDetector(
                             onTap: () {
-                              AppRoutes.routeTo(
-                                  context, ForgotPassword());
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ForgotPassword(),
+                                  ));
                             },
                             child: Text(
                               AppStrings.forgotPassword,
@@ -165,7 +169,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: NewToHachTalk(
                         textOne: AppStrings.donothaveanAccount,
                         onTap: () {
-                          AppRoutes.routeTo(context, const SignUpScreen());
+                          AppRoutes.routeAndRemoveAllTo(
+                              context, const SignUpScreen());
                         },
                         textTwo: AppStrings.signUp,
                       )),

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hack_talk/core/helpers/spacing.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
+import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/textstyle.dart';
 import 'package:hack_talk/core/widgets/button_second_widget.dart';
@@ -26,8 +27,9 @@ class ResetScreen extends StatelessWidget {
       child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
         listener: (context, state) {
           if (state is PasswordSuccessState) {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const LoadScreen()));
+            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+              AppRoutes.routeAndRemoveAllTo(context, const LoadScreen());
+            });
           } else if (state is PasswordFailedState) {
             showDialog(
               context: context,
@@ -101,13 +103,14 @@ class ResetScreen extends StatelessWidget {
                           color: Colors.white,
                           onPressed: () {
                             //if (formKey.currentState!.validate()) {
-                              BlocProvider.of<ForgetPasswordCubit>(context).newPassword(
-                                      //token: token,
-                                      email: email,
-                                      new_password: newPasswordController.text,
-                                      new_password_confirmation:
-                                          confirmNewPasswordController.text);
-                           // }
+                            BlocProvider.of<ForgetPasswordCubit>(context)
+                                .newPassword(
+                                    //token: token,
+                                    email: email,
+                                    new_password: newPasswordController.text,
+                                    new_password_confirmation:
+                                        confirmNewPasswordController.text);
+                            // }
                           },
                         ),
                         verticalSpace(10.h),
