@@ -7,6 +7,7 @@ class Otp extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
 
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -17,7 +18,10 @@ class Otp extends StatelessWidget {
             width: 40,
             child: TextFormField(
               controller: controller,
+              focusNode: FocusNode(),
+              autofocus: true,
               keyboardType: TextInputType.number,
+              validator: validator,
               textAlign: TextAlign.center,
               inputFormatters: [
                 LengthLimitingTextInputFormatter(1),
@@ -48,7 +52,6 @@ class Otp extends StatelessWidget {
                 hintStyle:
                     const TextStyle(color: Colors.grey, fontFamily: "Roboto"),
               ),
-              validator: validator,
             ),
           )
         ],

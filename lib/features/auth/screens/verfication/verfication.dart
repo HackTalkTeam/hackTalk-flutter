@@ -13,18 +13,33 @@ import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/features/auth/logic/forget_password/forget_password_cubit/forget_password_cubit.dart';
 import 'package:hack_talk/features/auth/screens/reset/reset_screen.dart';
 import 'package:hack_talk/features/auth/widgets/otp_screen.dart';
+import 'package:pinput/pinput.dart';
 
 class VerficationScreen extends StatelessWidget {
   VerficationScreen({super.key, required this.email});
 
-  final firstOtpController = TextEditingController();
+  /*final firstOtpController = TextEditingController();
   final secondOtpController = TextEditingController();
   final thirdOtpController = TextEditingController();
   final fourthOtpController = TextEditingController();
-  final fifthOtpController = TextEditingController();
+  final fifthOtpController = TextEditingController();*/
+  final codeController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final String email;
-  String code = '';
+  //String? code;
+
+  final defaultPinTheme = PinTheme(
+    width: 56,
+    height: 56,
+    textStyle: const TextStyle(
+        fontSize: 20,
+        color: Color.fromRGBO(30, 60, 87, 1),
+        fontWeight: FontWeight.w600),
+    decoration: BoxDecoration(
+      border: Border.all(color: AppColors.mainBlueColor),
+      borderRadius: BorderRadius.circular(20),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +53,7 @@ class VerficationScreen extends StatelessWidget {
                 MaterialPageRoute(
                     builder: (context) => ResetScreen(
                           email: email,
-                          token: code,
+                          //token: codeController.text,
                         )));
           } else if (state is PasswordFailedState) {
             showDialog(
@@ -80,7 +95,44 @@ class VerficationScreen extends StatelessWidget {
                       verticalSpace(20.h),
                       Form(
                         key: formKey,
-                        child: Row(
+                        child: Pinput(
+                          controller: codeController,
+                          // onChanged: (value){
+                          //    value = codeController.text;
+                          // },
+                          length: 5,
+                          obscuringCharacter: '•',
+                          defaultPinTheme: defaultPinTheme,
+                          autofocus: true,
+                          focusedPinTheme: defaultPinTheme.copyWith(
+                            decoration: defaultPinTheme.decoration?.copyWith(
+                              border: Border.all(
+                                color: AppColors.mainBlueColor,
+                                width: 3,
+                              ),
+                            ),
+                          ),
+                          submittedPinTheme: defaultPinTheme.copyWith(
+                            decoration: defaultPinTheme.decoration?.copyWith(
+                              color: Color.fromRGBO(234, 239, 243, 1),
+                            ),
+                          ),
+                          // validator: (s) {
+                          //   return s == code ? null : 'Pin is incorrect';
+                          // },
+                          pinputAutovalidateMode:
+                              PinputAutovalidateMode.onSubmit,
+                          showCursor: true,
+                          onCompleted: (pin) {
+                            print(pin);
+                            // code = pin;
+                            ForgetPasswordCubit.get(context).verifyCode(
+                                email:  email,
+                                token: codeController.text
+                            );
+                          }
+                        ),
+                        /*Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Otp(
@@ -134,7 +186,7 @@ class VerficationScreen extends StatelessWidget {
                               },
                             ),
                           ],
-                        ),
+                        ),*/
                       ),
                       verticalSpace(20.h),
                       InkWell(
@@ -143,7 +195,7 @@ class VerficationScreen extends StatelessWidget {
                               context,
                               ResetScreen(
                                 email: email,
-                                token: code,
+                                //token: codeController.text,
                               ));
                         },
                         child: Text.rich(TextSpan(
@@ -165,11 +217,11 @@ class VerficationScreen extends StatelessWidget {
                         color: Colors.white,
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            code = firstOtpController.text +
-                                secondOtpController.text +
-                                thirdOtpController.text +
-                                fourthOtpController.text +
-                                fifthOtpController.text;
+                            BlocProvider.of<ForgetPasswordCubit>(context).verifyCode(
+                                email:  email,
+                                token: codeController.text
+
+                            );
                           }
                         },
                       ),

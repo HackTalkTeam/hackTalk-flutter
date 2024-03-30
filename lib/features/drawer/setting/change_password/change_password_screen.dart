@@ -9,6 +9,7 @@ import 'package:hack_talk/core/widgets/button_second_widget.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/custom_text_form_feild.dart';
 import 'package:hack_talk/features/auth/logic/forget_password/forget_password_cubit/forget_password_cubit.dart';
+import 'package:hack_talk/features/drawer/setting/setting/setting_screen.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
   ChangePasswordScreen({Key? key}) : super(key: key);
@@ -24,8 +25,30 @@ class ChangePasswordScreen extends StatelessWidget {
       child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
         listener: (context, state) {
           if (state is PasswordSuccessState) {
-            // Navigator.push(context,
-            //     MaterialPageRoute(builder: (context) => VerficationScreen()));
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                  content: Text(
+                      "Password changed successfully your password is ${newPasswordController.text}",
+                      style: const TextStyle(
+                        color: Colors.white,
+                      )),
+                  backgroundColor: AppColors.mainBlueColor,
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SettingScreen()));
+                      },
+                      child: const Text('Ok',
+                          style: const TextStyle(
+                            color: Colors.white,
+                          )),
+                    )
+                  ]),
+            );
           } else if (state is PasswordFailedState) {
             showDialog(
               context: context,

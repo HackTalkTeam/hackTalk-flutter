@@ -29,11 +29,21 @@ class PersonInformationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginCubit(),
-      child: BlocConsumer<LoginCubit, LoginState>(
+      create: (context) => UpdateProfileCubit(),
+      child: BlocConsumer<UpdateProfileCubit, UpdateProfileState>(
         listener: (context, state) {
-          if (state is LoginSuccessState) {
-          } else if (state is LoginFailedState) {
+          if (state is UpdateProfileSuccessState) {
+            showDialog(
+              context: context,
+              builder: (context) => const AlertDialog(
+                content: Text("your profile updated successfully",
+                    style: TextStyle(
+                      color: Colors.white,
+                    )),
+                backgroundColor: AppColors.mainBlueColor,
+              ),
+            );
+          } else if (state is LUpdateProfileFailedState) {
             showDialog(
               context: context,
               builder: (context) => AlertDialog(

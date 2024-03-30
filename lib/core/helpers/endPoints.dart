@@ -5,5 +5,7 @@ class Endpoints{
   static String profile="profile";
   static String changePassword="change-password";
   static String resetPassword="reset-password";
+  static String verifyCode="verify-code";
   static String newPassword="new-password";
+  static String sendMessage="send-message";
 }

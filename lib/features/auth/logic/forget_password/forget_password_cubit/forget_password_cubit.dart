@@ -32,17 +32,38 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       print(onError);
     });
   }
+  void verifyCode({
+    required String email,
+    required String token,
+  }) {
+    emit(PasswordLoadingState());
+    DioHelper.postData(url: Endpoints.verifyCode, data: {
+      "email": email,
+      "token": token,
+    }).then((value) {
+      forgetPasswordModel = ForgetPasswordModel.fromJson(value.data);
+      print('${forgetPasswordModel.message}');
+      if (forgetPasswordModel.status == 1) {
+        emit(PasswordSuccessState());
+      } else {
+        emit(PasswordFailedState(msg: forgetPasswordModel.message ?? ''));
+      }
+    }).catchError((onError) {
+      emit(PasswordFailedState(msg: onError.toString()));
+      print(onError);
+    });
+  }
 
   void newPassword({
     required String email,
-    required String token,
+    //required String token,
     required String new_password,
     required String new_password_confirmation,
   }) {
     emit(PasswordLoadingState());
     DioHelper.postData(url: Endpoints.newPassword, data: {
       "email": email,
-      "token": token,
+      //"token": token,
       "new_password": new_password,
       "new_password_confirmation": new_password_confirmation,
     }).then((value) {
@@ -65,7 +86,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     required String new_password_confirmation,
   }) {
     emit(PasswordLoadingState());
-    DioHelper.postData(url: Endpoints.newPassword, data: {
+    DioHelper.postData(url: Endpoints.changePassword, data: {
       "current_password": current_password,
       "new_password": new_password,
       "new_password_confirmation": new_password_confirmation,

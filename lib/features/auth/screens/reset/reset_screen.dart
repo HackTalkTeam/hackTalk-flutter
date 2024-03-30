@@ -16,9 +16,8 @@ import 'package:hack_talk/features/auth/screens/verfication/verfication.dart';
 import 'package:hack_talk/features/home/presentation/screen/home/home_screen.dart';
 
 class ResetScreen extends StatelessWidget {
-  ResetScreen({super.key, required this.email, required this.token});
+  ResetScreen({super.key, required this.email});
   final String email;
-  final String token;
   final newPasswordController = TextEditingController();
   final confirmNewPasswordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -28,7 +27,8 @@ class ResetScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => ForgetPasswordCubit(),
       child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
-        listener: (context, state) {if (state is PasswordSuccessState) {
+        listener: (context, state) {
+          if (state is PasswordSuccessState) {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => LoadScreen()));
           } else if (state is PasswordFailedState) {
@@ -71,10 +71,23 @@ class ResetScreen extends StatelessWidget {
                           style: TextStyles.font12black,
                         ),
                         verticalSpace(20.h),
+                        // CustomTextFormFeild(
+                        //   lableText: 'password',
+                        //   hintText: AppStrings.password,
+                        //   kbType: TextInputType.visiblePassword,
+                        //   onChanged: (value) {},
+                        //   controller: passwordController,
+                        //   validator: (value) {
+                        //     if (value!.isEmpty) {
+                        //       return "password must not be empty";
+                        //     }
+                        //     return null;
+                        //   },
+                        // ),
                         CustomTextFormFeild(
                           controller: newPasswordController,
                           hintText: 'New Password',
-                          kbType: TextInputType.visiblePassword,
+                          kbType: TextInputType.number,
                           lableText: 'Enter Your New Password',
                           onChanged: (value) {},
                           validator: (value) {
@@ -88,7 +101,7 @@ class ResetScreen extends StatelessWidget {
                         CustomTextFormFeild(
                           controller: confirmNewPasswordController,
                           hintText: 'Confirm Password',
-                          kbType: TextInputType.visiblePassword,
+                          kbType: TextInputType.number,
                           lableText: 'Confirm Your Password',
                           onChanged: (value) {},
                           validator: (value) {
@@ -103,24 +116,21 @@ class ResetScreen extends StatelessWidget {
                           AppStrings.reset,
                           color: Colors.white,
                           onPressed: () {
-                            AppRoutes.routeTo(context, const LoadScreen());
+                            //if (formKey.currentState!.validate()) {
+                              BlocProvider.of<ForgetPasswordCubit>(context).newPassword(
+                                      //token: token,
+                                      email: email,
+                                      new_password: newPasswordController.text,
+                                      new_password_confirmation:
+                                          confirmNewPasswordController.text);
+                           // }
                           },
                         ),
                         verticalSpace(10.h),
                         ButtonSec(
                           text: AppStrings.cancel,
                           color: AppColors.mainBlueColor,
-                          onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              BlocProvider.of<ForgetPasswordCubit>(context)
-                                  .newPassword(
-                                      token: token,
-                                      email: email,
-                                      new_password: newPasswordController.text,
-                                      new_password_confirmation:
-                                          confirmNewPasswordController.text);
-                            }
-                          },
+                          onPressed: () {},
                         )
                       ],
                     ),

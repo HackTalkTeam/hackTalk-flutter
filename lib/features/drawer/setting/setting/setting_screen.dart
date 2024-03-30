@@ -12,6 +12,7 @@ class SettingScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             InkWell(
               onTap: (){
@@ -23,6 +24,11 @@ class SettingScreen extends StatelessWidget {
                   AppRoutes.routeTo(context, ChangePasswordScreen());
                 },
                 child: Text('ChangePasswordScreen')),
+            InkWell(
+                onTap: (){
+                  AppRoutes.routeTo(context, ChangePasswordScreen());
+                },
+                child: Text('Contact Us')),
           ],
         ),
       ),
