@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:hack_talk/core/helpers/cache_helper.dart';
 import 'package:hack_talk/core/helpers/spacing.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
@@ -156,11 +157,29 @@ class _LoginScreenState extends State<LoginScreen> {
                         AppStrings.login,
                         color: Colors.white,
                         onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            BlocProvider.of<LoginCubit>(context).login(
-                              email: emailController.text,
-                              password: passwordController.text,
-                            );
+                          /*if (formKey.currentState!.validate()) {
+                              BlocProvider.of<LoginCubit>(context).login(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              );
+                            }*/
+                          if (isSwitched == true) {
+                            if (formKey.currentState!.validate()) {
+                              BlocProvider.of<LoginCubit>(context).login(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              );
+                            }
+                            CacheHelper.saveData(key: AppStrings.token, value: LoginCubit().loginModel!.data!.accessToken);
+                            CacheHelper.saveData(key: "email", value: emailController.text);
+                            CacheHelper.saveData(key: "password", value: passwordController.text);
+                          } else {
+                            if (formKey.currentState!.validate()) {
+                              BlocProvider.of<LoginCubit>(context).login(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              );
+                            }
                           }
                         },
                       ),
