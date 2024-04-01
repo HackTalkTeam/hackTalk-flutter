@@ -157,29 +157,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         AppStrings.login,
                         color: Colors.white,
                         onPressed: () {
-                          /*if (formKey.currentState!.validate()) {
-                              BlocProvider.of<LoginCubit>(context).login(
-                                email: emailController.text,
-                                password: passwordController.text,
-                              );
-                            }*/
-                          if (isSwitched == true) {
-                            if (formKey.currentState!.validate()) {
+                          if (formKey.currentState!.validate()) {
                               BlocProvider.of<LoginCubit>(context).login(
                                 email: emailController.text,
                                 password: passwordController.text,
                               );
                             }
+                          if (isSwitched == true) {
                             CacheHelper.saveData(key: AppStrings.token, value: LoginCubit().loginModel!.data!.accessToken);
                             CacheHelper.saveData(key: "email", value: emailController.text);
                             CacheHelper.saveData(key: "password", value: passwordController.text);
-                          } else {
-                            if (formKey.currentState!.validate()) {
-                              BlocProvider.of<LoginCubit>(context).login(
-                                email: emailController.text,
-                                password: passwordController.text,
-                              );
-                            }
                           }
                         },
                       ),
