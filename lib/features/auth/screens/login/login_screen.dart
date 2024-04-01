@@ -165,8 +165,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                           if (isSwitched == true) {
                             CacheHelper.saveData(key: AppStrings.token, value: LoginCubit().loginModel!.data!.accessToken);
-                            CacheHelper.saveData(key: "email", value: emailController.text);
-                            CacheHelper.saveData(key: "password", value: passwordController.text);
+                            //CacheHelper.saveData(key: "email", value: emailController.text);
+                            //CacheHelper.saveData(key: "password", value: passwordController.text);
                           }
                         },
                       ),
