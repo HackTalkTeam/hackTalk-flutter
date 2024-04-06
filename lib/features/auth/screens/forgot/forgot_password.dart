@@ -78,7 +78,7 @@ class ForgotPassword extends StatelessWidget {
                         lableText: 'Enter Your Email',
                         onChanged: (value) {},
                         validator: (value) {
-                          if (value!.isEmpty) {
+                          if (value.isEmpty) {
                             return "email must not be empty";
                           }
                           return null;

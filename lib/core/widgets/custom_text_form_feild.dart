@@ -11,7 +11,7 @@ class CustomTextFormFeild extends StatelessWidget {
   final Function? onTap;
   final String? lableText;
   final bool? isObscureText;
-  final String? Function(String?)? validator;
+  final validator;
   final String? value;
 
   const CustomTextFormFeild({
@@ -66,12 +66,13 @@ class CustomTextFormFeild extends StatelessWidget {
           hintStyle: const TextStyle(color: Colors.grey, fontFamily: "Roboto"),
         ),
         obscureText: isObscureText ?? false,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return value;
-          }
-          return null;
-        },
+        validator: validator,
+        // validator: (value) {
+        //   if (value!.isEmpty) {
+        //     return value;
+        //   }
+        //   return null;
+        // },
       ),
     );
   }

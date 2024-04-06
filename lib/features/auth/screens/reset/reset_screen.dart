@@ -77,7 +77,7 @@ class ResetScreen extends StatelessWidget {
                           lableText: 'Enter Your New Password',
                           onChanged: (value) {},
                           validator: (value) {
-                            if (value!.isEmpty) {
+                            if (value.isEmpty) {
                               return "New Password must not be empty";
                             }
                             return null;
@@ -91,7 +91,7 @@ class ResetScreen extends StatelessWidget {
                           lableText: 'Confirm Your Password',
                           onChanged: (value) {},
                           validator: (value) {
-                            if (value!.isEmpty) {
+                            if (value.isEmpty) {
                               return "Confirm Password must not be empty";
                             }
                             return null;

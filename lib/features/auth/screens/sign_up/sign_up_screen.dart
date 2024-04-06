@@ -79,11 +79,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           CustomTextFormFeild(
                             lableText: ' Name ',
                             hintText: AppStrings.name,
-                            kbType: TextInputType.emailAddress,
+                            kbType: TextInputType.name,
                             controller: nameController,
                             onChanged: (value) {},
                             validator: (value) {
-                              if (value!.isEmpty) {
+                              if (value.isEmpty) {
                                 return "name must not be empty";
                               }
                               return null;
@@ -96,7 +96,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             controller: emailController,
                             onChanged: (value) {},
                             validator: (value) {
-                              if (value!.isEmpty) {
+                              if (value.isEmpty) {
                                 return "email must not be empty";
                               }
                               return null;
@@ -118,12 +118,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 color: Colors.grey,
                               ),
                             ),
-                            hintText: AppStrings.name,
-                            kbType: TextInputType.emailAddress,
+                            hintText: AppStrings.password,
+                            kbType: TextInputType.number,
                             controller: passwordController,
                             onChanged: (value) {},
                             validator: (value) {
-                              if (value!.isEmpty) {
+                              if (value.isEmpty) {
                                 return "password must not be empty";
                               }
                               return null;
@@ -144,12 +144,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 color: Colors.grey,
                               ),
                             ),
-                            hintText: AppStrings.name,
-                            kbType: TextInputType.emailAddress,
+                            hintText: AppStrings.password,
+                            kbType: TextInputType.number,
                             controller: confirmPasswordController,
                             onChanged: (value) {},
                             validator: (value) {
-                              if (value!.isEmpty) {
+                              if (value.isEmpty) {
                                 return "Conform Password must not be empty";
                               }
                               return null;

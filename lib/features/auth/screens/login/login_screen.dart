@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: emailController,
                         onChanged: (value) {},
                         validator: (value) {
-                          if (value!.isEmpty) {
+                          if (value.isEmpty) {
                             return "email must not be empty";
                           }
                           return null;
@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onChanged: (value) {},
                         controller: passwordController,
                         validator: (value) {
-                          if (value!.isEmpty) {
+                          if (value.isEmpty) {
                             return "password must not be empty";
                           }
                           return null;

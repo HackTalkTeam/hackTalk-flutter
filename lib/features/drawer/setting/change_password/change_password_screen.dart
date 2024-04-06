@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,10 +39,10 @@ class ChangePasswordScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => SettingScreen()));
+                                builder: (context) => const SettingScreen()));
                       },
                       child: const Text('Ok',
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Colors.white,
                           )),
                     )
@@ -85,7 +84,7 @@ class ChangePasswordScreen extends StatelessWidget {
                           lableText: 'Enter current Password',
                           onChanged: (value) {},
                           validator: (value) {
-                            if (value!.isEmpty) {
+                            if (value.isEmpty) {
                               return "Current Password must not be empty";
                             }
                             return null;
@@ -113,7 +112,7 @@ class ChangePasswordScreen extends StatelessWidget {
                           lableText: 'Confirm Your Password',
                           onChanged: (value) {},
                           validator: (value) {
-                            if (value!.isEmpty) {
+                            if (value.isEmpty) {
                               return "Confirm Password must not be empty";
                             }
                             return null;

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,20 +9,12 @@ import 'package:hack_talk/core/widgets/button_second_widget.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/custom_text_form_feild.dart';
 import 'package:hack_talk/features/auth/logic/app_cubit/app_cubit.dart';
-import 'package:hack_talk/features/auth/logic/login/login_cubit/login_cubit.dart';
 import 'package:hack_talk/features/auth/logic/update_profile/update_profile_cubit.dart';
-import 'package:hack_talk/features/home/presentation/screen/home/home_screen.dart';
 
 class PersonInformationScreen extends StatelessWidget {
   PersonInformationScreen({Key? key}) : super(key: key);
-  final nameController = TextEditingController(
-      text:
-          AppCubit.get(AppNavigator.context).userModel?.data?.userDate?.name ??
-              '');
-  final emailController = TextEditingController(
-      text:
-          AppCubit.get(AppNavigator.context).userModel?.data?.userDate?.email ??
-              '');
+  final nameController = TextEditingController(text: AppCubit.get(AppNavigator.context).userModel?.data?.userDate?.name ?? '');
+  final emailController = TextEditingController(text: AppCubit.get(AppNavigator.context).userModel?.data?.userDate?.email ?? '');
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -83,11 +74,11 @@ class PersonInformationScreen extends StatelessWidget {
                         CustomTextFormFeild(
                           controller: nameController,
                           hintText: 'name',
-                          kbType: TextInputType.visiblePassword,
+                          kbType: TextInputType.name,
                           lableText: 'Enter name',
                           onChanged: (value) {},
                           validator: (value) {
-                            if (value!.isEmpty) {
+                            if (value.isEmpty) {
                               return "name must not be empty";
                             }
                             return null;
@@ -97,18 +88,18 @@ class PersonInformationScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("email"),
-                            IconButton(onPressed: () {}, icon: Icon(Icons.edit))
+                            const Text("email"),
+                            IconButton(onPressed: () {}, icon: const Icon(Icons.edit))
                           ],
                         ),
                         CustomTextFormFeild(
                           controller: emailController,
                           hintText: 'email',
-                          kbType: TextInputType.visiblePassword,
+                          kbType: TextInputType.emailAddress,
                           lableText: 'enter email',
                           onChanged: (value) {},
                           validator: (value) {
-                            if (value!.isEmpty) {
+                            if (value.isEmpty) {
                               return "email must not be empty";
                             }
                             return null;
