@@ -35,6 +35,8 @@ class CustomTextFormFeild extends StatelessWidget {
     return SizedBox(
       height: 60,
       child: TextFormField(
+        focusNode: FocusNode(),
+        autofocus: true,
         controller: controller,
         decoration: InputDecoration(
           label: Container(
