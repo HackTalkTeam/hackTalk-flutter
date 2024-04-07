@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hack_talk/core/helpers/spacing.dart';
+import 'package:hack_talk/core/utils/app_assets.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
@@ -48,9 +49,11 @@ class ForgotPassword extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.white,
-              leading: const BackButton(),
-              title: const Text('logo'),
+              leading: IconButton(
+                  onPressed: () {
+                  },
+                  icon: const Icon(Icons.menu)),
+              title: SvgPicture.asset('hacktalk'.getSvgAsset),
             ),
             body: SafeArea(
                 child: Padding(
