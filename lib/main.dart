@@ -7,6 +7,9 @@ import 'package:hack_talk/core/utils/app_themes.dart';
 import 'core/helpers/cache_helper.dart';
 import 'core/helpers/dio_helper.dart';
 import 'features/auth/logic/app_cubit/app_cubit.dart';
+import 'features/drawer/setting/contact_us/view/screen/contact_us_screen.dart';
+import 'features/drawer/setting/personal_information/personal_information_screen.dart';
+import 'features/drawer/setting/setting/view/screens/setting_screen.dart';
 import 'features/welcome/screens/splash/splash_screen.dart';
 
 void main() async {
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
             title: AppStrings.appName,
             theme: AppThemes.theme,
             debugShowCheckedModeBanner: false,
-            home: const SplashScreen(),
+            home:  const SettingScreen(),
           ),
         );
       },

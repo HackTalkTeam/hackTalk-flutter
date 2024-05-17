@@ -49,6 +49,8 @@ class ForgotPassword extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
+                      scrolledUnderElevation: 0.0,
+
               leading: IconButton(
                   onPressed: () {
                   },

@@ -53,4 +53,6 @@ class AppStrings {
   ///reset///
   static const String resetPasswordText = 'Now you can reset your old password';
   static const String reset = 'Reset';
+  ///contact us///
+  static const String submit = 'Submit';
 }

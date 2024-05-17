@@ -62,143 +62,150 @@ class _LoginScreenState extends State<LoginScreen> {
         builder: (context, state) {
           return Scaffold(
               appBar: AppBar(
-                leading: IconButton(
-                    onPressed: () {
-                    },
-                    icon: const Icon(Icons.menu)),
+                scrolledUnderElevation: 0.0,
+                leading:
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
                 title: SvgPicture.asset('hacktalk'.getSvgAsset),
               ),
               body: SafeArea(
-            child: Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 10.0.h),
-              child: SingleChildScrollView(
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(child: Image.asset('assets/images/Group 237.png')),
-                      verticalSpace(16.h),
-                      Text(
-                        AppStrings.welcomBack,
-                        style: TextStyles.font24mainBlueColor,
-                      ),
-                      Text(AppStrings.please, style: TextStyles.font11black),
-                      verticalSpace(16.h),
-                      CustomTextFormFeild(
-                        lableText: ' email ',
-                        hintText: AppStrings.email,
-                        kbType: TextInputType.emailAddress,
-                        controller: emailController,
-                        onChanged: (value) {},
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return "email must not be empty";
-                          }
-                          return null;
-                        },
-                      ),
-                      verticalSpace(16.h),
-                      CustomTextFormFeild(
-                        isObscureText: isObsecuretext,
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isObsecuretext = !isObsecuretext;
-                            });
-                          },
-                          child: Icon(
-                            isObsecuretext
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        lableText: 'password',
-                        hintText: AppStrings.password,
-                        kbType: TextInputType.visiblePassword,
-                        onChanged: (value) {},
-                        controller: passwordController,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return "password must not be empty";
-                          }
-                          return null;
-                        },
-                      ),
-                      Row(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 12.0.w, vertical: 10.0.h),
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          FlutterSwitch(
-                            height: 20.0,
-                            width: 40.0,
-                            padding: 4.0,
-                            toggleSize: 15.0,
-                            borderRadius: 10.0,
-                            activeColor: AppColors.mainBlueColor,
-                            value: isSwitched,
-                            onToggle: (value) {
-                              setState(() {
-                                isSwitched = value;
-                              });
-                            },
+                          Center(
+                              child:
+                                  Image.asset('assets/images/Group 237.png')),
+                          verticalSpace(16.h),
+                          Text(
+                            AppStrings.welcomBack,
+                            style: TextStyles.font24mainBlueColor,
                           ),
-                          Text(AppStrings.rememberMe,
+                          Text(AppStrings.please,
                               style: TextStyles.font11black),
-                          const Spacer(),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ForgotPassword(),
-                                  ));
+                          verticalSpace(16.h),
+                          CustomTextFormFeild(
+                            lableText: ' email ',
+                            hintText: AppStrings.email,
+                            kbType: TextInputType.emailAddress,
+                            controller: emailController,
+                            onChanged: (value) {},
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return "email must not be empty";
+                              }
+                              return null;
                             },
-                            child: Text(
-                              AppStrings.forgotPassword,
-                              style: TextStyles.font11black,
-                            ),
                           ),
+                          verticalSpace(16.h),
+                          CustomTextFormFeild(
+                            isObscureText: isObsecuretext,
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  isObsecuretext = !isObsecuretext;
+                                });
+                              },
+                              child: Icon(
+                                isObsecuretext
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            lableText: 'password',
+                            hintText: AppStrings.password,
+                            kbType: TextInputType.visiblePassword,
+                            onChanged: (value) {},
+                            controller: passwordController,
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return "password must not be empty";
+                              }
+                              return null;
+                            },
+                          ),
+                          Row(
+                            children: [
+                              FlutterSwitch(
+                                height: 20.0,
+                                width: 40.0,
+                                padding: 4.0,
+                                toggleSize: 15.0,
+                                borderRadius: 10.0,
+                                activeColor: AppColors.mainBlueColor,
+                                value: isSwitched,
+                                onToggle: (value) {
+                                  setState(() {
+                                    isSwitched = value;
+                                  });
+                                },
+                              ),
+                              Text(AppStrings.rememberMe,
+                                  style: TextStyles.font11black),
+                              const Spacer(),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ForgotPassword(),
+                                      ));
+                                },
+                                child: Text(
+                                  AppStrings.forgotPassword,
+                                  style: TextStyles.font11black,
+                                ),
+                              ),
+                            ],
+                          ),
+                          verticalSpace(10.h),
+                          ButtonWidget(
+                            AppStrings.login,
+                            color: Colors.white,
+                            onPressed: () {
+                              if (formKey.currentState!.validate()) {
+                                BlocProvider.of<LoginCubit>(context).login(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                );
+                              }
+                              if (isSwitched == true) {
+                                CacheHelper.saveData(
+                                    key: AppStrings.token,
+                                    value: LoginCubit()
+                                        .loginModel!
+                                        .data!
+                                        .accessToken);
+                                //CacheHelper.saveData(key: "email", value: emailController.text);
+                                //CacheHelper.saveData(key: "password", value: passwordController.text);
+                              }
+                            },
+                          ),
+                          verticalSpace(10.h),
+                          Center(
+                              child: NewToHachTalk(
+                            textOne: AppStrings.donothaveanAccount,
+                            onTap: () {
+                              AppRoutes.routeAndRemoveAllTo(
+                                  context, const SignUpScreen());
+                            },
+                            textTwo: AppStrings.signUp,
+                          )),
+                          verticalSpace(10.h),
+                          const Div(),
+                          verticalSpace(10.h),
+                          const Social_icon()
                         ],
                       ),
-                      verticalSpace(10.h),
-                      ButtonWidget(
-                        AppStrings.login,
-                        color: Colors.white,
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                              BlocProvider.of<LoginCubit>(context).login(
-                                email: emailController.text,
-                                password: passwordController.text,
-                              );
-                            }
-                          if (isSwitched == true) {
-                            CacheHelper.saveData(key: AppStrings.token, value: LoginCubit().loginModel!.data!.accessToken);
-                            //CacheHelper.saveData(key: "email", value: emailController.text);
-                            //CacheHelper.saveData(key: "password", value: passwordController.text);
-                          }
-                        },
-                      ),
-                      verticalSpace(10.h),
-                      Center(
-                          child: NewToHachTalk(
-                        textOne: AppStrings.donothaveanAccount,
-                        onTap: () {
-                          AppRoutes.routeAndRemoveAllTo(
-                              context, const SignUpScreen());
-                        },
-                        textTwo: AppStrings.signUp,
-                      )),
-                      verticalSpace(10.h),
-                      const Div(),
-                      verticalSpace(10.h),
-                      const Social_icon()
-                    ],
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ));
+              ));
         },
       ),
     );

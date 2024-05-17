@@ -8,7 +8,7 @@ import 'package:hack_talk/core/widgets/text_widget.dart';
 import 'package:hack_talk/features/auth/logic/log_out/log_out_cubit.dart';
 import 'package:hack_talk/features/auth/screens/login/login_screen.dart';
 import 'package:hack_talk/features/drawer/features/features_screen.dart';
-import 'package:hack_talk/features/drawer/setting/setting/setting_screen.dart';
+import 'package:hack_talk/features/drawer/setting/setting/view/screens/setting_screen.dart';
 import 'package:hack_talk/features/home/presentation/screen/Audio/audio_screen.dart';
 import 'package:hack_talk/features/home/presentation/screen/computer_vision/computer_vision_screen.dart';
 import 'package:hack_talk/features/home/presentation/screen/vr/ve_screen.dart';

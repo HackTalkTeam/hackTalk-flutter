@@ -66,10 +66,9 @@ class VerficationScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              leading: IconButton(
-                  onPressed: () {
-                  },
-                  icon: const Icon(Icons.menu)),
+              scrolledUnderElevation: 0.0,
+              leading:
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
               title: SvgPicture.asset('hacktalk'.getSvgAsset),
             ),
             body: SafeArea(

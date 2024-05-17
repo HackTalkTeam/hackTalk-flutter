@@ -46,7 +46,6 @@ class CustomTextFormFeild extends StatelessWidget {
               style:
                   const TextStyle(color: AppColors.mainBlueColor, fontSize: 16),
             ),
-
           ),
           labelStyle: const TextStyle(color: Colors.grey, fontSize: 16),
           suffixIcon: suffixIcon,
@@ -57,6 +56,16 @@ class CustomTextFormFeild extends StatelessWidget {
             borderRadius: BorderRadius.circular(40),
             borderSide:
                 const BorderSide(color: AppColors.mainBlueColor, width: 1.5),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(40),
+            borderSide:
+                const BorderSide(color: AppColors.textFormFeild, width: 1.5),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(40),
+            borderSide:
+                const BorderSide(color: AppColors.textFormFeild, width: 1.5),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(40),

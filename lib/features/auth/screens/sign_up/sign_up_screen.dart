@@ -59,10 +59,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              leading: IconButton(
-                  onPressed: () {
-                  },
-                  icon: const Icon(Icons.menu)),
+              scrolledUnderElevation: 0.0,
+              leading:
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
               title: SvgPicture.asset('hacktalk'.getSvgAsset),
             ),
             body: SafeArea(
@@ -182,7 +181,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               child: NewToHachTalk(
                             textOne: AppStrings.donothaveanAccount,
                             onTap: () {
-                              AppRoutes.routeAndRemoveAllTo(context, const LoginScreen());
+                              AppRoutes.routeAndRemoveAllTo(
+                                  context, const LoginScreen());
                             },
                             textTwo: AppStrings.login,
                           )),

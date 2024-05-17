@@ -8,7 +8,7 @@ import 'package:hack_talk/core/widgets/button_second_widget.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/custom_text_form_feild.dart';
 import 'package:hack_talk/features/auth/logic/forget_password/forget_password_cubit/forget_password_cubit.dart';
-import 'package:hack_talk/features/drawer/setting/setting/setting_screen.dart';
+import 'package:hack_talk/features/drawer/setting/setting/view/screens/setting_screen.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
   ChangePasswordScreen({Key? key}) : super(key: key);
