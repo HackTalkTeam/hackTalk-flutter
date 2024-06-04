@@ -43,12 +43,12 @@ class FeaturesScreen extends StatelessWidget {
               description:
                   'virtual reality feature aim to overcome your fear of public speaking  by placing you in an almost real environment so you can practice and get notices about your performance so you can work to improve it  ',
             ),
-            SvgPicture.asset('feature4'.getSvgAsset),
-            const FeaturesColumn(
-              title: 'Presentation evaluation ',
-              description:
-                  '"Perfection begins with precision” Our presentation evaluation feature ensures that your uploaded files are thoroughly examined for any potential issues. We aim to provide you with a seamless presentation experience by identifying and addressing problems before you hit the stage. (Note Available in website) ',
-            ),
+            // SvgPicture.asset('feature4'.getSvgAsset),
+            // const FeaturesColumn(
+            //   title: 'Presentation evaluation ',
+            //   description:
+            //       '"Perfection begins with precision” Our presentation evaluation feature ensures that your uploaded files are thoroughly examined for any potential issues. We aim to provide you with a seamless presentation experience by identifying and addressing problems before you hit the stage. (Note Available in website) ',
+            // ),
           ],
         ),
       ),

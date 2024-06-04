@@ -9,6 +9,7 @@ import 'package:hack_talk/core/utils/app_assets.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
+import 'audio_result/audio_result_screen.dart';
 
 class AudioScreen extends StatefulWidget {
   const AudioScreen({Key? key}) : super(key: key);
@@ -113,7 +114,9 @@ class _AudioScreenState extends State<AudioScreen> {
                                             color: AppColors.mainBlueColor,
                                             text: 'Upload voice',
                                             onPressed: () async {
-                                              await returnAudio.selectFiles();
+                                              await returnAudio.selectFiles().then((value) {
+                                                AppRoutes.routeTo(context, AudioResultScreen());
+                                              },);
                                             },
                                             textColor: AppColors.homeButtonColor,
                                             image: 'Upload video',
