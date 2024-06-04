@@ -13,6 +13,8 @@ import 'package:hack_talk/core/widgets/text_widget.dart';
 import 'package:hack_talk/features/home/presentation/logic/computer_vision_cubit/computer_vision_cubit.dart';
 import 'package:hack_talk/features/home/presentation/widgets/home_button_widget.dart';
 
+import 'cv_result_screen.dart';
+
 class ComputerVisionScreen extends StatefulWidget {
   const ComputerVisionScreen({Key? key}) : super(key: key);
 
@@ -87,7 +89,11 @@ class _ComputerVisionScreenState extends State<ComputerVisionScreen> {
                                             color: AppColors.mainBlueColor,
                                             text: 'Start recording ',
                                             onPressed: () async {
-                                              await returnVideo.selectVideoFromCamera();
+                                              await returnVideo.selectVideoFromCamera().then((value) {
+                                                if(value!= null){
+                                                  AppRoutes.routeTo(context, CVResultScreen( video: value,));
+                                                }
+                                              } );
                                             },
                                             textColor: AppColors.homeButtonColor,
                                             image: 'Upload video',
@@ -111,7 +117,11 @@ class _ComputerVisionScreenState extends State<ComputerVisionScreen> {
                                             color: AppColors.mainBlueColor,
                                             text: 'Upload video',
                                             onPressed: () async {
-                                              await returnVideo.selectVideoPauseFrom();
+                                              await returnVideo.selectVideoPauseFrom().then((value) {
+                                                if(value!= null){
+                                                  AppRoutes.routeTo(context, CVResultScreen( video: value,));
+                                                }
+                                              } );
                                             },
                                             textColor: AppColors.homeButtonColor,
                                             image: 'Upload video',

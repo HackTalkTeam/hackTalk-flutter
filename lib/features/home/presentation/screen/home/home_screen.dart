@@ -13,6 +13,7 @@ import 'package:hack_talk/features/home/presentation/screen/Audio/audio_screen.d
 import 'package:hack_talk/features/home/presentation/screen/computer_vision/computer_vision_screen.dart';
 import 'package:hack_talk/features/home/presentation/screen/vr/ve_screen.dart';
 import 'package:hack_talk/features/home/presentation/widgets/home_button_widget.dart';
+import 'package:flutter/services.dart';
 
 import 'alertWidget.dart';
 import 'drawer_widget.dart';
@@ -201,9 +202,15 @@ class HomeScreen extends StatelessWidget {
                       color: AppColors.homeButtonColor,
                       text: 'Virtual reality',
                       onPressed: () {
-                        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                        SystemChrome.setPreferredOrientations([
+                          DeviceOrientation.landscapeRight,
+                          DeviceOrientation.landscapeLeft,
+                        ]).then((_) {
                           AppRoutes.routeTo(context, const VrScreen());
                         });
+                        // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                        //   AppRoutes.routeTo(context, const VrScreen());
+                        // });
                       },
                       textColor: AppColors.mainBlueColor,
                       image: '',

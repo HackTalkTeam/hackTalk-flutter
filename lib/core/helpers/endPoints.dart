@@ -8,4 +8,6 @@ class Endpoints{
   static String verifyCode="verify-code";
   static String newPassword="new-password";
   static String sendMessage="send-message";
+  //-------------------------------------------------
+  static String video="video";
 }

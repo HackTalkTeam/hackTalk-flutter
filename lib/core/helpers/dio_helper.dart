@@ -8,6 +8,7 @@ import 'cache_helper.dart';
 class DioHelper {
   DioHelper._();
   static late Dio dio;
+  static late Dio dioAi;
   static init() {
     dio = Dio(
       BaseOptions(
@@ -17,6 +18,20 @@ class DioHelper {
     );
     if (kDebugMode) {
       dio.interceptors.add(PrettyDioLogger(
+        requestBody: true,
+        responseBody: true,
+        requestHeader: true,
+      ));
+    }
+
+    dioAi = Dio(
+      BaseOptions(
+        baseUrl: 'https://c729-156-203-176-157.ngrok-free.app/',
+        receiveDataWhenStatusError: true,
+      ),
+    );
+    if (kDebugMode) {
+      dioAi.interceptors.add(PrettyDioLogger(
         requestBody: true,
         responseBody: true,
         requestHeader: true,
@@ -86,5 +101,17 @@ class DioHelper {
           'Bearer ${CacheHelper.getData(key: AppStrings.token) ?? ''}',
     };
     return dio.put(url, queryParameters: query, data: data);
+  }
+
+  static Future<Response> postAi(
+      {required String url,
+      Map<String, dynamic>? query,
+      required dynamic data,
+      String lang = 'en'}) async {
+    dioAi.options.headers = {
+      'Content-Type': 'multipart/form-data',
+      'Accept': 'application/json',
+    };
+    return dioAi.post(url, queryParameters: query, data: data);
   }
 }

@@ -10,6 +10,7 @@ import 'features/auth/logic/app_cubit/app_cubit.dart';
 import 'features/drawer/setting/contact_us/view/screen/contact_us_screen.dart';
 import 'features/drawer/setting/personal_information/personal_information_screen.dart';
 import 'features/drawer/setting/setting/view/screens/setting_screen.dart';
+import 'features/home/presentation/screen/home/home_screen.dart';
 import 'features/welcome/screens/splash/splash_screen.dart';
 
 void main() async {
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
             title: AppStrings.appName,
             theme: AppThemes.theme,
             debugShowCheckedModeBanner: false,
-            home:  const SettingScreen(),
+            home:  const HomeScreen(),
           ),
         );
       },

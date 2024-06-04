@@ -5,11 +5,25 @@ import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
 import 'package:hack_talk/features/home/presentation/widgets/app_bar_widget.dart';
 import 'package:hack_talk/features/home/presentation/widgets/home_button_widget.dart';
+import 'package:flutter/services.dart';
 
-class VrScreen extends StatelessWidget {
+
+class VrScreen extends StatefulWidget {
   const VrScreen({Key? key}) : super(key: key);
 
   @override
+  State<VrScreen> createState() => _VrScreenState();
+}
+
+class _VrScreenState extends State<VrScreen> {
+  @override
+//-------------------------------------------
+  void dispose(){
+    SystemChrome.setPreferredOrientations([]);
+    super.dispose();
+  }
+//-------------------------------------------
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(
