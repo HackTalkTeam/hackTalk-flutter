@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -9,132 +11,158 @@ import 'package:hack_talk/core/widgets/text_widget.dart';
 import 'package:hack_talk/features/home/presentation/logic/audio_result_cubit/audio_result_cubit.dart';
 
 class AudioAnalysisScreen extends StatelessWidget {
-  const AudioAnalysisScreen({Key? key}) : super(key: key);
+  const AudioAnalysisScreen({Key? key, required this.audio}) : super(key: key);
+  final File audio;
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(28.0),
-      child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Row(
-                children: [
-                  TextWidget(
-                    "Number of words:",
-                    fontWeight: FontWeight.w600,
-                  ),
-                  SizedBox(width: 88),
-                  TextWidget("66"),
-                ],
-              ),
-              Row(
-                children: [
-                  TextWidget("Number of sentences",
-                      fontWeight: FontWeight.w600),
-                  SizedBox(width: 88),
-                  TextWidget("66"),
-                ],
-              ),
-              Row(
-                children: [
-                  TextWidget("Most repeated three words:",
-                      fontWeight: FontWeight.w600),
-                ],
-              ),
-              Column(
-                children: [
-                  Rowwww(
-                    name: 'uh',
-                    times: '15 time',
-                  ),
-                  Rowwww(
-                    name: 'Uh',
-                    times: '15 time',
-                  ),
-                  Rowwww(
-                    name: 'Uh',
-                    times: '15 time',
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  TextWidget("Longest sentence:",
-                      fontWeight: FontWeight.w600),
-                ],
-              ),
-              Column(
-                children: [
-                  TextWidget(
-                    "By leveraging innovative techniques, "
-                    "um, we can ensure that every learner, uh,"
-                    " receives the support they need to succeed.",
-                    maxLines: 20,
-                    fontSize: 14,
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextWidget("Repeated words", fontWeight: FontWeight.w600),
-                  TextWidget(
-                    "See aLL",
-                    color: AppColors.mainBlueColor,
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Rowwww(
-                    name: 'Uh',
-                    times: '15 time',
-                  ),
-                  Rowwww(
-                    name: 'Uh',
-                    times: '15 time',
-                  ),
-                  Rowwww(
-                    name: 'Uh',
-                    times: '15 time',
-                  ),
-                  Rowwww(
-                    name: 'Uh',
-                    times: '15 time',
-                  ),
-                  Rowwww(
-                    name: 'Uh',
-                    times: '15 time',
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  TextWidget("Fillers:", fontWeight: FontWeight.w600),
-                ],
-              ),
-              Column(
-                children: [
-                  Rowwww(
-                    name: 'Uh',
-                    times: '',
-                  ),
-                  Rowwww(
-                    name: 'Uh',
-                    times: '',
-                  ),
-                  Rowwww(
-                    name: 'Uh',
-                    times: '',
-                  ),
-                ],
-              ),
-              Row(
-                children: [],
-              ),
-            ],
-          ),
+    return Padding(
+      padding: const EdgeInsets.all(28.0),
+      child: BlocProvider(
+        create: (context) => AudioResultCubit(),
+        child: BlocConsumer<AudioResultCubit, AudioResultState>(
+          listener: (context, state) {
+            // TODO: implement listener
+          },
+          builder: (context, state) {
+            final audioResult = context.watch<AudioResultCubit>();
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      audioResult.showAudioResult(audio);
+                    },
+                    child: const Text("show result")),
+                Row(
+                  children: [
+                    const TextWidget(
+                      "Number of words:",
+                      fontWeight: FontWeight.w600,
+                    ),
+                    const SizedBox(width: 88),
+                    TextWidget("${audioResult.audioResultModel?.textLength}"),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const TextWidget("Number of sentences",
+                        fontWeight: FontWeight.w600),
+                    const SizedBox(width: 88),
+                    TextWidget("${audioResult.audioResultModel?.numSentences}"),
+                  ],
+                ),
+                const Row(
+                  children: [
+                    TextWidget("Most repeated three words:",
+                        fontWeight: FontWeight.w600),
+                  ],
+                ),
+                Column(
+                  children: List.generate(
+                      audioResult
+                              .audioResultModel?.mostCommonWordsAll?.length ??
+                          0, (i) {
+                    return Rowwww(
+                      name:
+                          '${audioResult.audioResultModel?.mostCommonWordsAll?[i][0]}',
+                      times:
+                          '${audioResult.audioResultModel?.mostCommonWordsAll?[i][1]}',
+                    );
+                  }),
+                ),
+                  // Rowwww(
+                  //   name: '${audioResult.audioResultModel!.mostCommonWordsAll![0][0]}',
+                  //   times: '${audioResult.audioResultModel!.mostCommonWordsAll![0][1]}',
+                  // ),
+                  // Rowwww(
+                  //   name: '${audioResult.audioResultModel!.mostCommonWordsAll![1][0]}',
+                  //   times: '${audioResult.audioResultModel!.mostCommonWordsAll![1][1]}',
+                  // ),
+                  // Rowwww(
+                  //   name: '${audioResult.audioResultModel!.mostCommonWordsAll![2][0]}',
+                  //   times: '${audioResult.audioResultModel!.mostCommonWordsAll![2][1]}',
+                  // ),
+                const Row(
+                  children: [
+                    TextWidget("Longest sentence:",
+                        fontWeight: FontWeight.w600),
+                  ],
+                ),
+                Column(
+                  children: [
+                    TextWidget(
+                      "${audioResult.audioResultModel?.longestSentence}",
+                      maxLines: 20,
+                      fontSize: 14,
+                    ),
+                  ],
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextWidget("Repeated words", fontWeight: FontWeight.w600),
+                    TextWidget(
+                      "See aLL",
+                      color: AppColors.mainBlueColor,
+                    ),
+                  ],
+                ),
+                Column(
+                  children: List.generate(
+                      audioResult.audioResultModel?.mostCommonWordsNoStop
+                              ?.length ??
+                          0, (i) {
+                    return Rowwww(
+                      name:
+                          '${audioResult.audioResultModel?.mostCommonWordsNoStop?[i][0]}',
+                      times:
+                          '${audioResult.audioResultModel?.mostCommonWordsNoStop?[i][1]}',
+                    );
+                  }),
+                ),
+                // Column(
+                //   children: [
+                //     Rowwww(
+                //       name: '${audioResult.audioResultModel?.mostCommonWordsNoStop?[0][0]}',
+                //       times: '${audioResult.audioResultModel?.mostCommonWordsNoStop?[0][1]}',
+                //     ),
+                //     Rowwww(
+                //       name: '${audioResult.audioResultModel?.mostCommonWordsNoStop?[1][0]}',
+                //       times: '${audioResult.audioResultModel?.mostCommonWordsNoStop?[1][1]}',
+                //     ),
+                //     Rowwww(
+                //       name: '${audioResult.audioResultModel?.mostCommonWordsNoStop?[2][0]}',
+                //       times: '${audioResult.audioResultModel?.mostCommonWordsNoStop?[2][1]}',
+                //     ),
+                //   ],
+                // ),
+                const Row(
+                  children: [
+                    TextWidget("Fillers:", fontWeight: FontWeight.w600),
+                  ],
+                ),
+                // Column(
+                //   children: [
+                //     Rowwww(
+                //       name: '${audioResult.audioResultModel!.fillers![0]}',
+                //       times: '',
+                //     ),
+                //     Rowwww(
+                //       name: '${audioResult.audioResultModel!.fillers![1]}',
+                //       times: '',
+                //     ),
+                //     Rowwww(
+                //       name: '${audioResult.audioResultModel!.fillers![2]}',
+                //       times: '',
+                //     ),
+                //   ],
+                // ),
+              ],
+            );
+          },
+        ),
+      ),
     );
   }
 }

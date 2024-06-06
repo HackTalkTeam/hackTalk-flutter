@@ -16,13 +16,14 @@ class AudioCubit extends Cubit<AudioState> {
 
   File? anyFile;
 
-  Future selectFiles() async {
+  Future<File?> selectFiles() async {
     FilePickerResult? result = await FilePicker.platform
         .pickFiles(type: FileType.custom, allowedExtensions: ['mp3', 'm4v']);
     if (result != null && result.files.single.path != null) {
       anyFile = File(result.files.single.path!);
-      emit(AudionFile(audio: anyFile));
+      return anyFile;
     }
+    return null;
   }
 
   //----------------------------------------------------------

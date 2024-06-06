@@ -1,5 +1,5 @@
 class CVResultModel {
-  int? time;
+  double? time;
   String? bodyLanguageClass;
 
   CVResultModel({this.time, this.bodyLanguageClass});

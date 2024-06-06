@@ -9,7 +9,7 @@ class AudioResultModel {
   int? repeatedWordSentences;
   int? wpm;
   int? durationMinutes;
-  int? loudnessPercentage;
+  double? loudnessPercentage;
   String? volumeAdvice;
   List<String>? fillers;
 

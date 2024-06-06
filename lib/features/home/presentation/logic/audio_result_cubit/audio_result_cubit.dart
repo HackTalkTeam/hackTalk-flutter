@@ -13,11 +13,9 @@ part 'audio_result_state.dart';
 class AudioResultCubit extends Cubit<AudioResultState> {
   AudioResultCubit() : super(AudioResultInitial());
 
-  //static AudioResultCubit get(context) => BlocProvider.of(context);
-  //AudioResultModel? audioResultModel;
-
-  List<AudioResultModel> audioResultModel = [];
-  Future showCVResult(File file) async {
+  static AudioResultCubit get(context) => BlocProvider.of(context);
+  AudioResultModel? audioResultModel;
+  Future showAudioResult(File file) async {
     emit(AudioResultLoadingInitial());
     await DioHelper.postAi(
       url: Endpoints.audio,
@@ -27,10 +25,9 @@ class AudioResultCubit extends Cubit<AudioResultState> {
         },
       ),
     ).then((value) {
-      audioResultModel = (value.data["results"] as List<dynamic>)
-          .map((e) => AudioResultModel.fromJson(e))
-          .toList();
+      audioResultModel = AudioResultModel.fromJson(value.data);
+      emit(AudioShowResultInitial());
     });
-    emit(AudioShowResultInitial());
+    //emit(AudioShowResultInitial());
   }
 }

@@ -10,5 +10,5 @@ class Endpoints{
   static String sendMessage="send-message";
   //-------------------------------------------------
   static String video="video";
-  static String audio="   ";//--------------change
+  static String audio="/predict_Audio_Analysis";
 }

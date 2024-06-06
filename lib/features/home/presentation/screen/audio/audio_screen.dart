@@ -115,7 +115,9 @@ class _AudioScreenState extends State<AudioScreen> {
                                             text: 'Upload voice',
                                             onPressed: () async {
                                               await returnAudio.selectFiles().then((value) {
-                                                AppRoutes.routeTo(context, AudioResultScreen());
+                                                if(value !=null) {
+                                                  AppRoutes.routeTo(context, AudioResultScreen(audio: value));
+                                                }
                                               },);
                                             },
                                             textColor: AppColors.homeButtonColor,

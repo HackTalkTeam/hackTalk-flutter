@@ -12,6 +12,7 @@ part 'cv_result_state.dart';
 class CvResultCubit extends Cubit<CvResultState> {
   CvResultCubit() : super(CvResultInitial());
   List<CVResultModel> cVResultModel = [];
+  double? score ;
   Future showCVResult(File file) async {
     emit(CvResultLoadingState());
     await DioHelper.postAi(
@@ -25,6 +26,7 @@ class CvResultCubit extends Cubit<CvResultState> {
       cVResultModel = (value.data["results"] as List<dynamic>)
           .map((e) => CVResultModel.fromJson(e))
           .toList();
+      score = (value.data["score"]);
     });
     emit(CvResultShowResultState());
   }
