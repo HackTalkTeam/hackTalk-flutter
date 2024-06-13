@@ -31,6 +31,7 @@ class OnBoardingScreen extends StatelessWidget {
             final onBoarding = context.watch<OnBoardingCubit>();
             return Scaffold(
               appBar: AppBar(
+                forceMaterialTransparency: true,
                 title: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SvgPicture.asset('hacktalk'.getSvgAsset),
@@ -47,34 +48,34 @@ class OnBoardingScreen extends StatelessWidget {
                           },
                           itemCount: onBoarding.onBoardingList.length,
                           itemBuilder: (context, i) => Padding(
-                            padding:
-                            const EdgeInsets.symmetric(horizontal: 16),
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: SvgPicture.asset(
-                                      onBoarding.onBoardingList[i].image),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 16),
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                      child: SvgPicture.asset(
+                                          onBoarding.onBoardingList[i].image),
+                                    ),
+                                    //const Spacer(),
+                                    TextWidget(
+                                      onBoarding.onBoardingList[i].title,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 20,
+                                      color: AppColors.mainBlueColor,
+                                    ),
+                                    const SizedBox(height: 12),
+                                    TextWidget(
+                                      onBoarding.onBoardingList[i].body,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                      color: AppColors.textBodyColor,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 5,
+                                    ),
+                                    //const Spacer(),
+                                  ],
                                 ),
-                                //const Spacer(),
-                                TextWidget(
-                                  onBoarding.onBoardingList[i].title,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 20,
-                                  color: AppColors.mainBlueColor,
-                                ),
-                                const SizedBox(height: 12),
-                                TextWidget(
-                                  onBoarding.onBoardingList[i].body,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16,
-                                  color: AppColors.textBodyColor,
-                                  textAlign: TextAlign.center,
-                                  maxLines: 5,
-                                ),
-                                //const Spacer(),
-                              ],
-                            ),
-                          )),
+                              )),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 28.0),
@@ -82,20 +83,20 @@ class OnBoardingScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: List.generate(
                             onBoarding.onBoardingList.length,
-                                (index) => AnimatedContainer(
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.bounceInOut,
-                              width:
-                              index == onBoarding.currentPage ? 18 : 8,
-                              height: 8,
-                              margin: const EdgeInsets.all(2),
-                              decoration: BoxDecoration(
-                                color: index == onBoarding.currentPage
-                                    ? AppColors.mainBlueColor
-                                    : AppColors.brownColor,
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                            )),
+                            (index) => AnimatedContainer(
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.bounceInOut,
+                                  width:
+                                      index == onBoarding.currentPage ? 18 : 8,
+                                  height: 8,
+                                  margin: const EdgeInsets.all(2),
+                                  decoration: BoxDecoration(
+                                    color: index == onBoarding.currentPage
+                                        ? AppColors.mainBlueColor
+                                        : AppColors.brownColor,
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                )),
                       ),
                     ),
                     Padding(
@@ -103,7 +104,7 @@ class OnBoardingScreen extends StatelessWidget {
                           left: 30, right: 30, bottom: 15, top: 22),
                       child: ButtonWidget(
                         onBoarding.currentPage ==
-                            onBoarding.onBoardingList.length - 1
+                                onBoarding.onBoardingList.length - 1
                             ? 'Get Start'
                             : 'Next',
                         color: Colors.white,
@@ -113,28 +114,30 @@ class OnBoardingScreen extends StatelessWidget {
                       ),
                     ),
                     onBoarding.currentPage ==
-                        onBoarding.onBoardingList.length - 1
+                            onBoarding.onBoardingList.length - 1
                         ? Padding(
-                      padding: const EdgeInsets.only(
-                          left: 30, right: 30, bottom: 35),
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: 35.h,
-                      ),
-                    )
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, bottom: 35),
+                            child: SizedBox(
+                              width: double.infinity,
+                              height: 35.h,
+                            ),
+                          )
                         : Padding(
-                      padding: const EdgeInsets.only(
-                          left: 30, right: 30, bottom: 35),
-                      child: ButtonSec(
-                        text: 'Skip',
-                        color: AppColors.mainBlueColor,
-                        onPressed: () {
-                          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                            AppRoutes.routeAndRemoveAllTo(context, const SignUpScreen());
-                          });
-                        },
-                      ),
-                    )
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, bottom: 35),
+                            child: ButtonSec(
+                              text: 'Skip',
+                              color: AppColors.mainBlueColor,
+                              onPressed: () {
+                                WidgetsBinding.instance
+                                    .addPostFrameCallback((timeStamp) {
+                                  AppRoutes.routeAndRemoveAllTo(
+                                      context, const SignUpScreen());
+                                });
+                              },
+                            ),
+                          )
                   ],
                 ),
               ),

@@ -15,5 +15,7 @@ class AppColors {
   static const Color drawerColor = Color(0xFFD9D9D9);
   static const Color brownColor = Color(0xFFE8E0D0);
   static const Color textFormFeild = Color(0xFFF1F0E8);
+  static const Color doNotHaveAccount = Color(0xFF999696);
+  static const Color grey = Color(0xFF676767);
   static const Color black = Color(0xFF000000);
 }

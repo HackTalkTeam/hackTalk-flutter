@@ -62,9 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
         builder: (context, state) {
           return Scaffold(
               appBar: AppBar(
-                scrolledUnderElevation: 0.0,
-                leading:
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+                forceMaterialTransparency: true,
                 title: SvgPicture.asset('hacktalk'.getSvgAsset),
               ),
               body: SafeArea(
@@ -145,6 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   });
                                 },
                               ),
+                              SizedBox(width: 10.w),
                               Text(AppStrings.rememberMe,
                                   style: TextStyles.font11black),
                               const Spacer(),

@@ -16,30 +16,29 @@ class NewToHachTalk extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 15.0.w),
-      child: Row(
-        children: [
-          RichText(
-              text: TextSpan(
-            text: textOne,
-            style: TextStyles.font12black,
-          )),
-          InkWell(
-            onTap: onTap,
-            child: RichText(
-              text: TextSpan(
-                text: textTwo,
-                style: TextStyle(
-                  color: AppColors.mainBlueColor,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        RichText(
+            text: TextSpan(
+          text: textOne,
+          style: TextStyles.font12black,
+        )),
+        InkWell(
+          onTap: onTap,
+          child: RichText(
+            text: TextSpan(
+              text: textTwo,
+              style: TextStyle(
+                decoration: TextDecoration.underline,
+                color: AppColors.mainBlueColor,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

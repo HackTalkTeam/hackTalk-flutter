@@ -16,7 +16,7 @@ class AppStrings {
   static const String welcomBack = 'Welcome Back!';
   static const String please = 'Please login to continue using our app';
   static const String forgotPassword = 'Forgot Password?';
-  static const String donothaveanAccount = 'Don’t have an account ?';
+  static const String donothaveanAccount = 'Don’t have an account?';
   static const String or = 'Or continue with ';
   //// Sign Up Screen////
   static const String createAccount = 'Create an Account';
@@ -43,7 +43,7 @@ class AppStrings {
   static const String loading =
       'reset process has been done successfully \n now you can use your account ';
   static const String loadingText =
-      'reset process has been done successfully \n now you can use your account';
+      'reset process has been done successfully now you can use your account';
 
   ///verfication///
   static const String verification = 'Verification';

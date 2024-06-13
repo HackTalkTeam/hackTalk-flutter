@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -59,15 +61,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              scrolledUnderElevation: 0.0,
-              leading:
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+              forceMaterialTransparency: true,
               title: SvgPicture.asset('hacktalk'.getSvgAsset),
             ),
             body: SafeArea(
               child: Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: 12.0.h, vertical: 5.0.h),
+                padding: EdgeInsets.symmetric(horizontal: 12.0.h),
                 child: SingleChildScrollView(
                   child: Form(
                     key: formKey,
@@ -167,7 +166,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ButtonWidget(AppStrings.signUp, color: Colors.white,
                               onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              print(nameController.text);
+                              log(nameController.text);
                               BlocProvider.of<RegisterCubit>(context).register(
                                   name: nameController.text,
                                   email: emailController.text,
@@ -177,15 +176,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             }
                           }),
                           verticalSpace(10.h),
-                          Center(
-                              child: NewToHachTalk(
+                          NewToHachTalk(
                             textOne: AppStrings.donothaveanAccount,
                             onTap: () {
                               AppRoutes.routeAndRemoveAllTo(
                                   context, const LoginScreen());
                             },
                             textTwo: AppStrings.login,
-                          )),
+                          ),
                           const Div(),
                           const Social_icon(),
                         ]),

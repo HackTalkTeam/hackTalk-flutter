@@ -49,23 +49,19 @@ class ForgotPassword extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-                      scrolledUnderElevation: 0.0,
-
-              leading: IconButton(
-                  onPressed: () {
-                  },
-                  icon: const Icon(Icons.menu)),
+              leading: const BackButton(color: AppColors.mainBlueColor),
+              forceMaterialTransparency: true,
               title: SvgPicture.asset('hacktalk'.getSvgAsset),
             ),
             body: SafeArea(
                 child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
+              padding: EdgeInsets.symmetric(horizontal: 15.w),
               child: SingleChildScrollView(
                 child: Form(
                   key: formKey,
                   child: Column(
                     children: [
-                      SvgPicture.asset('assets/svgs/forgot.svg'),
+                      SvgPicture.asset('assets/svgs/forget.svg'),
                       Text(
                         AppStrings.forgotPassword,
                         style: TextStyles.font20mainBllueColor,
@@ -107,7 +103,7 @@ class ForgotPassword extends StatelessWidget {
                         text: AppStrings.cancel,
                         color: AppColors.mainBlueColor,
                         onPressed: () {
-                          //AppRoutes.routeTo(context, const VerficationScreen());
+                         AppRoutes.pop(context);
                         },
                       )
                     ],

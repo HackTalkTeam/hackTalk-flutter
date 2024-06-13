@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hack_talk/core/helpers/spacing.dart';
+import 'package:hack_talk/core/utils/app_assets.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/textstyle.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/features/auth/screens/login/login_screen.dart';
+
+import '../../../../core/utils/app_colors.dart';
 
 class LoadScreen extends StatelessWidget {
   const LoadScreen({super.key});
@@ -15,17 +18,21 @@ class LoadScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(),
-        title: const Text('logo'),
+        leading: const BackButton(
+          color: AppColors.mainBlueColor
+        ),
+        forceMaterialTransparency: true,
+        title: SvgPicture.asset('hacktalk'.getSvgAsset),
+
       ),
       body: SafeArea(
           child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 80.h),
+        padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 80.h),
         child: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
-                SvgPicture.asset('assets/svgs/succes.svg'),
+                SvgPicture.asset('assets/svgs/congratulation.svg'),
                 verticalSpace(20.h),
                 Text(
                   AppStrings.success,
@@ -35,7 +42,9 @@ class LoadScreen extends StatelessWidget {
                 Text(
                   AppStrings.loadingText,
                   textAlign: TextAlign.center,
-                  style: TextStyles.font16black,
+                  style: TextStyles.font16black.copyWith(
+                    color: AppColors.grey,
+                  )
                 ),
                 verticalSpace(40.h),
                 ButtonWidget(

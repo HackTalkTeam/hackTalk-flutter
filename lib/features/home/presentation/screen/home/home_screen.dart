@@ -33,6 +33,7 @@ class HomeScreen extends StatelessWidget {
               globalKey.currentState?.openDrawer();
             },
             icon: const Icon(Icons.menu)),
+        forceMaterialTransparency: true,
         title: SvgPicture.asset('hacktalk'.getSvgAsset),
       ),
       drawer: Drawer(

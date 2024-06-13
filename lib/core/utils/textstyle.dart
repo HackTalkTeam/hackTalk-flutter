@@ -6,7 +6,7 @@ import 'FontWeightHelper.dart';
 
 class TextStyles {
   static TextStyle font24mainBlueColor = TextStyle(
-    fontSize: 24.sp,
+    fontSize: 20.sp,
     fontWeight: FontWeightHelper.semiBold,
     fontFamily: 'Roboto',
     color: AppColors.mainBlueColor,
@@ -20,10 +20,10 @@ class TextStyles {
   );
 
   static TextStyle font12black = TextStyle(
-    fontSize: 16.sp,
+    fontSize: 14.sp,
     fontWeight: FontWeightHelper.regular,
     fontFamily: 'Roboto',
-    color: AppColors.black,
+    color: AppColors.doNotHaveAccount,
   );
 
 

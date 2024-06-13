@@ -35,8 +35,10 @@ class CustomTextFormFeild extends StatelessWidget {
     return SizedBox(
       height: 60,
       child: TextFormField(
-        focusNode: FocusNode(),
-        autofocus: true,
+        enableInteractiveSelection: true,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        // focusNode: FocusNode(),
+        // autofocus: true,
         controller: controller,
         decoration: InputDecoration(
           label: Container(
@@ -78,12 +80,7 @@ class CustomTextFormFeild extends StatelessWidget {
         ),
         obscureText: isObscureText ?? false,
         validator: validator,
-        // validator: (value) {
-        //   if (value!.isEmpty) {
-        //     return value;
-        //   }
-        //   return null;
-        // },
+
       ),
     );
   }

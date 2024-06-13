@@ -49,18 +49,16 @@ class ResetScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
               appBar: AppBar(
-                scrolledUnderElevation: 0.0,
-                leading:
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+                forceMaterialTransparency: true,
                 title: SvgPicture.asset('hacktalk'.getSvgAsset),
               ),
               body: SafeArea(
                   child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
+                padding: EdgeInsets.symmetric(horizontal: 30.w),
                 child: SingleChildScrollView(
                   child: Form(
+                    key: formKey,
                     child: Column(
-                      key: formKey,
                       children: [
                         SvgPicture.asset('assets/svgs/reset.svg'),
                         Text(
@@ -120,7 +118,9 @@ class ResetScreen extends StatelessWidget {
                         ButtonSec(
                           text: AppStrings.cancel,
                           color: AppColors.mainBlueColor,
-                          onPressed: () {},
+                          onPressed: () {
+                            AppRoutes.pop(context);
+                          },
                         )
                       ],
                     ),
