@@ -8,7 +8,6 @@ import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/button_second_widget.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
-import 'package:hack_talk/features/auth/screens/login/login_screen.dart';
 import 'package:hack_talk/features/auth/screens/sign_up/sign_up_screen.dart';
 import 'package:hack_talk/features/welcome/logic/on_boarding_cubit/on_boarding_cubit.dart';
 
