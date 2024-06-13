@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hack_talk/core/helpers/dio_helper.dart';
@@ -30,7 +32,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     }).then((value) {
       registerModel = UserModel.fromJson(value.data);
       //CacheHelper.saveData(key: AppStrings.token, value: registerModel.data?.accessToken??'');
-      print('${UserModel}');
+      log('$UserModel');
       if (registerModel?.status == 1) {
         AppCubit.get(AppNavigator.context).changeUserModel(registerModel);
         emit(RegisterSuccessState());
@@ -44,7 +46,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       // }
     }).catchError((onError) {
       emit(RegisterFailedState(msg: onError.toString()));
-      print(onError);
+      log(onError);
     });
   }
 

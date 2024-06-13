@@ -26,13 +26,8 @@ class _RatingScreenState extends State<RatingScreen> {
           final ratting = context.watch<RatingCubit>();
           return Scaffold(
             appBar: AppBar(
-              leading: IconButton(
-                onPressed: () {
-                  WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                    AppRoutes.pop(context);
-                  });
-                },
-                icon: const Icon(Icons.arrow_back, color: Colors.black),
+              leading: const BackButton(
+                color: AppColors.mainBlueColor,
               ),
               backgroundColor: Colors.white,
               title: const TextWidget(
@@ -175,6 +170,7 @@ class _RatingScreenState extends State<RatingScreen> {
                     const SizedBox(height: 22),
                     ButtonWidget(
                       'Submit',
+                      color: Colors.white,
                       onPressed: () {},
                     ),
                   ],

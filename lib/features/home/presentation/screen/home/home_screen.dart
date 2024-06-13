@@ -64,7 +64,7 @@ class HomeScreen extends StatelessWidget {
                 text: 'Setting',
                 icon: Icons.settings,
                 onPressed: () {
-                  AppRoutes.routeTo(context, SettingScreen());
+                  AppRoutes.routeTo(context, const SettingScreen());
                 },
               ),
               BlocProvider(
@@ -72,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                 child: BlocConsumer<LogOutCubit, LogOutState>(
                   listener: (context, state) {
                     if (state is LogOutSuccessState) {
-                      AppRoutes.routeAndRemoveAllTo(context, LoginScreen());
+                      AppRoutes.routeAndRemoveAllTo(context, const LoginScreen());
                     } else if (state is LogOutFailedState) {
                       showDialog(
                         context: context,

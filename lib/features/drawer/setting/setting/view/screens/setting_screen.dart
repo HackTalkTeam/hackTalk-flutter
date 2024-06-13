@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/features/drawer/setting/change_password/change_password_screen.dart';
 import 'package:hack_talk/features/drawer/setting/contact_us/view/screen/contact_us_screen.dart';
 import 'package:hack_talk/features/drawer/setting/personal_information/personal_information_screen.dart';
@@ -14,7 +15,10 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(),
+        leading: const BackButton(
+          color: AppColors.mainBlueColor,
+        ),
+        forceMaterialTransparency: true,
         title: Text(
           'Setting',
           style: TextStyle(

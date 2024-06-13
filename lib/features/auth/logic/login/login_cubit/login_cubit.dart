@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hack_talk/core/helpers/dio_helper.dart';
@@ -26,7 +28,7 @@ class LoginCubit extends Cubit<LoginState> {
       "password": password,
     }).then((value) {
       loginModel = UserModel.fromJson(value.data);
-      print('${loginModel?.message}');
+      log('${loginModel?.message}');
       if (loginModel?.status == 1) {
         AppCubit.get(AppNavigator.context).changeUserModel(loginModel);
         emit(LoginSuccessState());
@@ -35,7 +37,7 @@ class LoginCubit extends Cubit<LoginState> {
       }
     }).catchError((onError) {
       emit(LoginFailedState(msg: onError.toString()));
-      print(onError);
+      log(onError);
     });
   }
 

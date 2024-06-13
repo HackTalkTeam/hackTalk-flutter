@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:hack_talk/core/helpers/dio_helper.dart';
 import 'package:hack_talk/core/helpers/endPoints.dart';
@@ -23,7 +25,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
     }).then((value) {
       updateProfileModel = ProfileModel.fromJson(value.data);
 
-      print('${updateProfileModel?.message}');
+      log('${updateProfileModel?.message}');
       if (updateProfileModel?.status == 1) {
         AppCubit.get(AppNavigator.context).changeUserData(
             email: updateProfileModel?.data?.email,
@@ -34,7 +36,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
       }
     }).catchError((onError) {
       emit(LUpdateProfileFailedState(msg: onError.toString()));
-      print(onError);
+      log(onError);
     });
   }
 }

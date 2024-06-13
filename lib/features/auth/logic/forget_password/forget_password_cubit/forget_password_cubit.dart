@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hack_talk/core/helpers/dio_helper.dart';
 import 'package:hack_talk/core/helpers/endPoints.dart';
@@ -50,7 +52,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       }
     }).catchError((onError) {
       emit(PasswordFailedState(msg: onError.toString()));
-      print(onError);
+      log(onError);
     });
   }
 
@@ -68,7 +70,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       "new_password_confirmation": new_password_confirmation,
     }).then((value) {
       forgetPasswordModel = ForgetPasswordModel.fromJson(value.data);
-      print('${forgetPasswordModel.message}');
+      log('${forgetPasswordModel.message}');
       if (forgetPasswordModel.status == 1) {
         emit(PasswordSuccessState());
       } else {
@@ -76,7 +78,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       }
     }).catchError((onError) {
       emit(PasswordFailedState(msg: onError.toString()));
-      print(onError);
+      log(onError);
     });
   }
 
@@ -92,7 +94,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       "new_password_confirmation": new_password_confirmation,
     }).then((value) {
       forgetPasswordModel = ForgetPasswordModel.fromJson(value.data);
-      print('${forgetPasswordModel.message}');
+      log('${forgetPasswordModel.message}');
       if (forgetPasswordModel.status == 1) {
         emit(PasswordSuccessState());
       } else {
@@ -100,7 +102,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       }
     }).catchError((onError) {
       emit(PasswordFailedState(msg: onError.toString()));
-      print(onError);
+      log(onError);
     });
   }
 }

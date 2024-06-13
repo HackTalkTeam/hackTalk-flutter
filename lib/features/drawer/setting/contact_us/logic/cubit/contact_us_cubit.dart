@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hack_talk/core/helpers/cache_helper.dart';
@@ -28,7 +30,7 @@ void sendMessage({
     "message": message,
   }).then((value) {
     contactUsModel = ContactUsModel.fromJson(value.data);
-    print('${contactUsModel.message}');
+    log('${contactUsModel.message}');
     if (contactUsModel.status == 1) {
       emit(ContactUsSuccessState());
     } else {
@@ -36,7 +38,7 @@ void sendMessage({
     }
   }).catchError((onError) {
     emit(ContactUsFailedState(msg: onError.toString()));
-    print(onError);
+    log(onError);
   });
 }
 

@@ -12,22 +12,25 @@ class DrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        IconButton(
-            onPressed: onPressed,
-            icon: Icon(
-              icon,
-              color: AppColors.bigTitleColor,
-              size: 24,
-            )),
-        Column(
-          children: [
-            TextWidget(text,
-                color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
-          ],
-        ),
-      ],
+    return InkWell(
+      onTap: onPressed,
+      child: Row(
+        children: [
+          IconButton(
+              onPressed: onPressed,
+              icon: Icon(
+                icon,
+                color: AppColors.bigTitleColor,
+                size: 24,
+              )),
+          Column(
+            children: [
+              TextWidget(text,
+                  color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

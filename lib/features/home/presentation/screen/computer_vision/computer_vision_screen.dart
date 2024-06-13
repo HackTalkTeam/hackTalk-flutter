@@ -64,7 +64,7 @@ class _ComputerVisionScreenState extends State<ComputerVisionScreen> {
                           fontWeight: FontWeight.w600,
                           color: AppColors.textBodyColor,
                         ),
-                        Container(
+                        SizedBox(
                           width: double.infinity,
                           height: 600,
                           child: ContainedTabBarView(

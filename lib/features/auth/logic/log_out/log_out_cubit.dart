@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:hack_talk/core/helpers/cache_helper.dart';
 import 'package:hack_talk/core/helpers/dio_helper.dart';
@@ -18,7 +20,7 @@ class LogOutCubit extends Cubit<LogOutState> {
     DioHelper.postData(url: Endpoints.logout, data: {}).then((value) {
       logOutModel = LogOutModel.fromJson(value.data);
       CacheHelper.removeToken(key: AppStrings.token);
-      print('$LogOutCubit');
+      log('$LogOutCubit');
       if (logOutModel.status == 1) {
         emit(LogOutSuccessState());
       } else {
@@ -26,7 +28,7 @@ class LogOutCubit extends Cubit<LogOutState> {
       }
     }).catchError((onError) {
       emit(LogOutFailedState(msg: onError.toString()));
-      print(onError);
+      log(onError);
     });
   }
 }

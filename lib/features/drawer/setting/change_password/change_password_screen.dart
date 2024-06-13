@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hack_talk/core/helpers/spacing.dart';
+import 'package:hack_talk/core/utils/app_assets.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/widgets/button_second_widget.dart';
@@ -66,8 +68,12 @@ class ChangePasswordScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
               appBar: AppBar(
-                leading: const BackButton(),
-                title: const Text('logo'),
+                forceMaterialTransparency: true,
+
+                leading: const BackButton(
+                  color: AppColors.mainBlueColor,
+                ),
+                title: SvgPicture.asset('hacktalk'.getSvgAsset),
               ),
               body: SafeArea(
                   child: Padding(

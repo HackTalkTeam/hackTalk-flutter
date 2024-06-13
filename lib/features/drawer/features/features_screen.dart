@@ -12,15 +12,8 @@ class FeaturesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          color: Colors.black,
-          onPressed: () {
-            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-              AppRoutes.pop(context);
-            });
-          },
-          icon: const Icon(Icons.arrow_back),
-        ),
+        leading: const BackButton(color: AppColors.mainBlueColor),
+        forceMaterialTransparency: true,
         title: SvgPicture.asset('hacktalk'.getSvgAsset),
       ),
       body: SingleChildScrollView(

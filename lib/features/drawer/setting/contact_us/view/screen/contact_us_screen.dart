@@ -19,9 +19,12 @@ class ContactUsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         scrolledUnderElevation: 0.0,
         backgroundColor: Colors.white,
-        leading: const BackButton(),
+        leading: const BackButton(
+          color: AppColors.mainBlueColor,
+        ),
         title: const Text(
           'Contact Us',
           style: TextStyle(
