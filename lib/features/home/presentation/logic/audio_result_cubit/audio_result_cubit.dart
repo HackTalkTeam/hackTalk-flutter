@@ -26,7 +26,7 @@ class AudioResultCubit extends Cubit<AudioResultState> {
       ),
     ).then((value) {
       audioResultModel = AudioResultModel.fromJson(value.data);
-      emit(AudioShowResultInitial());
+      //emit(AudioShowResultInitial());
     });
     //emit(AudioShowResultInitial());
   }

@@ -14,10 +14,16 @@ import 'package:hack_talk/core/widgets/custom_text_form_feild.dart';
 import 'package:hack_talk/features/auth/logic/forget_password/forget_password_cubit/forget_password_cubit.dart';
 import 'package:hack_talk/features/auth/screens/verfication/verfication.dart';
 
-class ForgotPassword extends StatelessWidget {
+class ForgotPassword extends StatefulWidget {
   ForgotPassword({super.key});
 
+  @override
+  State<ForgotPassword> createState() => _ForgotPasswordState();
+}
+
+class _ForgotPasswordState extends State<ForgotPassword> {
   final emailController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -75,7 +81,7 @@ class ForgotPassword extends StatelessWidget {
                       CustomTextFormFeild(
                         controller: emailController,
                         hintText: 'Email',
-                        kbType: TextInputType.visiblePassword,
+                        kbType: TextInputType.emailAddress,
                         lableText: 'Enter Your Email',
                         onChanged: (value) {},
                         validator: (value) {

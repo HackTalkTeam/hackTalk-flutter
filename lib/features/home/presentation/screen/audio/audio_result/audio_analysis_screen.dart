@@ -26,139 +26,334 @@ class AudioAnalysisScreen extends StatelessWidget {
           },
           builder: (context, state) {
             final audioResult = context.watch<AudioResultCubit>();
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
+            return SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  MaterialButton(
+                    color: AppColors.mainBlueColor,
                     onPressed: () {
                       audioResult.showAudioResult(audio);
                     },
-                    child: const Text("show result")),
-                Row(
-                  children: [
-                    const TextWidget(
-                      "Number of words:",
-                      fontWeight: FontWeight.w600,
+                    child: const TextWidget(
+                      "show result",
+                      color: Colors.white,
                     ),
-                    const SizedBox(width: 88),
-                    TextWidget("${audioResult.audioResultModel?.textLength}"),
-                  ],
-                ),
-                Row(
-                  children: [
-                    const TextWidget("Number of sentences",
-                        fontWeight: FontWeight.w600),
-                    const SizedBox(width: 88),
-                    TextWidget("${audioResult.audioResultModel?.numSentences}"),
-                  ],
-                ),
-                const Row(
-                  children: [
-                    TextWidget("Most repeated three words:",
-                        fontWeight: FontWeight.w600),
-                  ],
-                ),
-                Column(
-                  children: List.generate(
-                      audioResult
-                              .audioResultModel?.mostCommonWordsAll?.length ??
-                          0, (i) {
-                    return Rowwww(
-                      name:
-                          '${audioResult.audioResultModel?.mostCommonWordsAll?[i][0]}',
-                      times:
-                          '${audioResult.audioResultModel?.mostCommonWordsAll?[i][1]}',
-                    );
-                  }),
-                ),
-                  // Rowwww(
-                  //   name: '${audioResult.audioResultModel!.mostCommonWordsAll![0][0]}',
-                  //   times: '${audioResult.audioResultModel!.mostCommonWordsAll![0][1]}',
-                  // ),
-                  // Rowwww(
-                  //   name: '${audioResult.audioResultModel!.mostCommonWordsAll![1][0]}',
-                  //   times: '${audioResult.audioResultModel!.mostCommonWordsAll![1][1]}',
-                  // ),
-                  // Rowwww(
-                  //   name: '${audioResult.audioResultModel!.mostCommonWordsAll![2][0]}',
-                  //   times: '${audioResult.audioResultModel!.mostCommonWordsAll![2][1]}',
-                  // ),
-                const Row(
-                  children: [
-                    TextWidget("Longest sentence:",
-                        fontWeight: FontWeight.w600),
-                  ],
-                ),
-                Column(
-                  children: [
-                    TextWidget(
-                      "${audioResult.audioResultModel?.longestSentence}",
-                      maxLines: 20,
-                      fontSize: 14,
+                  ),
+                  SizedBox(height: 22),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    width: double.infinity,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: AppColors.homeButtonColor,
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  ],
-                ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextWidget("Repeated words", fontWeight: FontWeight.w600),
-                    TextWidget(
-                      "See aLL",
-                      color: AppColors.mainBlueColor,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const TextWidget(
+                          "textLength:",
+                          fontWeight: FontWeight.w600,
+                        ),
+                        const SizedBox(width: 88),
+                        TextWidget(
+                            "${audioResult.audioResultModel?.textLength}"),
+                      ],
                     ),
-                  ],
-                ),
-                Column(
-                  children: List.generate(
-                      audioResult.audioResultModel?.mostCommonWordsNoStop
-                              ?.length ??
-                          0, (i) {
-                    return Rowwww(
-                      name:
-                          '${audioResult.audioResultModel?.mostCommonWordsNoStop?[i][0]}',
-                      times:
-                          '${audioResult.audioResultModel?.mostCommonWordsNoStop?[i][1]}',
-                    );
-                  }),
-                ),
-                // Column(
-                //   children: [
-                //     Rowwww(
-                //       name: '${audioResult.audioResultModel?.mostCommonWordsNoStop?[0][0]}',
-                //       times: '${audioResult.audioResultModel?.mostCommonWordsNoStop?[0][1]}',
-                //     ),
-                //     Rowwww(
-                //       name: '${audioResult.audioResultModel?.mostCommonWordsNoStop?[1][0]}',
-                //       times: '${audioResult.audioResultModel?.mostCommonWordsNoStop?[1][1]}',
-                //     ),
-                //     Rowwww(
-                //       name: '${audioResult.audioResultModel?.mostCommonWordsNoStop?[2][0]}',
-                //       times: '${audioResult.audioResultModel?.mostCommonWordsNoStop?[2][1]}',
-                //     ),
-                //   ],
-                // ),
-                const Row(
-                  children: [
-                    TextWidget("Fillers:", fontWeight: FontWeight.w600),
-                  ],
-                ),
-                // Column(
-                //   children: [
-                //     Rowwww(
-                //       name: '${audioResult.audioResultModel!.fillers![0]}',
-                //       times: '',
-                //     ),
-                //     Rowwww(
-                //       name: '${audioResult.audioResultModel!.fillers![1]}',
-                //       times: '',
-                //     ),
-                //     Rowwww(
-                //       name: '${audioResult.audioResultModel!.fillers![2]}',
-                //       times: '',
-                //     ),
-                //   ],
-                // ),
-              ],
+                  ),
+                  const SizedBox(height: 22),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    width: double.infinity,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: AppColors.homeButtonColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const TextWidget("Number of sentences",
+                            fontWeight: FontWeight.w600),
+                        const SizedBox(width: 88),
+                        TextWidget(
+                            "${audioResult.audioResultModel?.numSentences}"),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 22),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    width: double.infinity,
+                    height: 250,
+                    decoration: BoxDecoration(
+                      color: AppColors.homeButtonColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      children: [
+                        const Row(
+                          children: [
+                            TextWidget("Longest sentence:",
+                                fontWeight: FontWeight.w600),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            TextWidget(
+                              '"${audioResult.audioResultModel?.longestSentence}"',
+                              maxLines: 20,
+                              fontSize: 14,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 22),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    width: double.infinity,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: AppColors.homeButtonColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const TextWidget("longest sentence word count",
+                            fontWeight: FontWeight.w600),
+                        const SizedBox(width: 88),
+                        TextWidget(
+                            "${audioResult.audioResultModel?.longestSentenceWordCount}"),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 22),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    width: double.infinity,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: AppColors.homeButtonColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const TextWidget("Repeated word sentences",
+                            fontWeight: FontWeight.w600),
+                        const SizedBox(width: 88),
+                        TextWidget(
+                            "${audioResult.audioResultModel?.repeatedWordSentences}"),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 22),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    width: double.infinity,
+                    height: 140,
+                    decoration: BoxDecoration(
+                      color: AppColors.homeButtonColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      children: [
+                        const Row(
+                          children: [
+                            TextWidget("Most common words :",
+                                fontWeight: FontWeight.w600),
+                          ],
+                        ),
+                        Column(
+                          children: List.generate(
+                              audioResult.audioResultModel?.mostCommonWordsAll
+                                      ?.length ??
+                                  0, (i) {
+                            return Rowwww(
+                              name:
+                                  '${audioResult.audioResultModel?.mostCommonWordsAll?[i][0]}',
+                              times:
+                                  '${audioResult.audioResultModel?.mostCommonWordsAll?[i][1]}',
+                            );
+                          }),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 22),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    width: double.infinity,
+                    height: 140,
+                    decoration: BoxDecoration(
+                      color: AppColors.homeButtonColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      children: [
+                        const Row(
+                          children: [
+                            TextWidget("Most common words without stopwords:",
+                                fontWeight: FontWeight.w600),
+                          ],
+                        ),
+                        Column(
+                          children: List.generate(
+                              audioResult.audioResultModel
+                                      ?.mostCommonWordsNoStop?.length ??
+                                  0, (i) {
+                            return Rowwww(
+                              name:
+                                  '${audioResult.audioResultModel?.mostCommonWordsNoStop?[i][0]}',
+                              times:
+                                  '${audioResult.audioResultModel?.mostCommonWordsNoStop?[i][1]}',
+                            );
+                          }),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 22),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    width: double.infinity,
+                    height: 140,
+                    decoration: BoxDecoration(
+                      color: AppColors.homeButtonColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      children: [
+                        const Row(
+                          children: [
+                            TextWidget("Fillers:", fontWeight: FontWeight.w600),
+                          ],
+                        ),
+                        Column(
+                          children: List.generate(
+                              audioResult.audioResultModel
+                                      ?.mostCommonWordsNoStop?.length ??
+                                  0, (i) {
+                            return Rowwww2(
+                              name: audioResult.audioResultModel!.fillers![0],
+                            );
+                          }),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 22),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: AppColors.homeButtonColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      children: [
+                         Row(
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const TextWidget("loudness precentage",
+                                fontWeight: FontWeight.w600),
+                            TextWidget(
+                              "${audioResult.audioResultModel?.loudnessPercentage}",
+                              maxLines: 20,
+                              fontSize: 14,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 22),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: AppColors.homeButtonColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const TextWidget("WPM",
+                                fontWeight: FontWeight.w600),
+                            TextWidget(
+                              "${audioResult.audioResultModel?.wpm}",
+                              maxLines: 20,
+                              fontSize: 14,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 22),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: AppColors.homeButtonColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const TextWidget("Duration minutes",
+                                fontWeight: FontWeight.w600),
+                            TextWidget(
+                              "${audioResult.audioResultModel?.durationMinutes}",
+                              maxLines: 20,
+                              fontSize: 14,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 22),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    width: double.infinity,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      color: AppColors.homeButtonColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      children: [
+                        const Row(
+                          children: [
+                            TextWidget("Volume advice",
+                                fontWeight: FontWeight.w600),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            TextWidget(
+                              '"${audioResult.audioResultModel?.volumeAdvice}"',
+                              fontSize: 14,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             );
           },
         ),
@@ -183,11 +378,35 @@ class Rowwww extends StatelessWidget {
           const SizedBox(width: 8),
           Row(
             children: [
-              TextWidget('$name |   '),
+              TextWidget('$name   '),
               TextWidget(
-                times,
+                "(${times} times)",
                 color: AppColors.mainBlueColor,
               ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Rowwww2 extends StatelessWidget {
+  const Rowwww2({Key? key, required this.name})
+      : super(key: key);
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 27, vertical: 6),
+      child: Row(
+        children: [
+          SvgPicture.asset('ellipse'.getSvgAsset),
+          const SizedBox(width: 8),
+          Row(
+            children: [
+              TextWidget('$name')
             ],
           ),
         ],

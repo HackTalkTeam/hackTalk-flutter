@@ -26,7 +26,7 @@ class DioHelper {
 
     dioAi = Dio(
       BaseOptions(
-        baseUrl: 'https://d696-156-203-147-93.ngrok-free.app/',
+        baseUrl: 'https://697c-156-203-170-197.ngrok-free.app/',
         receiveDataWhenStatusError: true,
       ),
     );

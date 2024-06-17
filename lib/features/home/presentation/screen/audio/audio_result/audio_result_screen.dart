@@ -19,10 +19,10 @@ class AudioResultScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: const Icon(Icons.arrow_back),
-          title: const Text('Result'),
+          title: const TextWidget('Result',fontWeight: FontWeight.w600,fontSize: 16,),
           actions: const [
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(18.0),
               child: Text("Done"),
             ),
           ],
@@ -90,14 +90,16 @@ class AudioResultScreen extends StatelessWidget {
                     final audioResult = context.watch<AudioResultCubit>();
                     return Column(
                       children: [
-                        ElevatedButton(
-                            onPressed: () {
-                              audioResult.showAudioResult(audio);
-                            },
-                            child: const Text("show result")),
+                        MaterialButton(
+                          color: AppColors.mainBlueColor,
+                          onPressed: () {
+                            audioResult.showAudioResult(audio);
+                          },
+                          child: const TextWidget("show result",color: Colors.white,),
+                        ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: TextWidget("${audioResult.audioResultModel?.generatedText??''}",
+                          child: TextWidget(audioResult.audioResultModel?.generatedText??'',
                             maxLines: 20,
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
