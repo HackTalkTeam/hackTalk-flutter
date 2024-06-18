@@ -7,8 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hack_talk/core/utils/app_assets.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
+import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
+import 'package:hack_talk/features/drawer/rating/presentation/screens/rating/rating_screen.dart';
 import 'package:hack_talk/features/home/presentation/logic/audio_result_cubit/audio_result_cubit.dart';
+import 'package:hack_talk/features/home/presentation/screen/Audio/audio_screen.dart';
 
 class AudioAnalysisScreen extends StatelessWidget {
   const AudioAnalysisScreen({Key? key, required this.audio}) : super(key: key);
@@ -351,6 +354,48 @@ class AudioAnalysisScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+                  ),
+                  SizedBox(height: 22),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          AppRoutes.routeTo(context, const RatingScreen());
+                        },
+                        child: Text(
+                          '          Rate us          ',
+                          style: TextStyle(color: AppColors.mainBlueColor),
+                        ),
+                        style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            side: BorderSide(color: AppColors.mainBlueColor,),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 41,
+                        decoration: BoxDecoration(
+                          color: AppColors.mainBlueColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            AppRoutes.routeAndRemoveTo(context, const AudioScreen());
+                          },
+                          child: Text(
+                            '          Try again          ',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          style: TextButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
