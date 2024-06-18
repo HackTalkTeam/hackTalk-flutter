@@ -22,18 +22,33 @@ class AlertDialogWidget extends StatelessWidget {
         color: Colors.black,
       ),
       actions: [
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.mainBlueColor,
-          ),
+        // ElevatedButton(
+        //   style: ElevatedButton.styleFrom(
+        //     backgroundColor: AppColors.mainBlueColor,
+        //   ),
+        //   onPressed: () {
+        //     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        //       AppRoutes.pop(context);
+        //     });
+        //   },
+        //   child: const Text(
+        //     "cancel",
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        // ),
+        TextButton(
           onPressed: () {
-            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-              AppRoutes.pop(context);
-            });
+            Navigator.of(context).pop();
           },
-          child: const Text(
-            "cancel",
-            style: TextStyle(color: Colors.white),
+          child: Text(
+            '       Cancel       ',
+            style: TextStyle(color: AppColors.mainBlueColor),
+          ),
+          style: TextButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+              side: BorderSide(color: AppColors.mainBlueColor,),
+            ),
           ),
         ),
         ElevatedButton(
@@ -46,7 +61,7 @@ class AlertDialogWidget extends StatelessWidget {
             });
           },
           child: const Text(
-            "logout",
+            "     logout     ",
             style: TextStyle(color: Colors.white),
           ),
         ),

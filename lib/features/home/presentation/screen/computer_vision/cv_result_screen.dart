@@ -1,9 +1,6 @@
 import 'dart:io';
 import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
@@ -140,35 +137,67 @@ class _CVResultScreenState extends State<CVResultScreen> {
                                 ),
                               ],
                             ),
+                            // const SizedBox(height: 12),
+                            // Padding(
+                            //   padding: const EdgeInsets.symmetric(vertical: 4.0),
+                            //   child: Container(
+                            //     height: 45,
+                            //     decoration: BoxDecoration(
+                            //       color: AppColors.mainBlueColor,
+                            //       borderRadius: BorderRadius.circular(10),
+                            //     ),
+                            //     child: const Row(
+                            //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            //       children: [
+                            //         Text('second'),
+                            //         Text('performance'),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
+                            // result != null ?
+                            // Expanded(
+                            //     child: ListView.builder(
+                            //         itemCount: result.cVResultModel.length,
+                            //         itemBuilder: (context, index) {
+                            //           return PerformanceRow(
+                            //               second: result.cVResultModel[index].time,
+                            //               performance:
+                            //               '${result.cVResultModel[index].bodyLanguageClass}');
+                            //         }
+                            //     )): CircularProgressIndicator(color: AppColors.mainBlueColor,),
+
                             const SizedBox(height: 12),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4.0),
+                              padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                height: 45,
+                                width: double.infinity,
                                 decoration: BoxDecoration(
-                                  color: AppColors.mainBlueColor,
-                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
-                                child: const Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Text('second'),
-                                    Text('performance'),
+                                child: DataTable(
+                                  columns: const [
+                                    DataColumn(label: Text('Second')),
+                                    DataColumn(label: Text('Performance')),
                                   ],
+                                  rows: List<DataRow>.generate( result.cVResultModel.length,
+                                        (index) => DataRow(
+                                      color: MaterialStateProperty.resolveWith<Color?>(
+                                            (Set<MaterialState> states) {
+                                          // Alternate colors for rows
+                                          return index.isEven ? Colors.white: Colors.grey[200];
+                                        },
+                                      ),
+                                      cells: [
+                                        DataCell(Text( result.cVResultModel[index].time.toString())),
+                                        DataCell(Text("${result.cVResultModel[index].bodyLanguageClass}")),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                            result != null ?
-                            Expanded(
-                                child: ListView.builder(
-                                    itemCount: result.cVResultModel.length,
-                                    itemBuilder: (context, index) {
-                                      return PerformanceRow(
-                                          second: result.cVResultModel[index].time,
-                                          performance:
-                                          '${result.cVResultModel[index].bodyLanguageClass}');
-                                    }
-                                )): CircularProgressIndicator(color: AppColors.mainBlueColor,),
                           ]),
                     );
                   },
