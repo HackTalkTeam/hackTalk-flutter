@@ -17,8 +17,9 @@ class AudioCubit extends Cubit<AudioState> {
   File? anyFile;
 
   Future<File?> selectFiles() async {
-    FilePickerResult? result = await FilePicker.platform
-        .pickFiles(type: FileType.custom, allowedExtensions: ['mp3', 'm4v']);
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom, allowedExtensions: ['mp3', 'm4v']
+    );
     if (result != null && result.files.single.path != null) {
       anyFile = File(result.files.single.path!);
       return anyFile;
@@ -64,8 +65,7 @@ class AudioCubit extends Cubit<AudioState> {
         int minutes = (allSeconds - (hours * 3600)) ~/ 60;
         int seconds = (allSeconds - (hours * 3600) - (minutes * 60));
 
-        emit(DurationRecordInitial(
-            second: seconds, minutes: minutes, hours: hours));
+        emit(DurationRecordInitial(second: seconds, minutes: minutes, hours: hours));
       });
     } else {
       statusText = "No microphone permission";
@@ -129,6 +129,16 @@ class AudioCubit extends Cubit<AudioState> {
     if (!d.existsSync()) {
       d.createSync(recursive: true);
     }
-    return "$sdPath/test_${i++}.mp3";
+    return "$sdPath/test_${i++}.wav";
   }
+
+  // Future<File?> getAudioRecord() async {
+  //   Directory storageDirectory = await getApplicationDocumentsDirectory();
+  //   String sdPath = "${storageDirectory.path}/record";
+  //   var d = Directory(sdPath);
+  //   if (!d.existsSync()) {
+  //     d.createSync(recursive: true);
+  //   }
+  //   return File("$sdPath/test_${i++}.wav");
+  // }
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -69,15 +71,18 @@ class TimeOverScreen extends StatelessWidget {
                             color: AppColors.mainBlueColor,
                             text: 'Show your result',
                             onPressed: () {
-                              // returnAudio.getFilePath().then(
-                              //       (value) {
-                              //     if (value != null) {
-                              //       AppRoutes.routeTo(
-                              //           context,
-                              //             AudioResultScreen(audio: value));
-                              //     }
-                              //   },
-                              // );
+                              // if(returnAudio.recordFilePath!=null){
+                              //   AppRoutes.routeTo(context, AudioResultScreen(audio: File(returnAudio.recordFilePath!)));
+                              // }
+                              returnAudio.getFilePath().then(
+                                    (value) {
+                                  if (value != null) {
+                                    AppRoutes.routeTo(
+                                        context,
+                                          AudioResultScreen(audio: File(value)));
+                                  }
+                                },
+                              );
                             },
                             textColor: AppColors.homeButtonColor,
                             image: ' ',

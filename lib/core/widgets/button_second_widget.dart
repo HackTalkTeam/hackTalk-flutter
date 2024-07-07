@@ -10,7 +10,7 @@ class ButtonSec extends StatelessWidget {
       required this.onPressed});
   final String text;
   final Color color;
-  final Function onPressed;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ButtonSec extends StatelessWidget {
       width: double.infinity,
       height: 35.h,
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: onPressed ?? () {},
           style: ElevatedButton.styleFrom(
             side: const BorderSide(color: AppColors.mainBlueColor),
             backgroundColor: Colors.white,

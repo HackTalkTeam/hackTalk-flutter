@@ -9,6 +9,7 @@ import 'package:hack_talk/features/drawer/rating/presentation/screens/rating/rat
 import 'package:hack_talk/features/home/presentation/logic/cv_result_cubit/cv_result_cubit.dart';
 import 'package:video_player/video_player.dart';
 
+import '../home/alertWidget.dart';
 import 'computer_vision_screen.dart';
 
 class CVResultScreen extends StatefulWidget {
@@ -53,14 +54,16 @@ class _CVResultScreenState extends State<CVResultScreen> {
           ),
           body: (Center(
               child: BlocProvider(
-                create: (context) => CvResultCubit(),
+                create: (context) => CvResultCubit()..showCVResult(widget.video),
                 child: BlocConsumer<CvResultCubit, CvResultState>(
                   listener: (context, state) {
                     // TODO: implement listener
                   },
                   builder: (context, state) {
                     final result = context.watch<CvResultCubit>();
-                    return Padding(
+                    return state is CvResultLoadingState?
+                    AlertDialog2Widget():
+                      Padding(
                       padding: const EdgeInsets.all(28.0),
                       child: SingleChildScrollView(
                         child: Column(
@@ -123,21 +126,21 @@ class _CVResultScreenState extends State<CVResultScreen> {
                                   ],
                                 ),
                               },
-                              TextButton(
-                                onPressed: () {
-                                  result.showCVResult(widget.video);
-                                },
-                                style: TextButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    side: const BorderSide(color: AppColors.mainBlueColor,),
-                                  ),
-                                ),
-                                child: const Text(
-                                  '      show result      ',
-                                  style: TextStyle(color: AppColors.mainBlueColor),
-                                ),
-                              ),
+                              // TextButton(
+                              //   onPressed: () {
+                              //     result.showCVResult(widget.video);
+                              //   },
+                              //   style: TextButton.styleFrom(
+                              //     shape: RoundedRectangleBorder(
+                              //       borderRadius: BorderRadius.circular(10),
+                              //       side: const BorderSide(color: AppColors.mainBlueColor,),
+                              //     ),
+                              //   ),
+                              //   child: const Text(
+                              //     '      show result      ',
+                              //     style: TextStyle(color: AppColors.mainBlueColor),
+                              //   ),
+                              // ),
                               const SizedBox(height: 12),
                               result != null ?
                               Stack(
@@ -155,13 +158,13 @@ class _CVResultScreenState extends State<CVResultScreen> {
                                       backgroundColor: AppColors.homeButtonColor,
                                       valueColor: const AlwaysStoppedAnimation<Color>(
                                           AppColors.mainBlueColor),
-                                      strokeWidth: 10,
+                                      strokeWidth: 8,
                                     ),
                                   ),
                                   Text(
-                                    "${result?.score ?? 0}",
+                                    "${result?.score?.floor() ?? 0}",
                                     style: const TextStyle(
-                                        fontSize: 40,
+                                        fontSize: 33,
                                         fontWeight: FontWeight.bold,
                                         color: AppColors.mainBlueColor),
                                   ),
@@ -240,7 +243,7 @@ class _CVResultScreenState extends State<CVResultScreen> {
                                           },
                                         ),
                                         cells: [
-                                          DataCell(Text( result.cVResultModel[index].time.toString())),
+                                          DataCell(Text( result.cVResultModel[index].time.floor().toString())),
                                           DataCell(Text("${result.cVResultModel[index].bodyLanguageClass}")),
                                         ],
                                       ),

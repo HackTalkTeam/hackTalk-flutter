@@ -11,7 +11,7 @@ import 'package:hack_talk/features/drawer/features/features_screen.dart';
 import 'package:hack_talk/features/drawer/setting/setting/view/screens/setting_screen.dart';
 import 'package:hack_talk/features/home/presentation/screen/Audio/audio_screen.dart';
 import 'package:hack_talk/features/home/presentation/screen/computer_vision/computer_vision_screen.dart';
-import 'package:hack_talk/features/home/presentation/screen/vr/ve_screen.dart';
+import 'package:hack_talk/features/home/presentation/screen/vr/vr_screen.dart';
 import 'package:hack_talk/features/home/presentation/widgets/home_button_widget.dart';
 import 'package:flutter/services.dart';
 
@@ -137,7 +137,7 @@ class HomeScreen extends StatelessWidget {
                   Expanded(
                     child: HomeButtonWidget(
                       color: AppColors.homeButtonColor,
-                      text: 'Computer Vision',
+                      text: 'Movement analysis',
                       onPressed: () {
                         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                           AppRoutes.routeTo(
@@ -148,18 +148,6 @@ class HomeScreen extends StatelessWidget {
                       image: '',
                     ),
                   ),
-                  // const SizedBox(
-                  //   width: 12,
-                  // ),
-                  // SmallHomeButtonWidget('question', onPressed: () {
-                  //   showDialog(
-                  //     context: context,
-                  //     builder: (context) => const AlertDialogWidget(
-                  //       text:
-                  //           'Computer version role is to take your movement while presenting, analyze it and return your movement mistakes so that you can work on them and improve your  performance skills ',
-                  //     ),
-                  //   );
-                  // }),
                 ],
               ),
               const SizedBox(
@@ -170,7 +158,7 @@ class HomeScreen extends StatelessWidget {
                   Expanded(
                     child: HomeButtonWidget(
                       color: AppColors.homeButtonColor,
-                      text: 'Speech',
+                      text: 'Audio analysis',
                       onPressed: () {
                         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                           AppRoutes.routeTo(context, const AudioScreen());
@@ -180,17 +168,6 @@ class HomeScreen extends StatelessWidget {
                       image: '',
                     ),
                   ),
-                  // const SizedBox(
-                  //   width: 12,
-                  // ),
-                  // SmallHomeButtonWidget('question', onPressed: () {
-                  //   showDialog(
-                  //     context: context,
-                  //     builder: (context) => const AlertDialogWidget(
-                  //         text:
-                  //             'speech role is to take your voice ,analyse it and give you notice about your performance so you can work on your mistakes to get your perfect result '),
-                  //   );
-                  // }),
                 ],
               ),
               const SizedBox(
@@ -201,43 +178,28 @@ class HomeScreen extends StatelessWidget {
                   Expanded(
                     child: HomeButtonWidget(
                       color: AppColors.homeButtonColor,
-                      text: 'Virtual reality',
+                      text: 'Presentation training(VR)',
                       onPressed: () {
-                        SystemChrome.setPreferredOrientations([
-                          DeviceOrientation.landscapeRight,
-                          DeviceOrientation.landscapeLeft,
-                        ]).then((_) {
+                        // SystemChrome.setPreferredOrientations([
+                        //   DeviceOrientation.landscapeRight,
+                        //   DeviceOrientation.landscapeLeft,
+                        // ]).then((_) {
+                        //   AppRoutes.routeTo(context, VrScreen());
+                        // });
+                        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                           AppRoutes.routeTo(context, const VrScreen());
                         });
-                        // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                        //   AppRoutes.routeTo(context, const VrScreen());
-                        // });
                       },
                       textColor: AppColors.mainBlueColor,
                       image: '',
                     ),
                   ),
-                  // const SizedBox(
-                  //   width: 12,
-                  // ),
-                  // SmallHomeButtonWidget('question', onPressed: () {
-                  //   showDialog(
-                  //     context: context,
-                  //     builder: (context) => const AlertDialogWidget(
-                  //         text:
-                  //             'virtual reality role is to overcome your fear of public speaking  by placing you in an almost real environment so you can practice and get notices about your performance so you can work to improve it  '),
-                  //   );
-                  // }),
                 ],
               ),
           
               const SizedBox(
                 height: 44,
               ),
-              // ButtonWidget(
-              //   'Try',
-              //   onPressed: () {},
-              // ),
             ],
           ),
         ),

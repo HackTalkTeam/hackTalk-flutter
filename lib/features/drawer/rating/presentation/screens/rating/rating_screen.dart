@@ -7,6 +7,7 @@ import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/button_widget.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
 import 'package:hack_talk/features/drawer/rating/presentation/logic/rating_cubit/rating_cubit.dart';
+import 'package:hack_talk/features/home/presentation/screen/home/alertWidget.dart';
 
 class RatingScreen extends StatefulWidget {
   const RatingScreen({Key? key}) : super(key: key);
@@ -171,7 +172,12 @@ class _RatingScreenState extends State<RatingScreen> {
                     ButtonWidget(
                       'Submit',
                       color: Colors.white,
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => const AlertDialogRateWidget(),
+                        );
+                      },
                     ),
                   ],
                 ),

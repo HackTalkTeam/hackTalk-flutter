@@ -14,6 +14,7 @@ class CvResultCubit extends Cubit<CvResultState> {
   List<CVResultModel> cVResultModel = [];
   double? score ;
   Future showCVResult(File file) async {
+    print(file.path);
     emit(CvResultLoadingState());
     await DioHelper.postAi(
       url: Endpoints.video,
@@ -23,9 +24,7 @@ class CvResultCubit extends Cubit<CvResultState> {
         },
       ),
     ).then((value) {
-      cVResultModel = (value.data["results"] as List<dynamic>)
-          .map((e) => CVResultModel.fromJson(e))
-          .toList();
+      cVResultModel = (value.data["results"] as List<dynamic>).map((e) => CVResultModel.fromJson(e)).toList();
       score = (value.data["score"]);
     });
     emit(CvResultShowResultState());

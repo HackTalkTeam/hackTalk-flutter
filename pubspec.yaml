@@ -34,6 +34,7 @@ dependencies:
   pinput: ^4.0.0
   video_player: ^2.8.6
   data_table_2: ^2.5.15
+  lottie: ^3.1.2
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +53,7 @@ flutter:
   assets:
     - assets/images/
     - assets/svgs/
+    - assets/animations/
 
   fonts:
     - family: Roboto

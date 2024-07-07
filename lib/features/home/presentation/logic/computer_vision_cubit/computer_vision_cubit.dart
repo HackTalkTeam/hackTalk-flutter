@@ -11,16 +11,13 @@ class ComputerVisionCubit extends Cubit<ComputerVisionState> {
   ComputerVisionCubit() : super(ComputerVisionInitial());
 
   File? video;
-  VideoPlayerController? videoController;
 
   Future<File?> selectVideoPauseFrom() async {
     ImagePicker imagePicker = ImagePicker();
     XFile? image = await imagePicker.pickVideo(source: ImageSource.gallery);
     if (image != null) {
       video = File(image.path);
-      videoController = VideoPlayerController.file(video!)..initialize();
       return video;
-      //emit(ComputerVisionVideoFile(video: video));
     }
     return null;
   }
@@ -30,9 +27,7 @@ class ComputerVisionCubit extends Cubit<ComputerVisionState> {
     XFile? image = await imagePicker.pickVideo(source: ImageSource.camera);
     if (image != null) {
       video = File(image.path);
-      videoController = VideoPlayerController.file(video!)..initialize();
       return video;
-      //emit(ComputerVisionVideoFile(video: video));
     }
     return null;
   }

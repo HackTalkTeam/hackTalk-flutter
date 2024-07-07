@@ -45,8 +45,8 @@ class _ComputerVisionScreenState extends State<ComputerVisionScreen> {
                 icon: const Icon(Icons.arrow_back),
               ),
               title: const TextWidget("Computer vision",
-                  color: Colors.black, fontSize: 16,
-              fontWeight: FontWeight.w600 ,),
+                color: Colors.black, fontSize: 16,
+                fontWeight: FontWeight.w600 ,),
               centerTitle: true,
             ),
             body: SafeArea(
@@ -69,7 +69,7 @@ class _ComputerVisionScreenState extends State<ComputerVisionScreen> {
                           height: 600,
                           child: ContainedTabBarView(
                             tabBarProperties: const TabBarProperties(
-                              indicatorColor: AppColors.mainBlueColor
+                                indicatorColor: AppColors.mainBlueColor
                             ),
                             tabs: const [
                               SizedBox(width: 150),

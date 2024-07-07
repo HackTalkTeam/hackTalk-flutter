@@ -12,6 +12,7 @@ import 'package:hack_talk/core/widgets/text_widget.dart';
 import 'package:hack_talk/features/drawer/rating/presentation/screens/rating/rating_screen.dart';
 import 'package:hack_talk/features/home/presentation/logic/audio_result_cubit/audio_result_cubit.dart';
 import 'package:hack_talk/features/home/presentation/screen/Audio/audio_screen.dart';
+import 'package:hack_talk/features/home/presentation/screen/home/alertWidget.dart';
 
 class AudioAnalysisScreen extends StatelessWidget {
   const AudioAnalysisScreen({Key? key, required this.audio}) : super(key: key);
@@ -22,28 +23,29 @@ class AudioAnalysisScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(28.0),
       child: BlocProvider(
-        create: (context) => AudioResultCubit(),
+        create: (context) => AudioResultCubit()..showAudioResult(audio),
         child: BlocConsumer<AudioResultCubit, AudioResultState>(
           listener: (context, state) {
-            // TODO: implement listener
           },
           builder: (context, state) {
             final audioResult = context.watch<AudioResultCubit>();
-            return SingleChildScrollView(
+            return state is AudioResultLoadingInitial ?
+            const AlertDialog2Widget():
+              SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  MaterialButton(
-                    color: AppColors.mainBlueColor,
-                    onPressed: () {
-                      audioResult.showAudioResult(audio);
-                    },
-                    child: const TextWidget(
-                      "show result",
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(height: 22),
+                  // MaterialButton(
+                  //   color: AppColors.mainBlueColor,
+                  //   onPressed: () {
+                  //     audioResult.showAudioResult(audio);
+                  //   },
+                  //   child: const TextWidget(
+                  //     "show result",
+                  //     color: Colors.white,
+                  //   ),
+                  // ),
+                  // SizedBox(height: 22),
                   Container(
                     padding: EdgeInsets.all(10),
                     width: double.infinity,
@@ -106,8 +108,8 @@ class AudioAnalysisScreen extends StatelessWidget {
                           children: [
                             TextWidget(
                               '"${audioResult.audioResultModel?.longestSentence}"',
-                              maxLines: 20,
-                              fontSize: 14,
+                              maxLines: 22,
+                              fontSize: 13,
                             ),
                           ],
                         ),

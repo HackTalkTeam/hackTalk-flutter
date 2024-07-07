@@ -21,18 +21,18 @@ class FeaturesScreen extends StatelessWidget {
           children: [
             SvgPicture.asset('feature1'.getSvgAsset),
             const FeaturesColumn(
-              title: 'Computer vision ',
+              title: 'Movement analysis',
               description:
                   'computer vision can offer in-depth analysis and feedback on users presentations .This might include insights into pacing, tone, body language and overall presentation structure.',
             ),
             SvgPicture.asset('feature2'.getSvgAsset),
             const FeaturesColumn(
-                title: 'Speech analysis',
+                title: 'Audio analysis',
                 description:
                     'Speech analysis feature Providing constructive feedback to the speaker based on the analysis, highlighting areas of strength and suggesting areas for improving presentation performance,'),
             SvgPicture.asset('feature3'.getSvgAsset),
             const FeaturesColumn(
-              title: 'Virtual reality ',
+              title: 'Presentation training(VR)',
               description:
                   'virtual reality feature aim to overcome your fear of public speaking  by placing you in an almost real environment so you can practice and get notices about your performance so you can work to improve it  ',
             ),
@@ -72,7 +72,7 @@ class FeaturesColumn extends StatelessWidget {
           ),
           TextWidget(
             description,
-            maxLines: 4,
+            maxLines: 5,
             fontSize: 14,
             fontWeight: FontWeight.w600,
             color: AppColors.textBodyColor,

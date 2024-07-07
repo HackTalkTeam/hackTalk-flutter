@@ -18,10 +18,10 @@ class VrScreen extends StatefulWidget {
 class _VrScreenState extends State<VrScreen> {
   @override
 //-------------------------------------------
-  void dispose(){
-    SystemChrome.setPreferredOrientations([]);
-    super.dispose();
-  }
+//   void dispose(){
+//     SystemChrome.setPreferredOrientations([]);
+//     super.dispose();
+//   }
 //-------------------------------------------
 
   Widget build(BuildContext context) {

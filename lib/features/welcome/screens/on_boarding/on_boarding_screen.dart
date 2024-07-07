@@ -129,11 +129,7 @@ class OnBoardingScreen extends StatelessWidget {
                               text: 'Skip',
                               color: AppColors.mainBlueColor,
                               onPressed: () {
-                                WidgetsBinding.instance
-                                    .addPostFrameCallback((timeStamp) {
-                                  AppRoutes.routeAndRemoveAllTo(
-                                      context, const SignUpScreen());
-                                });
+                                AppRoutes.routeAndRemoveAllTo(context, const SignUpScreen());
                               },
                             ),
                           )

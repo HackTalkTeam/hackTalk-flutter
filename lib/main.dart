@@ -7,6 +7,7 @@ import 'package:hack_talk/core/helpers/helper_methods.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/utils/app_strings.dart';
 import 'package:hack_talk/core/utils/app_themes.dart';
+import 'package:hack_talk/features/welcome/screens/splash/splash_screen.dart';
 import 'core/helpers/cache_helper.dart';
 import 'core/helpers/dio_helper.dart';
 import 'features/auth/logic/app_cubit/app_cubit.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
             title: AppStrings.appName,
             theme: AppThemes.theme,
             debugShowCheckedModeBanner: false,
-            home:  const HomeScreen(),
+            home:  const SplashScreen(),
           ),
         );
       },

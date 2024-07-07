@@ -40,7 +40,7 @@ class _AudioScreenState extends State<AudioScreen> {
                 },
                 icon: const Icon(Icons.arrow_back),
               ),
-              title: const TextWidget('Speech',
+              title: const TextWidget('Audio analysis',
                   color: Colors.black,
                   fontSize: 16,
                   fontWeight: FontWeight.w600),
