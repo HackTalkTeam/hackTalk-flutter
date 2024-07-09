@@ -2,10 +2,10 @@
 
 ## Graduation Project
 #### Home screen (Movement Analysis(Body Language) , Audio Analysis).
-#### The user can choose a video from the gallery.
-#### The user can open the camera and record a video.
-#### The user can choose audio from his files.
-#### The user can open records and record audio.
+#### -The user can choose a video from the gallery.
+#### -The user can open the camera and record a video.
+#### -The user can choose audio from his files.
+#### -The user can open records and record audio.
 
 ## OUR UI
 
