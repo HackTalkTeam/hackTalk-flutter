@@ -35,17 +35,6 @@ class AudioAnalysisScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  // MaterialButton(
-                  //   color: AppColors.mainBlueColor,
-                  //   onPressed: () {
-                  //     audioResult.showAudioResult(audio);
-                  //   },
-                  //   child: const TextWidget(
-                  //     "show result",
-                  //     color: Colors.white,
-                  //   ),
-                  // ),
-                  // SizedBox(height: 22),
                   Container(
                     padding: EdgeInsets.all(10),
                     width: double.infinity,

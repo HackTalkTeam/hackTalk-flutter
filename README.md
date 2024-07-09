@@ -1,6 +1,10 @@
-# Flutter HackTalk - IN Progress
+# Flutter HackTalk 
 
 ## Graduation Project
+## Home screen (Movement Analysis, Audio Analysis).
+## INCLUDE uploading video from the gallery or uploading audio from my files.
+## The user can open the camera and record a video.
+## The user can open records and record audio.
 
 ## OUR UI
 

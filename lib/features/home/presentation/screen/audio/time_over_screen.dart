@@ -71,9 +71,6 @@ class TimeOverScreen extends StatelessWidget {
                             color: AppColors.mainBlueColor,
                             text: 'Show your result',
                             onPressed: () {
-                              // if(returnAudio.recordFilePath!=null){
-                              //   AppRoutes.routeTo(context, AudioResultScreen(audio: File(returnAudio.recordFilePath!)));
-                              // }
                               returnAudio.getFilePath().then(
                                     (value) {
                                   if (value != null) {

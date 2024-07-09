@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hack_talk/core/utils/app_colors.dart';
 import 'package:hack_talk/core/utils/app_routes.dart';
 import 'package:hack_talk/core/widgets/text_widget.dart';
-import 'package:hack_talk/features/auth/screens/login/login_screen.dart';
 import 'package:lottie/lottie.dart';
-
-import 'home_screen.dart';
 
 class AlertDialogWidget extends StatelessWidget {
   const AlertDialogWidget({

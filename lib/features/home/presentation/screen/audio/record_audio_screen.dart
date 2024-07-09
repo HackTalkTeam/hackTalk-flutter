@@ -95,17 +95,6 @@ class _RecordAudioScreenState extends State<RecordAudioScreen> {
                               },
                               child: SvgPicture.asset(
                                   'start audio record'.getSvgAsset)),
-                          // if (returnAudio.isRecording)
-                          //   InkWell(
-                          //       onTap: () {
-                          //         returnAudio.pauseRecord();
-                          //       },
-                          //       child: RecordMp3.instance.status ==
-                          //               RecordStatus.PAUSE
-                          //           ? SvgPicture.asset(
-                          //               'start audio record'.getSvgAsset)
-                          //           : SvgPicture.asset(
-                          //               'record_pause'.getSvgAsset)),
                           if (returnAudio.isRecording)
                             InkWell(
                                 onTap: () {
@@ -169,35 +158,3 @@ class _RecordAudioScreenState extends State<RecordAudioScreen> {
     );
   }
 }
-
-// class GestureDetectorWidget extends StatelessWidget {
-//   const GestureDetectorWidget(
-//       {Key? key,
-//       this.onTap,
-//       required this.text,
-//       required this.color,
-//       required this.textColor})
-//       : super(key: key);
-//   final void Function()? onTap;
-//   final String text;
-//   final Color color;
-//   final Color textColor;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Expanded(
-//       child: GestureDetector(
-//           onTap: onTap,
-//           child: Container(
-//             height: 48.0,
-//             decoration: BoxDecoration(color: color),
-//             child: Center(
-//               child: Text(
-//                 text,
-//                 style: TextStyle(color: textColor),
-//               ),
-//             ),
-//           )),
-//     );
-//   }
-// }

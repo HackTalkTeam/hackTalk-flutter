@@ -95,13 +95,6 @@ class AudioResultScreen extends StatelessWidget {
                     AlertDialog2Widget():
                     Column(
                       children: [
-                        // MaterialButton(
-                        //   color: AppColors.mainBlueColor,
-                        //   onPressed: () {
-                        //     audioResult.showAudioResult(audio);
-                        //   },
-                        //   child: const TextWidget("show result",color: Colors.white,),
-                        // ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextWidget(audioResult.audioResultModel?.generatedText??'',

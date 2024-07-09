@@ -54,13 +54,7 @@ class _VrScreenState extends State<VrScreen> {
                   child: HomeButtonWidget(
                     color: AppColors.mainBlueColor,
                     text: 'Start downloading',
-                    onPressed: () {
-                      // WidgetsBinding.instance
-                      //     .addPostFrameCallback((timeStamp) {
-                      //   AppRoutes.routeTo(
-                      //       context, const ComputerVisionScreen());
-                      // });
-                    },
+                    onPressed: () {},
                     textColor: AppColors.homeButtonColor,
                     image: 'download',
                   ),

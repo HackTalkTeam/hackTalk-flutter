@@ -11,7 +11,6 @@ import 'package:hack_talk/features/welcome/screens/splash/splash_screen.dart';
 import 'core/helpers/cache_helper.dart';
 import 'core/helpers/dio_helper.dart';
 import 'features/auth/logic/app_cubit/app_cubit.dart';
-import 'features/home/presentation/screen/home/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

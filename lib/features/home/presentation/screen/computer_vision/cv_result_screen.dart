@@ -126,21 +126,6 @@ class _CVResultScreenState extends State<CVResultScreen> {
                                   ],
                                 ),
                               },
-                              // TextButton(
-                              //   onPressed: () {
-                              //     result.showCVResult(widget.video);
-                              //   },
-                              //   style: TextButton.styleFrom(
-                              //     shape: RoundedRectangleBorder(
-                              //       borderRadius: BorderRadius.circular(10),
-                              //       side: const BorderSide(color: AppColors.mainBlueColor,),
-                              //     ),
-                              //   ),
-                              //   child: const Text(
-                              //     '      show result      ',
-                              //     style: TextStyle(color: AppColors.mainBlueColor),
-                              //   ),
-                              // ),
                               const SizedBox(height: 12),
                               result != null ?
                               Stack(
@@ -190,36 +175,6 @@ class _CVResultScreenState extends State<CVResultScreen> {
                                   ),
                                 ],
                               ),
-                              // const SizedBox(height: 12),
-                              // Padding(
-                              //   padding: const EdgeInsets.symmetric(vertical: 4.0),
-                              //   child: Container(
-                              //     height: 45,
-                              //     decoration: BoxDecoration(
-                              //       color: AppColors.mainBlueColor,
-                              //       borderRadius: BorderRadius.circular(10),
-                              //     ),
-                              //     child: const Row(
-                              //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              //       children: [
-                              //         Text('second'),
-                              //         Text('performance'),
-                              //       ],
-                              //     ),
-                              //   ),
-                              // ),
-                              // result != null ?
-                              // Expanded(
-                              //     child: ListView.builder(
-                              //         itemCount: result.cVResultModel.length,
-                              //         itemBuilder: (context, index) {
-                              //           return PerformanceRow(
-                              //               second: result.cVResultModel[index].time,
-                              //               performance:
-                              //               '${result.cVResultModel[index].bodyLanguageClass}');
-                              //         }
-                              //     )): CircularProgressIndicator(color: AppColors.mainBlueColor,),
-
                               const SizedBox(height: 12),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
